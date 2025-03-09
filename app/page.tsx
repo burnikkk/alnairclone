@@ -5,6 +5,7 @@ import { Separator } from '@/components/ui/separator';
 import { MainLayout } from '@/app/components/layout/mainLayout';
 import React from 'react';
 import { CurrencyProvider } from '@/app/components/contexts/CurrencyProvider';
+import { PropertyCard } from '@/app/components/property/PropertyCard';
 
 export default function Home({ children }: { children: React.ReactNode }) {
   return (
@@ -15,6 +16,7 @@ export default function Home({ children }: { children: React.ReactNode }) {
       </header>
       <MainLayout />
       <Separator />
+      <PropertyCard />
     </CurrencyProvider>
   );
 }
