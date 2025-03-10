@@ -7,13 +7,13 @@ import Image from 'next/image';
 import { Separator } from '@/components/ui/separator';
 
 interface PropertyCardProps {
-  property: PropertyType;
+  property?: PropertyType;
 }
 
 export const PropertyCard = ({ property }: PropertyCardProps) => {
   if (!property) {
     return (
-      <Card className="w-[300px] rounded-2xl shadow-lg overflow-hidden cursor-pointer">
+      <Card className="w-full rounded-2xl shadow-lg overflow-hidden cursor-pointer">
         {/* Рекомендовано + изображение */}
         <div className="relative w-full aspect-[4/3]">
           <Badge className="absolute top-3 left-3 bg-[#edeef7] text-[#4f5fd9] rounded-full text-sm font-normal z-1">
@@ -55,10 +55,11 @@ export const PropertyCard = ({ property }: PropertyCardProps) => {
           </div>
         </CardContent>
 
-        {/*<CardFooter className="p-4 flex justify-end">*/}
-        {/*  <Button variant="ghost" size="icon">*/}
-        {/*    ⌄*/}
-        {/*  </Button>*/}
+        {/*<CardFooter className="bg-white transition-all duration-300 max-h-0 overflow-hidden group-hover:max-h-40 p-4">*/}
+        {/*  <p className="text-sm text-gray-700">*/}
+        {/*    Здесь может быть дополнительная информация об объекте, которая*/}
+        {/*    появляется при наведении на карточку.*/}
+        {/*  </p>*/}
         {/*</CardFooter>*/}
       </Card>
     );

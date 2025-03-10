@@ -1,0 +1,30 @@
+:root {
+    --collapse-project-list-button: 32px;
+}
+@media screen and (min-width: 768px) {
+    :root {
+        --search-filter-bar-padding-y: 16px;
+    }
+}
+
+@media screen and (min-width: 1440px) {
+    :root {
+        --projects-list-width: calc(656px + var(--collapse-project-list-button));
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    .full-screen-container {
+        grid-template-columns: var(--projects-list-width) calc(100% - var(--projects-list-width));
+        transition: grid-template-columns .3s;
+        display: grid;
+        width: 100vw;
+        height: 100%;
+        overflow: hidden;
+    }
+}
+
+.leaflet-container {
+    width: 100%;
+    height: 100%;
+}
