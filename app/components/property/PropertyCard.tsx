@@ -13,23 +13,23 @@ interface PropertyCardProps {
 export const PropertyCard = ({ property }: PropertyCardProps) => {
   if (!property) {
     return (
-      <Card className="w-full rounded-2xl shadow-lg overflow-hidden cursor-pointer">
-        {/* Рекомендовано + изображение */}
-        <div className="relative w-full aspect-[4/3]">
-          <Badge className="absolute top-3 left-3 bg-[#edeef7] text-[#4f5fd9] rounded-full text-sm font-normal z-1">
+      <Card className="relative w-full rounded-2xl shadow-lg overflow-hidden cursor-pointer group transition-all duration-300 ease-in-out">
+        <div className="relative w-full aspect-[1/1]">
+          <Badge className="absolute top-3 left-3 bg-[#edeef7] text-[#4f5fd9] rounded-full text-sm font-normal z-10">
             Рекомендовано
           </Badge>
           <Image
             src="/CardComponents/img.png"
-            alt={'нет данных'}
+            alt="нет данных"
             layout="fill"
             objectFit="cover"
             className="p-1 rounded-2xl z-0"
           />
         </div>
 
-        <CardContent className="p-2">
-          {/* Лого + Заголовок */}
+        {/* Анимированный контент карточки */}
+        <CardContent className="absolute bottom-0 left-0 w-full bg-white p-4 transform translate-y-1/3 group-hover:translate-y-0 transition-transform duration-300 ease-in-out">
+          {/* Основная информация */}
           <div className="flex items-center gap-3 pb-2">
             <Image
               src="/CardComponents/img.png"
@@ -44,23 +44,27 @@ export const PropertyCard = ({ property }: PropertyCardProps) => {
             </div>
           </div>
           <Separator />
+
           {/* Тип недвижимости */}
           <p className="text-xs pt-2">Первичная</p>
+
           {/* Цена + Скидка */}
-          <div className="flex justify-between items-center pt-2">
-            <p className="text-md font-semibold">от миллиона гривен</p>
-            <Badge className="rounded-full bg-green-200 text-green-500 px-2 py-1 text-xs font-bold">
+          <div className="flex justify-between items-center pb-2">
+            <p className="text-lg font-semibold">от миллиона гривен</p>
+            <Badge className="rounded-full bg-green-200 text-green-500 px-2 text-xs font-bold">
               100%
             </Badge>
           </div>
-        </CardContent>
+          <Separator />
 
-        {/*<CardFooter className="bg-white transition-all duration-300 max-h-0 overflow-hidden group-hover:max-h-40 p-4">*/}
-        {/*  <p className="text-sm text-gray-700">*/}
-        {/*    Здесь может быть дополнительная информация об объекте, которая*/}
-        {/*    появляется при наведении на карточку.*/}
-        {/*  </p>*/}
-        {/*</CardFooter>*/}
+          {/* Дополнительная информация */}
+          <div className="pt-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-in-out">
+            <p className="text-sm text-gray-700">
+              Подробная информация: скидка 100% на первый взнос, комфорт-класс,
+              выгодные условия приобретения и ипотека на месте.
+            </p>
+          </div>
+        </CardContent>
       </Card>
     );
   }

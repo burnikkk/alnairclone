@@ -1,7 +1,6 @@
 'use client';
 
 import React from 'react';
-import Link from 'next/link';
 
 import { cn } from '@/lib/utils';
 import {
@@ -60,19 +59,15 @@ export function NavigationMenuHeader() {
         </NavigationMenuItem>
 
         <NavigationMenuItem>
-          <Link href="#">
-            <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-              Застройщики
-            </NavigationMenuLink>
-          </Link>
+          <NavigationMenuLink href="#" className={navigationMenuTriggerStyle()}>
+            Застройщики
+          </NavigationMenuLink>
         </NavigationMenuItem>
 
         <NavigationMenuItem>
-          <Link href="#">
-            <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-              Районы
-            </NavigationMenuLink>
-          </Link>
+          <NavigationMenuLink href="#" className={navigationMenuTriggerStyle()}>
+            Районы
+          </NavigationMenuLink>
         </NavigationMenuItem>
       </NavigationMenuList>
     </NavigationMenu>

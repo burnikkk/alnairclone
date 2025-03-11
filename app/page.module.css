@@ -1,5 +1,7 @@
 :root {
     --collapse-project-list-button: 32px;
+    margin: 0;
+    padding: 0;
 }
 @media screen and (min-width: 768px) {
     :root {
@@ -22,9 +24,45 @@
         height: 100%;
         overflow: hidden;
     }
+    .collapse_project_list_button {
+        background-color: #f3f3f5;
+        border-left: 1px solid #dfdfeb;
+        border-right: 1px solid #dfdfeb;
+        cursor: pointer;
+        width: var(--collapse-project-list-button);
+        height: 100%;
+        z-index: 1;
+        display: block;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        right: 0;
+    }
+    .projects {
+        padding-right: var(--collapse-project-list-button);
+        transform: translate(0);
+}
+    .collapsed .projects {
+        display: none;
+        transition: transform 0.3s ease-in-out;
+    }
+
+    .collapsed .leaflet-container {
+        width: 100vw;
+        transition: width 0.3s ease;
+    }
+}
+
+.projects {
+    height: 100%;
+    transition: transform .15s linear;
+    position: relative;
+    width: var(--projects-list-width) !important;
 }
 
 .leaflet-container {
+    position: relative;
     width: 100%;
     height: 100%;
+    z-index: 0;
 }

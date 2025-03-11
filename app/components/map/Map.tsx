@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { MapContainer, Marker, Popup, TileLayer } from 'react-leaflet';
+import { MapContainer, TileLayer } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import styles from '@/app/page.module.css';
 
@@ -18,17 +18,19 @@ export const Map: React.FC<MapProps> = ({
 }) => {
   return (
     <MapContainer
-      center={[latitude, longitude] as [number, number]}
+      center={[latitude, longitude]}
       zoom={zoom}
       className={styles['leaflet-container']}
     >
-      <TileLayer
-        attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-      />
-      <Marker position={[latitude, longitude]}>
-        <Popup>Это ваша локация!</Popup>
-      </Marker>
+      <>
+        <TileLayer
+          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+        />
+        {/*<Marker position={[latitude, longitude]}>*/}
+        {/*<Popup>Это ваша локация!</Popup>*/}
+        {/*</Marker>*/}
+      </>
     </MapContainer>
   );
 };

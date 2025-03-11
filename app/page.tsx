@@ -4,18 +4,17 @@ import { Header } from '@/app/components/layout/Header';
 import { Separator } from '@/components/ui/separator';
 import { MainLayout } from '@/app/components/layout/mainLayout';
 import React from 'react';
-import { CurrencyProvider } from '@/app/components/contexts/CurrencyProvider';
 
-export default function Home({ children }: { children: React.ReactNode }) {
+export default function Home() {
   return (
-    <CurrencyProvider>
-      <header>
+    <div>
+      <div>
         <Header />
         <Separator />
-      </header>
-      <body>
+      </div>
+      <div>
         <MainLayout />
-      </body>
-    </CurrencyProvider>
+      </div>
+    </div>
   );
 }
