@@ -16,25 +16,17 @@ export const MainLayout = () => {
     <div>
       <Menubar />
       <Separator />
-
       <div
-        className={`${styles['full-screen-container']} ${isCollapsed ? 'collapsed' : ''}`}
+        className={`${styles['full-screen-container']} ${isCollapsed ? styles['collapsed'] : ''}`}
       >
-        <div className={styles['projects']}>
-          {/*объекты и их сортировка*/}
+        <div className={`${styles['projects']} w-full`}>
           <div
-            className={`flex flex-wrap relative content-start h-[calc(100vh-125px)] px-4 pb-4 overflow-y-scroll ${
-              isCollapsed ? 'hidden' : 'block'
-            }`}
+            className={`flex flex-wrap content-start px-4 pb-4 overflow-y-scroll`}
           >
-            {' '}
-            {/*root*/}
             <div className="w-full">
-              {/*сортировка*/}
               <PropertyHeading />
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 w-full">
-              {/*объекты*/}
               <PropertyCard />
               <PropertyCard />
               <PropertyCard />
@@ -43,11 +35,12 @@ export const MainLayout = () => {
               <PropertyCard />
             </div>
           </div>
-          {/*button*/}
-          <CollapsibleButton onToggle={setIsCollapsed} />
+          <CollapsibleButton
+            isCollapsed={isCollapsed}
+            setIsCollapsed={setIsCollapsed}
+          />
         </div>
         <div className={styles['leaflet-container']}>
-          {/*карта*/}
           <Map />
         </div>
       </div>

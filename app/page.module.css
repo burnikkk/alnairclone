@@ -21,8 +21,12 @@
         transition: grid-template-columns .3s;
         display: grid;
         width: 100vw;
-        height: 100%;
+        /*height: 100%;*/
+        height: calc(100vh - 125px);
         overflow: hidden;
+        &.collapsed {
+            grid-template-columns: var(--collapse-project-list-button) calc(100% - var(--collapse-project-list-button));
+        }
     }
     .collapse_project_list_button {
         background-color: #f3f3f5;
@@ -43,21 +47,13 @@
         transform: translate(0);
 }
     .collapsed .projects {
-        display: none;
-        transition: transform 0.3s ease-in-out;
-    }
-
-    .collapsed .leaflet-container {
-        width: 100vw;
-        transition: width 0.3s ease;
+        width: 0;
     }
 }
 
 .projects {
-    height: 100%;
     transition: transform .15s linear;
     position: relative;
-    width: var(--projects-list-width) !important;
 }
 
 .leaflet-container {

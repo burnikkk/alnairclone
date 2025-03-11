@@ -9,22 +9,17 @@ import {
 import styles from '@/app/page.module.css';
 
 interface CollapsibleButtonProps {
-  onToggle: (isOpen: boolean) => void;
+  isCollapsed: boolean;
+  setIsCollapsed: (isOpen: boolean) => void;
 }
 
 export const CollapsibleButton: React.FC<CollapsibleButtonProps> = ({
-  onToggle,
+  isCollapsed,
+  setIsCollapsed,
 }) => {
-  const [isOpen, setIsOpen] = useState(true);
-
-  const handleToggle = () => {
-    setIsOpen(!isOpen);
-    onToggle(!isOpen);
-  };
-
   return (
     <div className={styles['collapse_project_list_button']}>
-      <Collapsible open={isOpen} onOpenChange={handleToggle}>
+      <Collapsible open={isCollapsed} onOpenChange={setIsCollapsed}>
         <div className="flex items-center justify-between space-x-4">
           <CollapsibleTrigger asChild>
             <Button variant="ghost" size="sm" className="h-full w-full">
