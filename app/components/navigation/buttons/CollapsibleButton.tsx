@@ -1,12 +1,5 @@
-import React, { useState } from 'react';
-import { ChevronsUpDown } from 'lucide-react';
-import { Button } from '@/components/ui/button';
-import {
-  Collapsible,
-  CollapsibleContent,
-  CollapsibleTrigger,
-} from '@/components/ui/collapsible';
-import styles from '@/app/page.module.css';
+import React from 'react';
+import { PanelLeftClose, PanelLeftOpen } from 'lucide-react';
 
 interface CollapsibleButtonProps {
   isCollapsed: boolean;
@@ -18,17 +11,17 @@ export const CollapsibleButton: React.FC<CollapsibleButtonProps> = ({
   setIsCollapsed,
 }) => {
   return (
-    <div className={styles['collapse_project_list_button']}>
-      <Collapsible open={isCollapsed} onOpenChange={setIsCollapsed}>
-        <div className="flex items-center justify-between space-x-4">
-          <CollapsibleTrigger asChild>
-            <Button variant="ghost" size="sm" className="h-full w-full">
-              <ChevronsUpDown className="h-4 w-4" />
-            </Button>
-          </CollapsibleTrigger>
-        </div>
-        <CollapsibleContent className="space-y-2"></CollapsibleContent>
-      </Collapsible>
+    <div className="bg-[#f3f3f5] border-l border-r border-[#dfdfeb] w-[32px] h-full z-10 block absolute top-0 right-0 bottom-0 flex items-center">
+      <button
+        onClick={() => setIsCollapsed(!isCollapsed)}
+        className="h-full w-full flex items-center justify-center bg-transparent border-none cursor-pointer"
+      >
+        {isCollapsed ? (
+          <PanelLeftOpen className="h-4 w-4" />
+        ) : (
+          <PanelLeftClose className="h-4 w-4" />
+        )}
+      </button>
     </div>
   );
 };

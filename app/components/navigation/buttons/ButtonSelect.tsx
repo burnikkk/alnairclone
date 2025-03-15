@@ -45,15 +45,12 @@ export const ButtonSelect = {
         <SelectValue placeholder="Тип жилья" />
       </SelectTrigger>
       <SelectContent className="max-h-60 w-55">
-        <SelectItem value="apartment1">Квартира</SelectItem>
-        <SelectItem value="apartment2">Квартира</SelectItem>
-        <SelectItem value="apartment3">Квартира</SelectItem>
-        <SelectItem value="apartment4">Квартира</SelectItem>
-        <SelectItem value="apartment5">Квартира</SelectItem>
-        <SelectItem value="apartment6">Квартира</SelectItem>
-        <SelectItem value="apartment7">Квартира</SelectItem>
-        <SelectItem value="house">Дом</SelectItem>
+        <SelectItem value="villa">Вилла</SelectItem>
         <SelectItem value="penthouse">Пентхаус</SelectItem>
+        <SelectItem value="townhouse">Таунхаус</SelectItem>
+        <SelectItem value="apartment">Апартаменты</SelectItem>
+        <SelectItem value="studio">Студия</SelectItem>
+        <SelectItem value="house">Дом</SelectItem>
       </SelectContent>
     </Select>
   ),

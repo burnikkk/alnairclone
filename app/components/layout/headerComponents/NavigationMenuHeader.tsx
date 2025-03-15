@@ -20,7 +20,7 @@ export function NavigationMenuHeader() {
         <NavigationMenuItem>
           <NavigationMenuTrigger>О нас</NavigationMenuTrigger>
           <NavigationMenuContent>
-            <ul className="grid gap-2 p-0 m-0 box-border w-screen grid-cols-[auto_auto_auto] justify-start">
+            <ul className="grid gap-2 box-border w-screen grid-cols-[auto_auto_auto] justify-start">
               <li className="pl-8 text-left">
                 <h3 className="text-black font-bold mb-2">База знаний</h3>
                 <ul className="p-0 text-sm text-left">

@@ -4,7 +4,6 @@ import {
   SelectContent,
   SelectGroup,
   SelectItem,
-  SelectLabel,
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
@@ -12,7 +11,9 @@ import {
 export const PropertyHeading = () => {
   return (
     <div className="w-full pt-2 flex items-center justify-between">
-      <p className="text-xl font-semibold">100 из 100 результатов</p>
+      <div>
+        <p className="text-xl font-semibold">100 из 100 результатов</p>
+      </div>
 
       <Select>
         <SelectTrigger className="w-[180px] border-none">
@@ -20,7 +21,7 @@ export const PropertyHeading = () => {
         </SelectTrigger>
         <SelectContent className="align-middle">
           <SelectGroup>
-            <SelectLabel>Fruits</SelectLabel>
+            <SelectItem value="default">По умолчанию</SelectItem>
             <SelectItem value="new">Сначала новые</SelectItem>
             <SelectItem value="old">Сначала старые</SelectItem>
             <SelectItem value="price-desc">Цена по убыванию</SelectItem>

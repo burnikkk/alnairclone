@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import {
   Dialog,
@@ -14,23 +15,32 @@ import {
   NavigationMenuList,
 } from '@/components/ui/navigation-menu';
 import { Navigation } from 'lucide-react';
-import React from 'react';
 import Flag from 'react-world-flags';
 
 export const ButtonLocation = () => {
+  const [selectedCity, setSelectedCity] = useState('Dubai');
+  const [open, setOpen] = useState(false);
+
+  const handleCitySelect = (city: string) => {
+    setSelectedCity(city);
+    setOpen(false);
+  };
+
   return (
-    <Dialog>
+    <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
         <Button className="rounded-full bg-[#4f5fd9] text-white hover:bg-[#6e7df0]">
           <Navigation size={20} />
-          Dubai
+          {selectedCity}
         </Button>
       </DialogTrigger>
+
       <DialogContent className="md:max-w-[768px] p-[60px]">
         <DialogHeader>
           <DialogTitle className="font-bold text-3xl">
             Выберите город
           </DialogTitle>
+
           <DialogDescription>
             Alnair работает в 16 городах в 9 странах
           </DialogDescription>
@@ -42,43 +52,97 @@ export const ButtonLocation = () => {
                 <Flag code="AE" className="w-5 h-5" />
                 United Arab Emirates
               </h3>
-              <NavigationMenuLink href="#">Dubai</NavigationMenuLink>
-              <NavigationMenuLink href="#">Abu Dhabi</NavigationMenuLink>
-              <NavigationMenuLink href="#">Sharjah</NavigationMenuLink>
-              <NavigationMenuLink href="#">Ras Al Khaimah</NavigationMenuLink>
-              <NavigationMenuLink href="#">Ajman</NavigationMenuLink>
-              <NavigationMenuLink href="#">Umm Al Quwain</NavigationMenuLink>
+              <NavigationMenuLink asChild>
+                <button onClick={() => handleCitySelect('Dubai')}>Dubai</button>
+              </NavigationMenuLink>
+              <NavigationMenuLink asChild>
+                <button onClick={() => handleCitySelect('Abu Dhabi')}>
+                  Abu Dhabi
+                </button>
+              </NavigationMenuLink>
+              <NavigationMenuLink asChild>
+                <button onClick={() => handleCitySelect('Sharjah')}>
+                  Sharjah
+                </button>
+              </NavigationMenuLink>
+              <NavigationMenuLink asChild>
+                <button onClick={() => handleCitySelect('Ras Al Khaimah')}>
+                  Ras Al Khaimah
+                </button>
+              </NavigationMenuLink>
+              <NavigationMenuLink asChild>
+                <button onClick={() => handleCitySelect('Ajman')}>Ajman</button>
+              </NavigationMenuLink>
+              <NavigationMenuLink asChild>
+                <button onClick={() => handleCitySelect('Umm Al Quwain')}>
+                  Umm Al Quwain
+                </button>
+              </NavigationMenuLink>
             </NavigationMenuItem>
 
             <NavigationMenuItem>
-              <h3 className="font-bold">
+              <h3 className="font-bold text-lg">
                 <Flag code="TH" className="w-5 h-5" />
                 Thailand
               </h3>
-              <NavigationMenuLink href="#">Phuket</NavigationMenuLink>
-              <NavigationMenuLink href="#">Samui</NavigationMenuLink>
-              <NavigationMenuLink href="#">Bangkok</NavigationMenuLink>
-              <NavigationMenuLink href="#">Pattaya</NavigationMenuLink>
-              <NavigationMenuLink href="#">Chiang Mai</NavigationMenuLink>
-              <NavigationMenuLink href="#">Hua Hin</NavigationMenuLink>
+              <NavigationMenuLink asChild>
+                <button onClick={() => handleCitySelect('Phuket')}>
+                  Phuket
+                </button>
+              </NavigationMenuLink>
+              <NavigationMenuLink asChild>
+                <button onClick={() => handleCitySelect('Samui')}>Samui</button>
+              </NavigationMenuLink>
+              <NavigationMenuLink asChild>
+                <button onClick={() => handleCitySelect('Bangkok')}>
+                  Bangkok
+                </button>
+              </NavigationMenuLink>
+              <NavigationMenuLink asChild>
+                <button onClick={() => handleCitySelect('Pattaya')}>
+                  Pattaya
+                </button>
+              </NavigationMenuLink>
+              <NavigationMenuLink asChild>
+                <button onClick={() => handleCitySelect('Chiang Mai')}>
+                  Chiang Mai
+                </button>
+              </NavigationMenuLink>
+              <NavigationMenuLink asChild>
+                <button onClick={() => handleCitySelect('Hua Hin')}>
+                  Hua Hin
+                </button>
+              </NavigationMenuLink>
             </NavigationMenuItem>
 
             <NavigationMenuItem>
-              <h3 className="font-bold">
+              <h3 className="font-bold text-lg">
                 <Flag code="OM" className="w-5 h-5" />
                 Oman
               </h3>
-              <NavigationMenuLink href="#">Muscat</NavigationMenuLink>
-              <NavigationMenuLink href="#">Salalah</NavigationMenuLink>
-              <NavigationMenuLink href="#">Duqm</NavigationMenuLink>
+              <NavigationMenuLink asChild>
+                <button onClick={() => handleCitySelect('Muscat')}>
+                  Muscat
+                </button>
+              </NavigationMenuLink>
+              <NavigationMenuLink asChild>
+                <button onClick={() => handleCitySelect('Salalah')}>
+                  Salalah
+                </button>
+              </NavigationMenuLink>
+              <NavigationMenuLink asChild>
+                <button onClick={() => handleCitySelect('Duqm')}>Duqm</button>
+              </NavigationMenuLink>
             </NavigationMenuItem>
 
             <NavigationMenuItem className="col-span-3">
-              <h3 className="font-bold">
+              <h3 className="font-bold text-lg">
                 <Flag code="ID" className="w-5 h-5" />
                 Indonesia
               </h3>
-              <NavigationMenuLink href="#">Bali</NavigationMenuLink>
+              <NavigationMenuLink asChild>
+                <button onClick={() => handleCitySelect('Bali')}>Bali</button>
+              </NavigationMenuLink>
             </NavigationMenuItem>
           </NavigationMenuList>
         </NavigationMenu>
