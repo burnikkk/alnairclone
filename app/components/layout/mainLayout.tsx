@@ -31,8 +31,7 @@ export const MainLayout = () => {
       <Separator />
       <div
         className={`grid w-screen h-[calc(100vh-125px)] overflow-hidden transition-[grid-template-columns] duration-300 ease-in-out
-      ${isCollapsed ? 'sm:grid-cols-[32px_calc(100%-32px)]' : 'lg:grid-cols-[656px_calc(100%-656px)]'}
-      grid-cols-1`}
+      ${isCollapsed ? 'grid-cols-[32px_1fr]' : 'xs:grid-cols-1 md:grid-cols-[656px_1fr]'}`}
       >
         <div className="relative transition-transform duration-300 ease-in-out pr-8 w-full">
           <div
@@ -44,7 +43,7 @@ export const MainLayout = () => {
               <div className="w-full">
                 <PropertyHeading />
               </div>
-              <div className="grid xs:grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-4 w-full">
+              <div className="grid xs:grid-cols-1 sm:grid-cols-2 gap-4 w-full">
                 {properties.map((property: PropertyType) => (
                   <PropertyCard key={property.id} property={property} />
                 ))}
