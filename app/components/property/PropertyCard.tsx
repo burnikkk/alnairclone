@@ -89,7 +89,7 @@ export const PropertyCard = ({ property }: PropertyCardProps) => {
       </div>
 
       <CardContent className="absolute bottom-0 left-0 w-full bg-white px-3 py-2 max-h-[126px] overflow-hidden group-hover:max-h-[272px] transition-[max-height] duration-300 ease-in-out">
-        <div className="flex items-center gap-3 pb-2 h-[56px]">
+        <div className="grid grid-cols-[40px_1fr] items-center gap-3 pb-2 h-[56px]">
           <Image
             src={
               usePropertyImage(property.propertyType).imageUrl ||
@@ -100,8 +100,8 @@ export const PropertyCard = ({ property }: PropertyCardProps) => {
             alt="Логотип"
             className="rounded-md border"
           />
-          <div>
-            <h3 className="text-fit font-bold truncate">{property.title}</h3>
+          <div className="w-full overflow-hidden">
+            <h3 className="font-bold truncate">{property.title}</h3>
             <p className="text-sm text-gray-500">{property.developer}</p>
           </div>
         </div>
