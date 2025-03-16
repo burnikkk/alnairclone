@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import {
   Dialog,
@@ -16,13 +16,27 @@ import {
 } from '@/components/ui/navigation-menu';
 import { Navigation } from 'lucide-react';
 import Flag from 'react-world-flags';
+import { useLocation } from '@/app/components/contexts/LocationContext';
+
+const cityCoordinates: Record<string, { lat: number; lng: number }> = {
+  Dubai: { lat: 25.276987, lng: 55.296249 },
+  'Abu Dhabi': { lat: 24.453884, lng: 54.3773438 },
+  Phuket: { lat: 7.8804479, lng: 98.3922048 },
+  Bangkok: { lat: 13.7563, lng: 100.5018 },
+  Bali: { lat: -8.409518, lng: 115.188919 },
+};
 
 export const ButtonLocation = () => {
+  const { setCoordinates } = useLocation();
   const [selectedCity, setSelectedCity] = useState('Dubai');
   const [open, setOpen] = useState(false);
 
   const handleCitySelect = (city: string) => {
     setSelectedCity(city);
+    const coords = cityCoordinates[city];
+    if (coords) {
+      setCoordinates(coords.lat, coords.lng);
+    }
     setOpen(false);
   };
 

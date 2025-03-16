@@ -11,7 +11,7 @@ const fetcher = (url: string) =>
   axios
     .get<UnsplashImage>(url, {
       headers: {
-        Authorization: `EzX2TnG_MUYHrS4lKMQnYF9dnJbOcF1yOBksT7H4Eyc`,
+        Authorization: `Client-ID EzX2TnG_MUYHrS4lKMQnYF9dnJbOcF1yOBksT7H4Eyc`,
       },
     })
     .then((res) => res.data);

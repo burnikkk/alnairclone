@@ -28,9 +28,7 @@ export const PropertyCard = ({ property }: PropertyCardProps) => {
           />
         </div>
 
-        {/* Анимированный контент карточки */}
         <CardContent className="absolute bottom-0 left-0 w-full bg-white p-4 pt-0 transform translate-y-[116px] group-hover:translate-y-0 transition-transform duration-300 ease-in-out">
-          {/* Основная информация */}
           <div className="flex items-center gap-3 pb-2 h-[56px]">
             <Image
               src="/CardComponents/img.png"
@@ -59,7 +57,6 @@ export const PropertyCard = ({ property }: PropertyCardProps) => {
           </div>
           <Separator />
 
-          {/* Дополнительная информация */}
           <div className="pt-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-in-out h-[100px]">
             <p className="text-sm text-gray-700">
               Подробная информация: скидка 100% на первый взнос, комфорт-класс,
@@ -73,7 +70,7 @@ export const PropertyCard = ({ property }: PropertyCardProps) => {
 
   return (
     <Card className="relative w-full h-full rounded-2xl shadow-lg overflow-hidden cursor-pointer group transition-all duration-300 ease-in-out">
-      <div className="relative w-full aspect-[4/3] mb-28">
+      <div className="relative w-full w-[300px] h-[220px] mb-28">
         {property.isRecommended && (
           <Badge className="absolute top-3 left-3 bg-[#edeef7] text-[#4f5fd9] rounded-full text-sm font-normal z-10">
             Рекомендовано
@@ -90,7 +87,8 @@ export const PropertyCard = ({ property }: PropertyCardProps) => {
           className="p-1 rounded-2xl z-0"
         />
       </div>
-      <CardContent className="absolute bottom-0 left-0 w-full bg-white px-4 py-2  max-h-[124px] group-hover:max-h-[272px] transition-[max-height] duration-300 ease-in-out">
+
+      <CardContent className="absolute bottom-0 left-0 w-full bg-white px-3 py-2 max-h-[126px] overflow-hidden group-hover:max-h-[272px] transition-[max-height] duration-300 ease-in-out">
         <div className="flex items-center gap-3 pb-2 h-[56px]">
           <Image
             src={
@@ -125,7 +123,7 @@ export const PropertyCard = ({ property }: PropertyCardProps) => {
         </div>
         <Separator />
 
-        <div className="flex flex-col gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-in-out">
+        <div className="flex flex-col gap-2 opacity-0 h-[80px] max-h-[100px] group-hover:opacity-100 transition-opacity duration-300 ease-in-out">
           <div className="flex flex-col gap-1">
             {property.units.map((unit, index) => (
               <div key={index} className="flex justify-between text-sm">

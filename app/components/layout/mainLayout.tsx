@@ -34,7 +34,7 @@ export const MainLayout = () => {
       ${isCollapsed ? 'sm:grid-cols-[32px_calc(100%-32px)]' : 'lg:grid-cols-[656px_calc(100%-656px)]'}
       grid-cols-1`}
       >
-        <div className="relative transition-transform duration-300 ease-in-out pr-[32px] w-full">
+        <div className="relative transition-transform duration-300 ease-in-out pr-8 w-full">
           <div
             className={`overflow-y-scroll h-[calc(100vh-125px)] transition-opacity duration-300 ease-in-out ${
               isCollapsed ? 'opacity-0 pointer-events-none' : 'opacity-100'
@@ -44,7 +44,7 @@ export const MainLayout = () => {
               <div className="w-full">
                 <PropertyHeading />
               </div>
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-4 w-full">
+              <div className="grid xs:grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-4 w-full">
                 {properties.map((property: PropertyType) => (
                   <PropertyCard key={property.id} property={property} />
                 ))}
