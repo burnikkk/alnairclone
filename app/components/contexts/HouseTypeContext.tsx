@@ -17,7 +17,7 @@ export const HouseTypeProvider: React.FC<{ children: ReactNode }> = ({
 
   const [houseType, setHouseTypeState] = useState<string>("");
 
-  const setHouseType = (houseT: string) => {
+  const setHouseType = (houseType: string) => {
     setHouseTypeState(houseType);
   };
 
