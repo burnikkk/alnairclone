@@ -8,7 +8,7 @@ import {
   SelectValue,
 } from '@/src/components/ui/select';
 
-export const PropertyHeading = () => {
+export const PropertyHead = () => {
   return (
     <div className="w-full pt-2 flex items-center justify-between">
       <div>

@@ -9,16 +9,19 @@ export const Map: React.FC = () => {
   const { latitude, longitude } = useFilters();
 
   return (
-    <MapContainer
-      key={`${latitude}-${longitude}`}
-      center={[latitude, longitude]}
-      zoom={10}
-      className="relative w-full h-full z-0"
-    >
-      <TileLayer
-        url="https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png"
-        attribution='&copy; <a href="https://carto.com/">CARTO</a>'
-      />
-    </MapContainer>
+    <div className={`w-svw h-svh hidden md:block`}>
+      {' '}
+      <MapContainer
+        key={`${latitude}-${longitude}`}
+        center={[latitude, longitude]}
+        zoom={10}
+        className="relative w-full h-full z-0"
+      >
+        <TileLayer
+          url="https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png"
+          attribution='&copy; <a href="https://carto.com/">CARTO</a>'
+        />
+      </MapContainer>
+    </div>
   );
 };
