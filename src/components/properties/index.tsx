@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { CollapsibleButton } from '@/src/components/layout/components/CollapsibleButton';
+import { CollapsibleButton } from '@/src/components/properties/CollapsibleButton';
 import { PropertyCard as PropertyType } from '@/src/types/propertyObjCard';
 import useSWR from 'swr';
 import { useFilters } from '@/src/hooks/useFilters';

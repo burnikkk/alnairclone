@@ -10,7 +10,6 @@ export const Map: React.FC = () => {
 
   return (
     <div className={`w-svw h-svh hidden md:block`}>
-      {' '}
       <MapContainer
         key={`${latitude}-${longitude}`}
         center={[latitude, longitude]}
