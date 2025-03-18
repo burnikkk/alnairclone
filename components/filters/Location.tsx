@@ -16,7 +16,7 @@ import {
 } from '@/components/ui/navigation-menu';
 import { Navigation } from 'lucide-react';
 import Flag from 'react-world-flags';
-import { useFilters } from '@/app/hooks/useFilters';
+import { useFilters } from '@/hooks/useFilters';
 
 const cityCoordinates: Record<string, { lat: number; lng: number }> = {
   Dubai: { lat: 25.276987, lng: 55.296249 },
@@ -37,7 +37,7 @@ const cityCoordinates: Record<string, { lat: number; lng: number }> = {
   Bali: { lat: -8.409518, lng: 115.188919 },
 };
 
-export const BtnLocation = () => {
+export const Location = () => {
   const { setCoordinates } = useFilters();
   const [selectedCity, setSelectedCity] = useState('Dubai');
   const [open, setOpen] = useState(false);

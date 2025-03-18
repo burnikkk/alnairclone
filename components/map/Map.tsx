@@ -3,7 +3,7 @@
 import React from 'react';
 import { MapContainer, TileLayer } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
-import { useFilters } from '@/app/hooks/useFilters';
+import { useFilters } from '@/hooks/useFilters';
 
 export const Map: React.FC = () => {
   const { latitude, longitude } = useFilters();

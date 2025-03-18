@@ -1,4 +1,4 @@
-import { createContextHook } from '@/app/hooks/createContextHook';
+import { createContextHook } from '@/hooks/createContextHook';
 import { useState } from 'react';
 
 export const useFilters = createContextHook(() => {

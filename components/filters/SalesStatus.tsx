@@ -8,7 +8,7 @@ import {
   SelectValue,
 } from '@/components/ui/select';
 import React from 'react';
-import { useFilters } from '@/app/hooks/useFilters';
+import { useFilters } from '@/hooks/useFilters';
 
 type SelectProps = {
   value?: string;
@@ -16,10 +16,7 @@ type SelectProps = {
   className?: string;
 };
 
-export const BtnSlctSalesStatus: React.FC<SelectProps> = ({
-  className,
-  onChange,
-}) => {
+export const SalesStatus: React.FC<SelectProps> = ({ className, onChange }) => {
   const { statusType, setStatusType } = useFilters();
 
   const handleChange = (value: string) => {

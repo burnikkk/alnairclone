@@ -1,16 +1,15 @@
-import { PropertyCard as PropertyType } from '@/app/types/propertyObjCard';
+import { PropertyCard as PropertyType } from '@/types/propertyObjCard';
 import React from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import Image from 'next/image';
 import { Separator } from '@/components/ui/separator';
-import usePropertyImage from '@/app/hooks/usePropertyImages';
+import usePropertyImage from '@/hooks/usePropertyImages';
 import { ChevronUp } from 'lucide-react';
 
 interface PropertyCardProps {
   property?: PropertyType;
 }
-
 
 export const PropertyCard = ({ property }: PropertyCardProps) => {
   const { imageUrl } = usePropertyImage(property?.propertyType);
@@ -80,10 +79,7 @@ export const PropertyCard = ({ property }: PropertyCardProps) => {
           </Badge>
         )}
         <Image
-          src={
-            imageUrl  ||
-            '/CardComponents/img.png'
-          }
+          src={imageUrl || '/CardComponents/img.png'}
           alt={property.title || 'нет данных'}
           layout="fill"
           objectFit="cover"
@@ -94,10 +90,7 @@ export const PropertyCard = ({ property }: PropertyCardProps) => {
       <CardContent className="absolute bottom-0 left-0 w-full bg-white px-3 py-2 max-h-[126px] overflow-hidden group-hover:max-h-[272px] transition-[max-height] duration-300 ease-in-out">
         <div className="grid grid-cols-[40px_1fr] items-center gap-3 pb-2 h-[56px]">
           <Image
-            src={
-              imageUrl ||
-              '/CardComponents/img.png'
-            }
+            src={imageUrl || '/CardComponents/img.png'}
             width={40}
             height={40}
             alt="Логотип"

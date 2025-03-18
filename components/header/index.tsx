@@ -1,9 +1,9 @@
 'use client';
 
-import { NavigationMenuHeader } from '@/app/components/layout/headerComponents/NavigationMenuHeader';
-import { AvatarHeader } from '@/app/components/layout/headerComponents/Avatar';
-import { PopoverHeader } from '@/app/components/layout/headerComponents/PopoverHeader';
-import { RegistrationButton } from '@/app/components/layout/headerComponents/RegistrationButton';
+import { NavigationMenuHeader } from '@/components/header/components/NavigationMenuHeader';
+import { AvatarHeader } from '@/components/header/components/Avatar';
+import { PopoverHeader } from '@/components/header/components/PopoverHeader';
+import { RegistrationButton } from '@/components/header/components/RegistrationButton';
 
 export const Header = () => {
   return (

@@ -8,17 +8,14 @@ import {
   SelectValue,
 } from '@/components/ui/select';
 import React from 'react';
-import { useFilters } from '@/app/hooks/useFilters';
+import { useFilters } from '@/hooks/useFilters';
 
 type SelectProps = {
   className?: string;
   onChange?: (value: string) => void;
 };
 
-export const BtnSelectRoom: React.FC<SelectProps> = ({
-  className,
-  onChange,
-}) => {
+export const SelectRoom: React.FC<SelectProps> = ({ className, onChange }) => {
   const { roomType, setRoomType } = useFilters();
 
   const handleChange = (value: string) => {

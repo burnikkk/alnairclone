@@ -1,8 +1,8 @@
 'use client';
 
-import { Header } from '@/app/components/layout/Header';
 import { Separator } from '@/components/ui/separator';
-import { MainLayout } from '@/app/components/layout/mainLayout';
+import { Body } from '@/components/layout/Body';
+import { Header } from '@/components/header';
 import React from 'react';
 
 export default function Home() {
@@ -13,7 +13,7 @@ export default function Home() {
         <Separator />
       </div>
       <div>
-        <MainLayout />
+        <Body />
       </div>
     </div>
   );

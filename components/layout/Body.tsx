@@ -2,17 +2,17 @@
 
 import React, { useState } from 'react';
 
-import { Menubar } from '@/app/components/navigation/Menubar';
+import { Menubar } from '@/components/navigation/Menubar';
 import { Separator } from '@/components/ui/separator';
-import { PropertyCard } from '@/app/components/property/PropertyCard';
-import { PropertyHeading } from '@/app/components/property/PropertyHeading';
-import { Map } from '@/app/components/map/Map';
-import { CollapsibleButton } from '@/app/components/navigation/buttons/CollapsibleButton';
-import { PropertyCard as PropertyType } from '@/app/types/propertyObjCard';
+import { PropertyCard } from '@/components/properties/PropertyCard';
+import { PropertyHeading } from '@/components/properties/PropertyHeading';
+import { Map } from '@/components/map/Map';
+import { CollapsibleButton } from '@/components/layout/components/CollapsibleButton';
+import { PropertyCard as PropertyType } from '@/types/propertyObjCard';
 import useSWR from 'swr';
-import { useFilters } from '@/app/hooks/useFilters';
+import { useFilters } from '@/hooks/useFilters';
 
-export const MainLayout = () => {
+export const Body = () => {
   const [isCollapsed, setIsCollapsed] = useState(false);
   // const { houseType } = useHouseType();
   const { roomType } = useFilters();
