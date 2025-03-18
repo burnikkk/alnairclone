@@ -1,14 +1,25 @@
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import React from "react";
-import { useRoomType } from "@/app/components/contexts/RoomContext";
+'use client';
+
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select';
+import React from 'react';
+import { useFilters } from '@/app/hooks/useFilters';
 
 type SelectProps = {
   className?: string;
   onChange?: (value: string) => void;
 };
 
-export const BtnSelectRoom: React.FC<SelectProps> = ({ className, onChange }) => {
-  const { roomType, setRoomType } = useRoomType();
+export const BtnSelectRoom: React.FC<SelectProps> = ({
+  className,
+  onChange,
+}) => {
+  const { roomType, setRoomType } = useFilters();
 
   const handleChange = (value: string) => {
     setRoomType(value);
@@ -18,18 +29,22 @@ export const BtnSelectRoom: React.FC<SelectProps> = ({ className, onChange }) =>
   };
 
   const resetFilter = () => {
-    setRoomType("all");
+    setRoomType('all');
     if (onChange) {
-      onChange("all");
+      onChange('all');
     }
   };
   return (
     <Select value={roomType} onValueChange={handleChange}>
-      <SelectTrigger className={`rounded-full bg-[#f3f3f5] !text-[#1f1f1f] ${className}`}>
+      <SelectTrigger
+        className={`rounded-full bg-[#f3f3f5] !text-[#1f1f1f] ${className}`}
+      >
         <SelectValue placeholder="Количество комнат" />
       </SelectTrigger>
       <SelectContent className="max-h-60 max-w-55">
-        <SelectItem onClick={resetFilter} value="all">Количество комнат</SelectItem>
+        <SelectItem onClick={resetFilter} value="all">
+          Количество комнат
+        </SelectItem>
         <SelectItem value="1K">1 спальня</SelectItem>
         <SelectItem value="2K">2 спальни</SelectItem>
         <SelectItem value="3K">3 спальни</SelectItem>

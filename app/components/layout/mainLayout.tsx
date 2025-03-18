@@ -1,4 +1,5 @@
 'use client';
+
 import React, { useState } from 'react';
 
 import { Menubar } from '@/app/components/navigation/Menubar';
@@ -9,15 +10,13 @@ import { Map } from '@/app/components/map/Map';
 import { CollapsibleButton } from '@/app/components/navigation/buttons/CollapsibleButton';
 import { PropertyCard as PropertyType } from '@/app/types/propertyObjCard';
 import useSWR from 'swr';
-import { useHouseType } from "@/app/components/contexts/HouseTypeContext";
-import { useRoomType } from "@/app/components/contexts/RoomContext";
-import { useStatusType } from "@/app/components/contexts/SalesStatusContext";
+import { useFilters } from '@/app/hooks/useFilters';
 
 export const MainLayout = () => {
   const [isCollapsed, setIsCollapsed] = useState(false);
- // const { houseType } = useHouseType();
-  const { roomType } = useRoomType();
- // const { statusType } = useStatusType();
+  // const { houseType } = useHouseType();
+  const { roomType } = useFilters();
+  // const { statusType } = useStatusType();
 
   const fetcher = (url: string) => fetch(url).then((res) => res.json());
 
@@ -28,16 +27,16 @@ export const MainLayout = () => {
   }
 
   const filteredProperties = properties.filter((property: PropertyType) => {
-  //  const matchesHouseType = houseType === "all" || property.propertyType?.trim() === houseType.trim();
-    const matchesRoomType = roomType === "all" || property.units.some((unit) => unit.type?.trim() === roomType.trim());
- //   const matchesStatusType = statusType === "all" || property.salesStatusType?.trim() === statusType.trim();
+    //  const matchesHouseType = houseType === "all" || property.propertyType?.trim() === houseType.trim();
+    const matchesRoomType =
+      roomType === 'all' ||
+      property.units.some((unit) => unit.type?.trim() === roomType.trim());
+    //   const matchesStatusType = statusType === "all" || property.salesStatusType?.trim() === statusType.trim();
 
     return matchesRoomType;
   });
 
   console.log(filteredProperties);
-
-
 
   return (
     <div>
@@ -63,7 +62,9 @@ export const MainLayout = () => {
                     <PropertyCard key={property.id} property={property} />
                   ))
                 ) : (
-                  <div className="text-center text-gray-500 w-full">Нет доступных объектов</div>
+                  <div className="text-center text-gray-500 w-full">
+                    Нет доступных объектов
+                  </div>
                 )}
               </div>
             </div>

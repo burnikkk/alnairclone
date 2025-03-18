@@ -16,7 +16,7 @@ import {
 } from '@/components/ui/navigation-menu';
 import { Navigation } from 'lucide-react';
 import Flag from 'react-world-flags';
-import { useLocation } from '@/app/components/contexts/LocationContext';
+import { useLocation } from '@/app/contexts/LocationContext';
 
 const cityCoordinates: Record<string, { lat: number; lng: number }> = {
   Dubai: { lat: 25.276987, lng: 55.296249 },
@@ -36,7 +36,6 @@ const cityCoordinates: Record<string, { lat: number; lng: number }> = {
   Duqm: { lat: 19.6601, lng: 57.7082 },
   Bali: { lat: -8.409518, lng: 115.188919 },
 };
-
 
 export const BtnLocation = () => {
   const { setCoordinates } = useLocation();

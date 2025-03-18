@@ -3,7 +3,7 @@
 import React from 'react';
 import { MapContainer, TileLayer } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
-import { useLocation } from '@/app/components/contexts/LocationContext';
+import { useLocation } from '@/app/contexts/LocationContext';
 
 export const Map: React.FC = () => {
   const { latitude, longitude } = useLocation();
