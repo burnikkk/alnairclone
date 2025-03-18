@@ -6,6 +6,7 @@ import Image from 'next/image';
 import { Separator } from '@/src/components/ui/separator';
 import usePropertyImage from '@/src/hooks/usePropertyImages';
 import { ChevronUp } from 'lucide-react';
+import { cn } from '@/src/lib/utils';
 
 interface PropertyCardProps {
   property?: PropertyType;
@@ -16,7 +17,14 @@ export const PropertyCard = ({ property }: PropertyCardProps) => {
 
   if (!property) {
     return (
-      <Card className="relative w-full rounded-2xl shadow-lg overflow-hidden cursor-pointer group transition-all duration-300 ease-in-out">
+      <Card
+        className={cn(
+          'relative w-full overflow-hidden group',
+          'cursor-pointer',
+          'rounded-2xl shadow-lg',
+          'transition-all duration-300 ease-in-out'
+        )}
+      >
         <div className="relative w-full aspect-[4/3]">
           <Badge className="absolute top-3 left-3 bg-[#edeef7] text-[#4f5fd9] rounded-full text-sm font-normal z-10">
             Рекомендовано
