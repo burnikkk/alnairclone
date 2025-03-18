@@ -18,7 +18,7 @@ const conversionRate = 0.01;
 const formatNumber = (value: number | '') =>
   value !== '' ? value.toLocaleString('en-US').replace(/,/g, ' ') : '';
 
-export const ButtonPriceTab = () => {
+export const BtnPriceTab = () => {
   const [minPrice, setMinPrice] = useState<number | ''>('');
   const [maxPrice, setMaxPrice] = useState<number | ''>('');
   const [activeTab, setActiveTab] = useState<'object' | 'sqm'>('object');

@@ -21,6 +21,7 @@ export interface PropertyCard {
   imageUrl: string;
   title: string;
   developer: string;
+  salesStatusType: string;
   propertyType: string;
   price: Price;
   discount?: Discount;

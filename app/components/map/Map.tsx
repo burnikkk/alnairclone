@@ -10,6 +10,7 @@ export const Map: React.FC = () => {
 
   return (
     <MapContainer
+      key={`${latitude}-${longitude}`}
       center={[latitude, longitude]}
       zoom={10}
       className="relative w-full h-full z-0"

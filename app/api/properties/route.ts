@@ -9,6 +9,7 @@ export async function GET(request: Request) {
         imageUrl: 'https://source.unsplash.com/random/800x600?house',
         title: 'Palm Jumeirah Villa',
         developer: 'Emaar Properties',
+        salesStatusType:'reg',
         propertyType: 'Вилла',
         price: {
           amount: 2500000,
@@ -49,6 +50,7 @@ export async function GET(request: Request) {
         imageUrl: 'https://source.unsplash.com/random/800x600?penthouse',
         title: 'Burj Khalifa Residences',
         developer: 'Emaar Properties',
+        salesStatusType:'anons',
         propertyType: 'Апартаменты',
         price: { amount: 5000000, currency: 'AED', formatted: 'от 5 млн AED' },
         discount: { percentage: 7, formatted: '7%' },
@@ -65,6 +67,7 @@ export async function GET(request: Request) {
         imageUrl: 'https://source.unsplash.com/random/800x600?villa',
         title: 'Bluewaters Island Villa',
         developer: 'Meraas',
+        salesStatusType:'startsales',
         propertyType: 'Вилла',
         price: {
           amount: 3200000,
@@ -84,6 +87,7 @@ export async function GET(request: Request) {
         imageUrl: 'https://source.unsplash.com/random/800x600?penthouse',
         title: 'Dubai Marina Penthouse',
         developer: 'Select Group',
+        salesStatusType:'startsales',
         propertyType: 'Пентхаус',
         price: { amount: 7000000, currency: 'AED', formatted: 'от 7 млн AED' },
         discount: { percentage: 10, formatted: '10%' },

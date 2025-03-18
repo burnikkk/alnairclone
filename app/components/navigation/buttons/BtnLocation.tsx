@@ -21,12 +21,24 @@ import { useLocation } from '@/app/components/contexts/LocationContext';
 const cityCoordinates: Record<string, { lat: number; lng: number }> = {
   Dubai: { lat: 25.276987, lng: 55.296249 },
   'Abu Dhabi': { lat: 24.453884, lng: 54.3773438 },
+  Sharjah: { lat: 25.346255, lng: 55.420931 },
+  'Ras Al Khaimah': { lat: 25.8006926, lng: 55.9761994 },
+  Ajman: { lat: 25.4052165, lng: 55.5136433 },
+  'Umm Al Quwain': { lat: 25.5269951, lng: 55.6195016 },
   Phuket: { lat: 7.8804479, lng: 98.3922048 },
+  Samui: { lat: 9.5120163, lng: 100.0132931 },
   Bangkok: { lat: 13.7563, lng: 100.5018 },
+  Pattaya: { lat: 12.9236, lng: 100.8825 },
+  'Chiang Mai': { lat: 18.7883, lng: 98.9853 },
+  'Hua Hin': { lat: 12.5684, lng: 99.9577 },
+  Muscat: { lat: 23.588, lng: 58.3829 },
+  Salalah: { lat: 17.019, lng: 54.089 },
+  Duqm: { lat: 19.6601, lng: 57.7082 },
   Bali: { lat: -8.409518, lng: 115.188919 },
 };
 
-export const ButtonLocation = () => {
+
+export const BtnLocation = () => {
   const { setCoordinates } = useLocation();
   const [selectedCity, setSelectedCity] = useState('Dubai');
   const [open, setOpen] = useState(false);
@@ -36,6 +48,7 @@ export const ButtonLocation = () => {
     const coords = cityCoordinates[city];
     if (coords) {
       setCoordinates(coords.lat, coords.lng);
+      console.log(`Changing coordinates to: ${coords.lat}, ${coords.lng}`);
     }
     setOpen(false);
   };

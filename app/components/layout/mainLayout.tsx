@@ -9,21 +9,35 @@ import { Map } from '@/app/components/map/Map';
 import { CollapsibleButton } from '@/app/components/navigation/buttons/CollapsibleButton';
 import { PropertyCard as PropertyType } from '@/app/types/propertyObjCard';
 import useSWR from 'swr';
+import { useHouseType } from "@/app/components/contexts/HouseTypeContext";
+import { useRoomType } from "@/app/components/contexts/RoomContext";
+import { useStatusType } from "@/app/components/contexts/SalesStatusContext";
 
 export const MainLayout = () => {
   const [isCollapsed, setIsCollapsed] = useState(false);
+ // const { houseType } = useHouseType();
+  const { roomType } = useRoomType();
+ // const { statusType } = useStatusType();
 
   const fetcher = (url: string) => fetch(url).then((res) => res.json());
 
-  const { data: properties, error } = useSWR('/api/properties', fetcher);
-
-  if (error) {
-    console.error('Ошибка при получении данных:', error);
-  }
+  const { data: properties } = useSWR('/api/properties', fetcher);
 
   if (!properties) {
     return <div>Загрузка...</div>;
   }
+
+  const filteredProperties = properties.filter((property: PropertyType) => {
+  //  const matchesHouseType = houseType === "all" || property.propertyType?.trim() === houseType.trim();
+    const matchesRoomType = roomType === "all" || property.units.some((unit) => unit.type?.trim() === roomType.trim());
+ //   const matchesStatusType = statusType === "all" || property.salesStatusType?.trim() === statusType.trim();
+
+    return matchesRoomType;
+  });
+
+  console.log(filteredProperties);
+
+
 
   return (
     <div>
@@ -44,9 +58,13 @@ export const MainLayout = () => {
                 <PropertyHeading />
               </div>
               <div className="grid xs:grid-cols-1 sm:grid-cols-2 gap-4 w-full">
-                {properties.map((property: PropertyType) => (
-                  <PropertyCard key={property.id} property={property} />
-                ))}
+                {filteredProperties.length > 0 ? (
+                  filteredProperties.map((property: PropertyType) => (
+                    <PropertyCard key={property.id} property={property} />
+                  ))
+                ) : (
+                  <div className="text-center text-gray-500 w-full">Нет доступных объектов</div>
+                )}
               </div>
             </div>
           </div>
