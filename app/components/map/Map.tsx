@@ -3,10 +3,10 @@
 import React from 'react';
 import { MapContainer, TileLayer } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
-import { useLocation } from '@/app/contexts/LocationContext';
+import { useFilters } from '@/app/hooks/useFilters';
 
 export const Map: React.FC = () => {
-  const { latitude, longitude } = useLocation();
+  const { latitude, longitude } = useFilters();
 
   return (
     <MapContainer
