@@ -9,7 +9,7 @@ import {
 } from '@/src/components/ui/select';
 import React from 'react';
 import { useFilters } from '@/src/hooks/useFilters';
-import { salesStatuses } from "@/src/utils/salesStatus";
+import { salesStatuses } from '@/src/utils/salesStatus';
 
 type SelectProps = {
   value?: string;
@@ -18,23 +18,23 @@ type SelectProps = {
 };
 
 export const SalesStatus: React.FC<SelectProps> = ({ className, onChange }) => {
-  const { statusType, setStatusType } = useFilters();
+  const { saleStatus, setSaleStatus } = useFilters();
 
   const handleChange = (value: string) => {
-    setStatusType(value);
+    setSaleStatus(value);
     if (onChange) {
       onChange(value);
     }
   };
 
   const resetFilter = () => {
-    setStatusType('all');
+    setSaleStatus('all');
     if (onChange) {
       onChange('all');
     }
   };
   return (
-    <Select value={statusType} onValueChange={handleChange}>
+    <Select value={saleStatus} onValueChange={handleChange}>
       <SelectTrigger
         className={`rounded-full bg-[#f3f3f5] !text-[#1F1F1F] ${className}`}
       >

@@ -2,18 +2,18 @@
 
 import React, { useState } from 'react';
 import { CollapsibleButton } from '@/src/components/properties/components/CollapsibleButton';
-import { PropertyCard as PropertyType } from '@/src/types/propertyObjCard';
+import { IProperty as PropertyType } from '@/src/types/property';
 import { useFilters } from '@/src/hooks/useFilters';
 import { cn } from '@/src/lib/utils';
 import { PropertyCard } from '@/src/components/properties/components/propertyCard';
 import { PropertyHead } from '@/src/components/properties/components/PropertyHead';
-import { sortProperties } from "@/src/utils/sortProperties";
-import { filteredProperties } from "@/src/utils/filteredProperties";
+import { sortProperties } from '@/src/utils/sortProperties';
+import { useProperties } from '@/src/hooks/useProperties';
 
 export const PropertyList = () => {
   const [isCollapsed, setIsCollapsed] = useState(false);
   const { sortOption, setSortOption } = useFilters();
-  const { properties } = filteredProperties();
+  const { data: properties } = useProperties();
 
   const sortedProperties = sortProperties(properties, sortOption);
 
@@ -45,7 +45,6 @@ export const PropertyList = () => {
                 Нет доступных объектов
               </div>
             )}
-
           </div>
         </div>
       </div>

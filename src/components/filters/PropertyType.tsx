@@ -15,25 +15,28 @@ type SelectProps = {
   onChange?: (value: string) => void;
 };
 
-export const SelectHouse: React.FC<SelectProps> = ({ className, onChange }) => {
-  const { houseType, setHouseType } = useFilters();
+export const PropertyType: React.FC<SelectProps> = ({
+  className,
+  onChange,
+}) => {
+  const { propertyType, setPropertyType } = useFilters();
 
   const handleChange = (value: string) => {
-    setHouseType(value);
+    setPropertyType(value);
     if (onChange) {
       onChange(value);
     }
   };
 
   const resetFilter = () => {
-    setHouseType('all');
+    setPropertyType('all');
     if (onChange) {
       onChange('all');
     }
   };
 
   return (
-    <Select value={houseType} onValueChange={handleChange}>
+    <Select value={propertyType} onValueChange={handleChange}>
       <SelectTrigger
         className={`rounded-full bg-[#f3f3f5] !text-[#1F1F1F] ${className}`}
       >
@@ -43,12 +46,12 @@ export const SelectHouse: React.FC<SelectProps> = ({ className, onChange }) => {
         <SelectItem onClick={resetFilter} value="all">
           Тип жилья
         </SelectItem>
-        <SelectItem value="Вилла">Вилла</SelectItem>
-        <SelectItem value="Пентхаус">Пентхаус</SelectItem>
-        <SelectItem value="Таунхаус">Таунхаус</SelectItem>
-        <SelectItem value="Апартаменты">Апартаменты</SelectItem>
-        <SelectItem value="Студия">Студия</SelectItem>
-        <SelectItem value="Дом">Дом</SelectItem>
+        <SelectItem value="villa">Вилла</SelectItem>
+        <SelectItem value="penthouse">Пентхаус</SelectItem>
+        <SelectItem value="townhouse">Таунхаус</SelectItem>
+        <SelectItem value="apparts">Апартаменты</SelectItem>
+        <SelectItem value="studio">Студия</SelectItem>
+        <SelectItem value="house">Дом</SelectItem>
       </SelectContent>
     </Select>
   );

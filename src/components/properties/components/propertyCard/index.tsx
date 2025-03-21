@@ -1,4 +1,4 @@
-import { PropertyCard as PropertyType } from '@/src/types/propertyObjCard';
+import { IProperty as PropertyType } from '@/src/types/property';
 import React from 'react';
 import { Card } from '@/src/components/ui/card';
 import { CoverImage } from '@/src/components/properties/components/propertyCard/CoverImage';
@@ -17,8 +17,7 @@ export const PropertyCard = ({ property }: PropertyCardProps) => {
         type={property.propertyType}
         title={property.title}
         isRecommended={property.isRecommended}
-        salesStatusType={property.salesStatusType}
-
+        salesStatusType={property.salesStatus}
       />
       <Details property={property} />
     </Card>

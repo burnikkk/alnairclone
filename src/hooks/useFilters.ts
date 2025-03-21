@@ -1,18 +1,30 @@
 import { createContextHook } from '@/src/hooks/createContextHook';
 import { useState } from 'react';
 
-export type Measure = 'm²' | 'ft²';
+export enum EMeasure {
+  SQM = 'SQM',
+  SQFT = 'SQFT',
+}
 
 interface MeasureRates {
   [key: string]: number;
 }
 
 const measureRates: MeasureRates = {
-  'm²': 0.1,
-  'ft²': 1.7639,
+  [EMeasure.SQM]: 0.1,
+  [EMeasure.SQFT]: 1.7639,
 };
 
-export type Currency = 'AED' | '$' | '€' | '฿' | '₽' | 'OMR' | '¥' | 'IDR' | '£';
+export type Currency =
+  | 'AED'
+  | '$'
+  | '€'
+  | '฿'
+  | '₽'
+  | 'OMR'
+  | '¥'
+  | 'IDR'
+  | '£';
 
 interface CurrencyRates {
   [key: string]: number;
@@ -23,7 +35,7 @@ const currencyRates: CurrencyRates = {
   $: 0.27,
   '€': 0.25,
   '฿': 0.000007,
-  '₽': 16.00,
+  '₽': 16.0,
   OMR: 0.01,
   '¥': 0.12,
   IDR: 1.12,
@@ -31,13 +43,15 @@ const currencyRates: CurrencyRates = {
 };
 
 export const useFilters = createContextHook(() => {
-  const [houseType, setHouseType] = useState<string>('');
-  const [roomType, setRoomType] = useState<string>('');
-  const [statusType, setStatusType] = useState<string>('');
+  const [propertyType, setPropertyType] = useState<string>('');
+  const [bedrooms, setBedrooms] = useState<string>('');
+  const [saleStatus, setSaleStatus] = useState<string>('');
   const [latitude, setLatitude] = useState(25.116987);
   const [longitude, setLongitude] = useState(55.496249);
   const [selectedCurrency, setSelectedCurrency] = useState<Currency>('AED');
-  const [selectedMeasure, setSelectedMeasure] = useState<Measure>('m²');
+  const [selectedMeasure, setSelectedMeasure] = useState<EMeasure>(
+    EMeasure.SQM
+  );
   const [sortOption, setSortOption] = useState<string>('all');
 
   const convertPrice = (priceInAED: number): string => {
@@ -45,7 +59,7 @@ export const useFilters = createContextHook(() => {
     return (priceInAED * rate).toFixed(1);
   };
 
-  const getMeasureCoef = (): number => {
+  const getMeasureCof = (): number => {
     return measureRates[selectedMeasure];
   };
 
@@ -54,23 +68,22 @@ export const useFilters = createContextHook(() => {
     setLongitude(lng);
   };
 
-
   return {
     latitude,
     longitude,
-    houseType,
-    roomType,
-    statusType,
+    propertyType,
+    bedrooms,
+    saleStatus,
     setCoordinates,
-    setHouseType,
-    setRoomType,
-    setStatusType,
+    setPropertyType,
+    setBedrooms,
+    setSaleStatus,
     selectedCurrency,
     setSelectedCurrency,
     convertPrice,
     selectedMeasure,
     setSelectedMeasure,
-    getMeasureCoef,
+    getMeasureCof,
     sortOption,
     setSortOption,
   };

@@ -31,7 +31,7 @@ type PriceProps = {
 export const Price: React.FC<PriceProps> = ({ className, onChange }) => {
   const [minPrice, setMinPrice] = useState<number | ''>('');
   const [maxPrice, setMaxPrice] = useState<number | ''>('');
-  const { selectedCurrency, convertPrice, selectedMeasure, getMeasureCoef } =
+  const { selectedCurrency, convertPrice, selectedMeasure, getMeasureCof } =
     useFilters();
 
   const handleMinPriceChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -146,8 +146,7 @@ export const Price: React.FC<PriceProps> = ({ className, onChange }) => {
                         minPrice !== ''
                           ? formatNumber(
                               Math.round(
-                                Number(convertPrice(minPrice)) *
-                                  getMeasureCoef()
+                                Number(convertPrice(minPrice)) * getMeasureCof()
                               )
                             )
                           : ''
@@ -164,8 +163,7 @@ export const Price: React.FC<PriceProps> = ({ className, onChange }) => {
                         maxPrice !== ''
                           ? formatNumber(
                               Math.round(
-                                Number(convertPrice(maxPrice)) *
-                                  getMeasureCoef()
+                                Number(convertPrice(maxPrice)) * getMeasureCof()
                               )
                             )
                           : ''
@@ -188,7 +186,7 @@ export const Price: React.FC<PriceProps> = ({ className, onChange }) => {
                       >
                         {formatNumber(
                           Math.round(
-                            Number(convertPrice(price)) * getMeasureCoef()
+                            Number(convertPrice(price)) * getMeasureCof()
                           )
                         )}{' '}
                         {selectedCurrency}/{selectedMeasure}
@@ -205,7 +203,7 @@ export const Price: React.FC<PriceProps> = ({ className, onChange }) => {
                       >
                         {formatNumber(
                           Math.round(
-                            Number(convertPrice(price)) * getMeasureCoef()
+                            Number(convertPrice(price)) * getMeasureCof()
                           )
                         )}{' '}
                         {selectedCurrency}/{selectedMeasure}
