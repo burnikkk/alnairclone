@@ -13,7 +13,7 @@ export const Map: React.FC = () => {
       <MapContainer
         key={`${latitude}-${longitude}`}
         center={[latitude, longitude]}
-        zoom={10}
+        zoom={11}
         className="relative w-full h-full z-0"
       >
         <TileLayer

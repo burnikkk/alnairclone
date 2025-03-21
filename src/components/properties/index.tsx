@@ -3,37 +3,19 @@
 import React, { useState } from 'react';
 import { CollapsibleButton } from '@/src/components/properties/components/CollapsibleButton';
 import { PropertyCard as PropertyType } from '@/src/types/propertyObjCard';
-import useSWR from 'swr';
 import { useFilters } from '@/src/hooks/useFilters';
 import { cn } from '@/src/lib/utils';
 import { PropertyCard } from '@/src/components/properties/components/propertyCard';
 import { PropertyHead } from '@/src/components/properties/components/PropertyHead';
+import { sortProperties } from "@/src/utils/sortProperties";
+import { filteredProperties } from "@/src/utils/filteredProperties";
 
 export const PropertyList = () => {
   const [isCollapsed, setIsCollapsed] = useState(false);
-  // const { houseType } = useHouseType();
-  const { roomType } = useFilters();
-  // const { statusType } = useStatusType();
+  const { sortOption, setSortOption } = useFilters();
+  const { properties } = filteredProperties();
 
-  const fetcher = (url: string) => fetch(url).then((res) => res.json());
-
-  const { data: properties } = useSWR('/api/properties', fetcher);
-
-  if (!properties) {
-    return <div>Загрузка...</div>;
-  }
-
-  const filteredProperties = properties.filter((property: PropertyType) => {
-    //  const matchesHouseType = houseType === "all" || property.propertyType?.trim() === houseType.trim();
-    const matchesRoomType =
-      roomType === 'all' ||
-      property.units.some((unit) => unit.type?.trim() === roomType.trim());
-    //   const matchesStatusType = statusType === "all" || property.salesStatusType?.trim() === statusType.trim();
-
-    return matchesRoomType;
-  });
-
-  console.log(filteredProperties);
+  const sortedProperties = sortProperties(properties, sortOption);
 
   return (
     <div
@@ -41,7 +23,7 @@ export const PropertyList = () => {
         'transition-all duration-300 ease-in-out md:relative w-full pr-8',
         isCollapsed
           ? 'md:w-8 md:overflow-hidden'
-          : 'md:min-w-[320px] md:w-[320px] xl:min-w-[656px]'
+          : 'md:min-w-[320px] md:w-[320px] xl:min-w-[688px]'
       )}
     >
       <div
@@ -51,11 +33,11 @@ export const PropertyList = () => {
       >
         <div className="flex flex-wrap content-start px-4 pb-4">
           <div className="w-full">
-            <PropertyHead />
+            <PropertyHead onSortChange={setSortOption} />
           </div>
-          <div className="grid xs:grid-cols-1 xl:grid-cols-2 gap-4 w-full">
-            {filteredProperties.length > 0 ? (
-              filteredProperties.map((property: PropertyType) => (
+          <div className="grid xs:grid-cols-1 xl:grid-cols-2 gap-3 w-full">
+            {sortedProperties?.length ? (
+              sortedProperties.map((property: PropertyType) => (
                 <PropertyCard key={property.id} property={property} />
               ))
             ) : (
@@ -63,6 +45,7 @@ export const PropertyList = () => {
                 Нет доступных объектов
               </div>
             )}
+
           </div>
         </div>
       </div>

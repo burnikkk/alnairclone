@@ -19,7 +19,7 @@ import Flag from 'react-world-flags';
 import { useFilters } from '@/src/hooks/useFilters';
 
 const cityCoordinates: Record<string, { lat: number; lng: number }> = {
-  Dubai: { lat: 25.276987, lng: 55.296249 },
+  Dubai: { lat: 25.116987, lng: 55.496249 },
   'Abu Dhabi': { lat: 24.453884, lng: 54.3773438 },
   Sharjah: { lat: 25.346255, lng: 55.420931 },
   'Ras Al Khaimah': { lat: 25.8006926, lng: 55.9761994 },

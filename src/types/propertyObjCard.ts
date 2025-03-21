@@ -12,7 +12,7 @@ export interface Discount {
 export interface Units {
   type: string;
   size: string;
-  price: string;
+  price: number;
 }
 
 export interface PropertyCard {

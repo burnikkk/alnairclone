@@ -9,11 +9,12 @@ import {
 import { Button } from '@/src/components/ui/button';
 import { cn } from '@/src/lib/utils';
 import Flag from 'react-world-flags';
+import {useFilters} from "@/src/hooks/useFilters";
 
-export const PopoverHeader = () => {
+
+export const PopoverHeader: React.FC = () => {
   const [selectedLang, setSelectedLang] = useState('ru');
-  const [selectedCurrency, setSelectedCurrency] = useState('AED');
-  const [selectedUnit, setSelectedUnit] = useState('m²');
+  const { selectedCurrency, setSelectedCurrency, selectedMeasure, setSelectedMeasure } = useFilters();
 
   const languages: Record<string, { label: string; flagCode: string }> = {
     ar: { label: 'Arabic', flagCode: 'AE' },
@@ -30,7 +31,7 @@ export const PopoverHeader = () => {
         >
           <Flag code={languages[selectedLang].flagCode} className="w-5 h-5" />
           <span>{selectedCurrency}</span>
-          <span>{selectedUnit}</span>
+          <span>{selectedMeasure}</span>
         </Button>
       </PopoverTrigger>
       <PopoverContent className="w-fit p-4 rounded-xl shadow-md bg-white">
@@ -55,38 +56,36 @@ export const PopoverHeader = () => {
         <div className="mt-4">
           <h4 className="text-sm font-medium mb-2">Валюта</h4>
           <div className="flex flex-nowrap w-full divide-x border rounded-md">
-            {['AED', '$', '₽', '฿', 'OMR', '¥', 'IDR', '£', '€'].map(
-              (currency) => (
-                <Button
-                  key={currency}
-                  variant="ghost"
-                  size="sm"
-                  className={cn(
-                    'rounded-none',
-                    selectedCurrency === currency && 'bg-blue-100'
-                  )}
-                  onClick={() => setSelectedCurrency(currency)}
-                >
-                  {currency}
-                </Button>
-              )
-            )}
+            {['AED', '$', '₽', '฿', 'OMR', '¥', 'IDR', '£', '€'].map((currency) => (
+              <Button
+                key={currency}
+                variant="ghost"
+                size="sm"
+                className={`rounded-none ${
+                  selectedCurrency === currency ? 'bg-blue-100' : ''
+                }`}
+                onClick={() => setSelectedCurrency(currency as any)}
+              >
+                {currency}
+              </Button>
+            ))}
           </div>
         </div>
         <div className="mt-4">
           <h4 className="text-sm font-medium mb-2">Единицы измерения</h4>
           <div className="grid grid-cols-2 gap-2">
-            {['m²', 'ft²'].map((unit) => (
+            {['m²', 'ft²'].map((measure) => (
               <Button
-                key={unit}
-                variant="outline"
+                key={measure}
+                variant="ghost"
+                size="sm"
                 className={cn(
                   'p-2 border rounded-lg w-full',
-                  selectedUnit === unit && 'border-blue-500 bg-blue-100'
+                  selectedMeasure === measure && 'border-blue-500 bg-blue-100'
                 )}
-                onClick={() => setSelectedUnit(unit)}
+                onClick={() => setSelectedMeasure(measure as any)}
               >
-                {unit}
+                {measure}
               </Button>
             ))}
           </div>

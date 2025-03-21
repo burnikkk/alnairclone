@@ -12,11 +12,13 @@ export const PropertyCard = ({ property }: PropertyCardProps) => {
   if (!property) return null;
 
   return (
-    <Card className="relative w-full h-full rounded-2xl shadow-lg overflow-hidden cursor-pointer group transition-all duration-300 ease-in-out">
+    <Card className="relative border w-full h-full rounded-xl overflow-hidden cursor-pointer group transition-all duration-300 ease-in-out">
       <CoverImage
         type={property.propertyType}
         title={property.title}
         isRecommended={property.isRecommended}
+        salesStatusType={property.salesStatusType}
+
       />
       <Details property={property} />
     </Card>

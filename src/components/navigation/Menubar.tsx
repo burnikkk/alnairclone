@@ -17,8 +17,8 @@ export const Menubar = () => {
       </Button>
       <SelectRoom className="border-none" />
       <Price />
-      <SelectHouse className="border-none" />
-      <SalesStatus className="border-none" />
+      <SelectHouse className="border-none"/>
+      <SalesStatus className="border-none"/>
       <Button className="rounded-full">
         <Sparkle size={20} />
         Эксклюзивно на Alnair

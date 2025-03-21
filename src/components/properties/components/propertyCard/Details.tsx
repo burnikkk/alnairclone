@@ -4,21 +4,33 @@ import { CardContent } from '@/src/components/ui/card';
 import { Badge } from '@/src/components/ui/badge';
 import Image from 'next/image';
 import { Separator } from '@/src/components/ui/separator';
-import usePropertyImage from '@/src/hooks/usePropertyImages';
 import { ChevronUp } from 'lucide-react';
+import { useFilters } from "@/src/hooks/useFilters";
+
 
 interface DetailsProps {
   property: PropertyType;
 }
 
+const formatToMillion = (value: number): string => {
+  if (value >= 1_000_000) {
+    return `${(value / 1_000_000).toFixed(1)} млн`;
+  }
+  if (value >= 1_000) {
+    return `${(value / 1_000).toFixed(1)} тыс`;
+  }
+  return value.toString();
+};
+
+
 export const Details = ({ property }: DetailsProps) => {
-  const { imageUrl } = usePropertyImage(property?.propertyType);
+  const { selectedCurrency, convertPrice } = useFilters();
 
   return (
-    <CardContent className="absolute bottom-0 left-0 w-full bg-white px-3 py-2 max-h-[126px] overflow-hidden group-hover:max-h-[272px] transition-[max-height] duration-300 ease-in-out">
+    <CardContent className="absolute bottom-0 left-0 w-full bg-white px-3 py-2 max-h-[120px] rounded-xl overflow-hidden group-hover:max-h-[272px] transition-[max-height] duration-300 ease-in-out">
       <div className="grid grid-cols-[40px_1fr] items-center gap-3 pb-2 h-[56px]">
         <Image
-          src={imageUrl || '/CardComponents/img.png'}
+          src= {'/CardComponents/img.png'}
           width={40}
           height={40}
           alt="Логотип"
@@ -34,7 +46,7 @@ export const Details = ({ property }: DetailsProps) => {
       <div className="flex flex-row items-center justify-between pb-2 h-[60px]">
         <div>
           <p className="text-xs pt-2">{property.propertyType}</p>
-          <p className="text-lg font-semibold">{property.price.formatted}</p>
+          <p className="text-lg font-semibold">От {formatToMillion(Number(convertPrice(property.price.amount)))} {selectedCurrency}</p>
         </div>
         <div className="flex flex-row justify-end items-center">
           {property.discount?.formatted && (
@@ -42,7 +54,7 @@ export const Details = ({ property }: DetailsProps) => {
               {property.discount.formatted}
             </Badge>
           )}
-          <ChevronUp className="bg-[#f3f3f5] border-box rounded-full" />
+          <ChevronUp className="bg-[#f3f3f5] border-box rounded-full hover: rotate-180" />
         </div>
       </div>
       <Separator />
@@ -57,7 +69,7 @@ export const Details = ({ property }: DetailsProps) => {
                   от {unit.size}
                 </span>
               </div>
-              <span>{unit.price}</span>
+              <span>от {formatToMillion(Number(convertPrice(unit.price)))} {selectedCurrency}</span>
             </div>
           ))}
         </div>

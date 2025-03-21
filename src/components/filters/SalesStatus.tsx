@@ -9,6 +9,7 @@ import {
 } from '@/src/components/ui/select';
 import React from 'react';
 import { useFilters } from '@/src/hooks/useFilters';
+import { salesStatuses } from "@/src/utils/salesStatus";
 
 type SelectProps = {
   value?: string;
@@ -41,13 +42,13 @@ export const SalesStatus: React.FC<SelectProps> = ({ className, onChange }) => {
       </SelectTrigger>
       <SelectContent className="max-h-60 w-55">
         <SelectItem onClick={resetFilter} value="all">
-          Все
+          Статус продаж
         </SelectItem>
-        <SelectItem value="anons">Анонс продаж</SelectItem>
-        <SelectItem value="reg">Регистрация интереса (EOI)</SelectItem>
-        <SelectItem value="startsales">Старт продаж</SelectItem>
-        <SelectItem value="insales">В продаже</SelectItem>
-        <SelectItem value="stopped">Приостановлен</SelectItem>
+        {Object.entries(salesStatuses).map(([key, label]) => (
+          <SelectItem key={key} value={key}>
+            {label}
+          </SelectItem>
+        ))}
       </SelectContent>
     </Select>
   );
