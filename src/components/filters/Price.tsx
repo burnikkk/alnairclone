@@ -1,10 +1,19 @@
-import React, { useState } from "react";
-import { Popover, PopoverContent, PopoverTrigger } from "@/src/components/ui/popover";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/src/components/ui/tabs";
-import { Button } from "@/src/components/ui/button";
-import { Card, CardContent, CardFooter } from "@/src/components/ui/card";
-import { Input } from "@/src/components/ui/input";
-import { useFilters } from "@/src/hooks/useFilters";
+import React, { useState } from 'react';
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from '@/src/components/ui/popover';
+import {
+  Tabs,
+  TabsContent,
+  TabsList,
+  TabsTrigger,
+} from '@/src/components/ui/tabs';
+import { Button } from '@/src/components/ui/button';
+import { Card, CardContent, CardFooter } from '@/src/components/ui/card';
+import { Input } from '@/src/components/ui/input';
+import { useFilters } from '@/src/hooks/useFilters';
 
 const priceOptionsAED = [
   500000, 1000000, 1500000, 3000000, 5000000, 8000000, 15000000,
@@ -12,7 +21,6 @@ const priceOptionsAED = [
 
 const formatNumber = (value: number | '') =>
   value !== '' ? value.toLocaleString('en-US').replace(/,/g, ' ') : '';
-
 
 type PriceProps = {
   value?: string;
@@ -23,8 +31,8 @@ type PriceProps = {
 export const Price: React.FC<PriceProps> = ({ className, onChange }) => {
   const [minPrice, setMinPrice] = useState<number | ''>('');
   const [maxPrice, setMaxPrice] = useState<number | ''>('');
-  const { selectedCurrency, convertPrice, selectedMeasure, getMeasureCoef } = useFilters();
-
+  const { selectedCurrency, convertPrice, selectedMeasure, getMeasureCoef } =
+    useFilters();
 
   const handleMinPriceChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value.replace(/\s/g, '');
@@ -36,10 +44,10 @@ export const Price: React.FC<PriceProps> = ({ className, onChange }) => {
     setMaxPrice(value ? parseInt(value) : '');
   };
 
-
-  const priceLabel = minPrice && maxPrice
-    ? `${formatNumber(Number(convertPrice(minPrice)))} - ${formatNumber(Number(convertPrice(maxPrice)))} ${selectedCurrency}`
-    : 'Стоимость';
+  const priceLabel =
+    minPrice && maxPrice
+      ? `${formatNumber(Number(convertPrice(minPrice)))} - ${formatNumber(Number(convertPrice(maxPrice)))} ${selectedCurrency}`
+      : 'Стоимость';
 
   return (
     <Popover>
@@ -52,9 +60,7 @@ export const Price: React.FC<PriceProps> = ({ className, onChange }) => {
         </Button>
       </PopoverTrigger>
       <PopoverContent className="md:w-[400px]">
-        <Tabs
-          defaultValue="object"
-        >
+        <Tabs defaultValue="object">
           <TabsList className="grid w-full grid-cols-2 rounded-lg">
             <TabsTrigger value="object">за объект</TabsTrigger>
             <TabsTrigger value="sqm">за {selectedMeasure}</TabsTrigger>
@@ -67,7 +73,11 @@ export const Price: React.FC<PriceProps> = ({ className, onChange }) => {
                   <div>
                     <Input
                       type="text"
-                      value={minPrice !== "" ? `${formatNumber(Number(convertPrice(minPrice).replace(/[^0-9.]/g, "")))}` : ""}
+                      value={
+                        minPrice !== ''
+                          ? `${formatNumber(Number(convertPrice(minPrice).replace(/[^0-9.]/g, '')))}`
+                          : ''
+                      }
                       onChange={handleMinPriceChange}
                       placeholder={`Мин. цена (${selectedCurrency})`}
                       className="mt-1 text-lg font-semibold text-black text-center border-none shadow-none"
@@ -76,7 +86,11 @@ export const Price: React.FC<PriceProps> = ({ className, onChange }) => {
                   <div>
                     <Input
                       type="text"
-                      value={maxPrice !== "" ? `${formatNumber(Number(convertPrice(maxPrice).replace(/[^0-9.]/g, "")))}` : ""}
+                      value={
+                        maxPrice !== ''
+                          ? `${formatNumber(Number(convertPrice(maxPrice).replace(/[^0-9.]/g, '')))}`
+                          : ''
+                      }
                       onChange={handleMaxPriceChange}
                       placeholder={`Макс. цена (${selectedCurrency})`}
                       className="mt-1 text-lg font-semibold text-black text-center border-none shadow-none"
@@ -93,7 +107,8 @@ export const Price: React.FC<PriceProps> = ({ className, onChange }) => {
                         className={`w-full text-left ${minPrice === price ? 'text-[#4249ce]' : ''}`}
                         onClick={() => setMinPrice(price)}
                       >
-                        {formatNumber(Number(convertPrice(price)))} {selectedCurrency}
+                        {formatNumber(Number(convertPrice(price)))}{' '}
+                        {selectedCurrency}
                       </Button>
                     ))}
                   </div>
@@ -105,7 +120,8 @@ export const Price: React.FC<PriceProps> = ({ className, onChange }) => {
                         className={`w-full text-left ${maxPrice === price ? 'text-[#4249ce]' : ''}`}
                         onClick={() => setMaxPrice(price)}
                       >
-                        {formatNumber(Number(convertPrice(price)))} {selectedCurrency}
+                        {formatNumber(Number(convertPrice(price)))}{' '}
+                        {selectedCurrency}
                       </Button>
                     ))}
                   </div>
@@ -126,7 +142,16 @@ export const Price: React.FC<PriceProps> = ({ className, onChange }) => {
                   <div>
                     <Input
                       type="text"
-                      value={minPrice !== "" ? formatNumber(Math.round(Number(convertPrice(minPrice)) * getMeasureCoef())) : ""}
+                      value={
+                        minPrice !== ''
+                          ? formatNumber(
+                              Math.round(
+                                Number(convertPrice(minPrice)) *
+                                  getMeasureCoef()
+                              )
+                            )
+                          : ''
+                      }
                       onChange={handleMinPriceChange}
                       placeholder={`Мин. цена за ${selectedMeasure}`}
                       className="mt-1 text-lg font-semibold text-black text-center border-none shadow-none"
@@ -135,7 +160,16 @@ export const Price: React.FC<PriceProps> = ({ className, onChange }) => {
                   <div>
                     <Input
                       type="text"
-                      value={maxPrice !== "" ? formatNumber(Math.round(Number(convertPrice(maxPrice)) * getMeasureCoef())) : ""}
+                      value={
+                        maxPrice !== ''
+                          ? formatNumber(
+                              Math.round(
+                                Number(convertPrice(maxPrice)) *
+                                  getMeasureCoef()
+                              )
+                            )
+                          : ''
+                      }
                       onChange={handleMaxPriceChange}
                       placeholder={`Макс. цена за ${selectedMeasure}`}
                       className="mt-1 text-lg font-semibold text-black text-center border-none shadow-none"
@@ -152,7 +186,12 @@ export const Price: React.FC<PriceProps> = ({ className, onChange }) => {
                         className={`w-full text-left ${minPrice === price ? 'text-[#4249ce]' : ''}`}
                         onClick={() => setMinPrice(price)}
                       >
-                        {formatNumber(Math.round(Number(convertPrice(price)) * getMeasureCoef()))} {selectedCurrency}/{selectedMeasure}
+                        {formatNumber(
+                          Math.round(
+                            Number(convertPrice(price)) * getMeasureCoef()
+                          )
+                        )}{' '}
+                        {selectedCurrency}/{selectedMeasure}
                       </Button>
                     ))}
                   </div>
@@ -164,7 +203,12 @@ export const Price: React.FC<PriceProps> = ({ className, onChange }) => {
                         className={`w-full text-left ${maxPrice === price ? 'text-[#4249ce]' : ''}`}
                         onClick={() => setMaxPrice(price)}
                       >
-                        {formatNumber(Math.round(Number(convertPrice(price)) * getMeasureCoef()))} {selectedCurrency}/{selectedMeasure}
+                        {formatNumber(
+                          Math.round(
+                            Number(convertPrice(price)) * getMeasureCoef()
+                          )
+                        )}{' '}
+                        {selectedCurrency}/{selectedMeasure}
                       </Button>
                     ))}
                   </div>
@@ -182,5 +226,3 @@ export const Price: React.FC<PriceProps> = ({ className, onChange }) => {
     </Popover>
   );
 };
-
-
