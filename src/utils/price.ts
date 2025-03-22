@@ -1,4 +1,4 @@
-import { Currency } from '@/src/types/property';
+import { Currency } from '@/types/property';
 
 interface CurrencyRates {
   [key: string]: number;

@@ -3,16 +3,16 @@
 import React from 'react';
 import { MapContainer, TileLayer } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
-import { useFilters } from '@/src/hooks/useFilters';
+import { useFilters } from '@/hooks/useFilters';
 
 const Map: React.FC = () => {
-  const { latitude, longitude } = useFilters();
+  const { filters } = useFilters();
 
   return (
     <div className={`w-svw h-svh hidden md:block`}>
       <MapContainer
-        key={`${latitude}-${longitude}`}
-        center={[latitude, longitude]}
+        key={`${filters.latitude}-${filters.longitude}`}
+        center={[Number(filters.latitude), Number(filters.longitude)]}
         zoom={11}
         className="relative w-full h-full z-0"
       >

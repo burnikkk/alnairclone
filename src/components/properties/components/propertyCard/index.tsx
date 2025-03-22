@@ -1,8 +1,8 @@
-import { IProperty as PropertyType } from '@/src/types/property';
+import { IProperty as PropertyType } from '@/types/property';
 import React from 'react';
-import { Card } from '@/src/components/ui/card';
-import { CoverImage } from '@/src/components/properties/components/propertyCard/CoverImage';
-import { Details } from '@/src/components/properties/components/propertyCard/Details';
+import { Card } from '@/components/ui/card';
+import { CoverImage } from '@/components/properties/components/propertyCard/CoverImage';
+import { Details } from '@/components/properties/components/propertyCard/Details';
 
 interface PropertyCardProps {
   property?: PropertyType;

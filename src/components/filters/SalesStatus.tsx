@@ -6,10 +6,10 @@ import {
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from '@/src/components/ui/select';
+} from '@/components/ui/select';
 import React from 'react';
-import { useFilters } from '@/src/hooks/useFilters';
-import { salesStatuses } from '@/src/utils/salesStatus';
+import { salesStatuses } from '@/utils/salesStatus';
+import { useFilters } from '@/hooks/useFilters';
 
 type SelectProps = {
   value?: string;
@@ -18,13 +18,13 @@ type SelectProps = {
 };
 
 export const SalesStatus: React.FC<SelectProps> = ({ className, onChange }) => {
-  const { saleStatus, setSaleStatus } = useFilters();
+  const { filters, setAll } = useFilters();
 
   const handleChange = (value: string) => {
     if (value === 'all') {
-      setSaleStatus('');
+      setAll({ saleStatus: '' });
     } else {
-      setSaleStatus(value);
+      setAll({ saleStatus: value });
     }
 
     if (onChange) {
@@ -33,13 +33,14 @@ export const SalesStatus: React.FC<SelectProps> = ({ className, onChange }) => {
   };
 
   const resetFilter = () => {
-    setSaleStatus('all');
+    setAll({ saleStatus: '' });
     if (onChange) {
       onChange('all');
     }
   };
+
   return (
-    <Select value={saleStatus} onValueChange={handleChange}>
+    <Select value={filters.saleStatus} onValueChange={handleChange}>
       <SelectTrigger
         className={`rounded-full bg-[#f3f3f5] !text-[#1F1F1F] ${className}`}
       >

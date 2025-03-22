@@ -2,12 +2,12 @@
 
 import React from 'react';
 
-import { Menubar } from '@/src/components/navigation/Menubar';
-import { Separator } from '@/src/components/ui/separator';
-import { PropertyList } from '@/src/components/properties';
+import { Menubar } from '@/components/navigation/Menubar';
+import { Separator } from '@/components/ui/separator';
+import { PropertyList } from '@/components/properties';
 import dynamic from 'next/dynamic';
 
-const Map = dynamic(() => import('@/src/components/map/Map'), {
+const Map = dynamic(() => import('@/components/map/Map'), {
   ssr: false,
 });
 

@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { EBedroom, EDiscountType, IProperty } from '@/src/types/property';
+import { EBedroom, EDiscountType, IProperty } from '@/types/property';
 
 const mocks: IProperty[] = [
   {

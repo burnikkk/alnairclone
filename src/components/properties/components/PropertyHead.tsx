@@ -1,17 +1,13 @@
 import * as React from 'react';
-import { SortHead } from "@/src/components/filters/SortHead";
+import { SortHead } from '@/components/filters/SortHead';
 
-type PropertyHeadProps = {
-  onSortChange: (value: string) => void;
-};
-
-export const PropertyHead: React.FC<PropertyHeadProps> = ({ onSortChange }) => {
+export const PropertyHead = () => {
   return (
     <div className="w-full pt-2 flex items-center justify-between">
       <div>
         <p className="text-xl font-semibold">100 из 100 результатов</p>
       </div>
-      <SortHead onChange={onSortChange} />
+      <SortHead />
     </div>
   );
 };

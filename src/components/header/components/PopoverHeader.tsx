@@ -5,13 +5,13 @@ import {
   Popover,
   PopoverContent,
   PopoverTrigger,
-} from '@/src/components/ui/popover';
-import { Button } from '@/src/components/ui/button';
-import { cn } from '@/src/lib/utils';
+} from '@/components/ui/popover';
+import { Button } from '@/components/ui/button';
+import { cn } from '@/lib/utils';
 import Flag from 'react-world-flags';
-import { useSettings } from '@/src/hooks/useSettings';
-import { EMeasure } from '@/src/types/property';
-import { getMeasureLabel } from '@/src/utils/label';
+import { useSettings } from '@/hooks/useSettings';
+import { EMeasure } from '@/types/property';
+import { getMeasureLabel } from '@/utils/label';
 
 export const PopoverHeader: React.FC = () => {
   const [selectedLang, setSelectedLang] = useState('ru');

@@ -2,9 +2,9 @@
 
 import * as React from 'react';
 import { useController, useFormContext } from 'react-hook-form';
-import { FormField, FormFieldProps } from '@/src/components/ui/form/formField';
-import { Tabs, TabsList, TabsTrigger } from '@/src/components/ui/tabs';
-import { cn } from '@/src/lib/utils';
+import { FormField, FormFieldProps } from '@/components/ui/form/formField';
+import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { cn } from '@/lib/utils';
 
 type Option = { value: string; label: React.ReactNode };
 

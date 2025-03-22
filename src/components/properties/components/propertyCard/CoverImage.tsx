@@ -1,8 +1,8 @@
 import React from 'react';
-import { Badge } from '@/src/components/ui/badge';
+import { Badge } from '@/components/ui/badge';
 import Image from 'next/image';
-import usePropertyImage from '@/src/hooks/usePropertyImages';
-import { salesStatuses } from "@/src/utils/salesStatus";
+import usePropertyImage from '@/hooks/usePropertyImages';
+import { salesStatuses } from '@/utils/salesStatus';
 
 interface CoverImageProps {
   title: string;
@@ -11,10 +11,16 @@ interface CoverImageProps {
   salesStatusType?: string;
 }
 
-export const CoverImage = ({ title, type, isRecommended, salesStatusType  }: CoverImageProps) => {
+export const CoverImage = ({
+  title,
+  type,
+  isRecommended,
+  salesStatusType,
+}: CoverImageProps) => {
   const { imageUrl } = usePropertyImage(type);
 
-  const getSalesStatusLabel = (status: string) => salesStatuses[status] || 'Неизвестный статус';
+  const getSalesStatusLabel = (status: string) =>
+    salesStatuses[status] || 'Неизвестный статус';
 
   const getBadgeClass = (status: string) => {
     if (status === 'reg') return 'bg-[#819] text-white';
@@ -32,7 +38,9 @@ export const CoverImage = ({ title, type, isRecommended, salesStatusType  }: Cov
           </Badge>
         )}
         {salesStatusType && salesStatusType !== 'all' && (
-          <Badge className={`rounded-full text-xs font-normal z-10 uppercase ${getBadgeClass(salesStatusType)}`}>
+          <Badge
+            className={`rounded-full text-xs font-normal z-10 uppercase ${getBadgeClass(salesStatusType)}`}
+          >
             {getSalesStatusLabel(salesStatusType)}
           </Badge>
         )}

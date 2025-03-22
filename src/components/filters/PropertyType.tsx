@@ -6,9 +6,9 @@ import {
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from '@/src/components/ui/select';
+} from '@/components/ui/select';
 import React from 'react';
-import { useFilters } from '@/src/hooks/useFilters';
+import { useFilters } from '@/hooks/useFilters';
 
 type SelectProps = {
   className?: string;
@@ -19,13 +19,13 @@ export const PropertyType: React.FC<SelectProps> = ({
   className,
   onChange,
 }) => {
-  const { propertyType, setPropertyType } = useFilters();
+  const { filters, setAll } = useFilters();
 
   const handleChange = (value: string) => {
     if (value === 'all') {
-      setPropertyType('');
+      setAll({ propertyType: '' });
     } else {
-      setPropertyType(value);
+      setAll({ propertyType: value });
     }
 
     if (onChange) {
@@ -34,14 +34,14 @@ export const PropertyType: React.FC<SelectProps> = ({
   };
 
   const resetFilter = () => {
-    setPropertyType('all');
+    setAll({ propertyType: '' });
     if (onChange) {
       onChange('all');
     }
   };
 
   return (
-    <Select value={propertyType} onValueChange={handleChange}>
+    <Select value={filters.propertyType} onValueChange={handleChange}>
       <SelectTrigger
         className={`rounded-full bg-[#f3f3f5] !text-[#1F1F1F] ${className}`}
       >

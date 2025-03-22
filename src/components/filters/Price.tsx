@@ -3,16 +3,16 @@ import {
   Popover,
   PopoverContent,
   PopoverTrigger,
-} from '@/src/components/ui/popover';
-import { Button } from '@/src/components/ui/button';
-import { Card, CardContent, CardFooter } from '@/src/components/ui/card';
-import { Form } from '@/src/components/ui/form/form';
+} from '@/components/ui/popover';
+import { Button } from '@/components/ui/button';
+import { Card, CardContent, CardFooter } from '@/components/ui/card';
+import { Form } from '@/components/ui/form/form';
 import { useForm } from 'react-hook-form';
-import { FormInput } from '@/src/components/ui/form/formInput';
-import { formatCurrency } from '@/src/lib/utils';
-import { FormTabs } from '@/src/components/ui/form/formTabs';
-import { useSettings } from '@/src/hooks/useSettings';
-import { getMeasureLabel } from '@/src/utils/label';
+import { FormInput } from '@/components/ui/form/formInput';
+import { formatCurrency } from '@/lib/utils';
+import { FormTabs } from '@/components/ui/form/formTabs';
+import { useSettings } from '@/hooks/useSettings';
+import { getMeasureLabel } from '@/utils/label';
 
 const priceOptions = [
   '500000',

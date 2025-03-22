@@ -1,6 +1,6 @@
-import { createContextHook } from '@/src/hooks/createContextHook';
+import { createContextHook } from '@/hooks/createContextHook';
 import { useState } from 'react';
-import { Currency, EMeasure } from '@/src/types/property';
+import { Currency, EMeasure } from '@/types/property';
 
 export const useSettings = createContextHook(() => {
   const [selectedCurrency, setSelectedCurrency] = useState<Currency>('AED');

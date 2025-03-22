@@ -6,47 +6,29 @@ import {
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from '@/src/components/ui/select';
-import { useFilters } from '@/src/hooks/useFilters';
+} from '@/components/ui/select';
 import React from 'react';
-import { sortStatuses } from '@/src/utils/sortStatus';
+import { sortStatuses } from '@/utils/sortStatus';
+import { useFilters } from '@/hooks/useFilters';
 
-type SortProps = {
-  value?: string;
-  onChange?: (value: string) => void;
-};
-
-export const SortHead: React.FC<SortProps> = ({ onChange }) => {
-  const { sortOption, setSortOption } = useFilters();
+export const SortHead = () => {
+  const { filters, setAll } = useFilters();
 
   const handleChange = (value: string) => {
     if (value === 'all') {
-      setSortOption('');
+      setAll({ sortOption: '' });
     } else {
-      setSortOption(value);
-    }
-
-    if (onChange) {
-      onChange(value);
-    }
-  };
-
-  const resetFilter = () => {
-    setSortOption('all');
-    if (onChange) {
-      onChange('all');
+      setAll({ sortOption: value });
     }
   };
 
   return (
-    <Select value={sortOption} onValueChange={handleChange}>
+    <Select value={filters.sortOption} onValueChange={handleChange}>
       <SelectTrigger className="w-[180px] border-none">
         <SelectValue placeholder="По умолчанию" />
       </SelectTrigger>
       <SelectContent className="align-middle">
-        <SelectItem onClick={resetFilter} value="all">
-          По умолчанию
-        </SelectItem>
+        <SelectItem value="all">По умолчанию</SelectItem>
 
         {Object.entries(sortStatuses).map(([key, label]) => (
           <SelectItem key={key} value={key}>

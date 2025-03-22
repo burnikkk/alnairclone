@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Button } from '@/src/components/ui/button';
+import { Button } from '@/components/ui/button';
 import {
   Dialog,
   DialogContent,
@@ -7,16 +7,16 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from '@/src/components/ui/dialog';
+} from '@/components/ui/dialog';
 import {
   NavigationMenu,
   NavigationMenuItem,
   NavigationMenuLink,
   NavigationMenuList,
-} from '@/src/components/ui/navigation-menu';
+} from '@/components/ui/navigation-menu';
 import { Navigation } from 'lucide-react';
 import Flag from 'react-world-flags';
-import { useFilters } from '@/src/hooks/useFilters';
+import { useFilters } from '@/hooks/useFilters';
 
 const cityCoordinates: Record<string, { lat: number; lng: number }> = {
   Dubai: { lat: 25.116987, lng: 55.496249 },
@@ -38,7 +38,7 @@ const cityCoordinates: Record<string, { lat: number; lng: number }> = {
 };
 
 export const Location = () => {
-  const { setCoordinates } = useFilters();
+  const { setAll } = useFilters();
   const [selectedCity, setSelectedCity] = useState('Dubai');
   const [open, setOpen] = useState(false);
 
@@ -46,7 +46,7 @@ export const Location = () => {
     setSelectedCity(city);
     const coords = cityCoordinates[city];
     if (coords) {
-      setCoordinates(coords.lat, coords.lng);
+      setAll({ latitude: String(coords.lat), longitude: String(coords.lng) });
       console.log(`Changing coordinates to: ${coords.lat}, ${coords.lng}`);
     }
     setOpen(false);

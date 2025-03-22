@@ -1,21 +1,21 @@
 'use client';
 
 import React, { useState } from 'react';
-import { CollapsibleButton } from '@/src/components/properties/components/CollapsibleButton';
-import { IProperty as PropertyType } from '@/src/types/property';
-import { useFilters } from '@/src/hooks/useFilters';
-import { cn } from '@/src/lib/utils';
-import { PropertyCard } from '@/src/components/properties/components/propertyCard';
-import { PropertyHead } from '@/src/components/properties/components/PropertyHead';
-import { sortProperties } from '@/src/utils/sortProperties';
-import { useProperties } from '@/src/hooks/useProperties';
+import { CollapsibleButton } from '@/components/properties/components/CollapsibleButton';
+import { IProperty as PropertyType } from '@/types/property';
+import { cn } from '@/lib/utils';
+import { PropertyCard } from '@/components/properties/components/propertyCard';
+import { PropertyHead } from '@/components/properties/components/PropertyHead';
+import { sortProperties } from '@/utils/sortProperties';
+import { useProperties } from '@/hooks/useProperties';
+import { useFilters } from '@/hooks/useFilters';
 
 export const PropertyList = () => {
   const [isCollapsed, setIsCollapsed] = useState(false);
-  const { sortOption, setSortOption } = useFilters();
+  const { filters } = useFilters();
   const { data: properties } = useProperties();
 
-  const sortedProperties = sortProperties(properties, sortOption);
+  const sortedProperties = sortProperties(properties, filters.sortOption);
 
   return (
     <div
@@ -33,7 +33,7 @@ export const PropertyList = () => {
       >
         <div className="flex flex-wrap content-start px-4 pb-4">
           <div className="w-full">
-            <PropertyHead onSortChange={setSortOption} />
+            <PropertyHead />
           </div>
           <div className="grid xs:grid-cols-1 xl:grid-cols-2 gap-3 w-full">
             {sortedProperties?.length ? (

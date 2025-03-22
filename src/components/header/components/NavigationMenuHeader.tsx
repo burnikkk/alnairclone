@@ -2,7 +2,7 @@
 
 import React from 'react';
 
-import { cn } from '@/src/lib/utils';
+import { cn } from '@/lib/utils';
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -11,7 +11,7 @@ import {
   NavigationMenuList,
   NavigationMenuTrigger,
   navigationMenuTriggerStyle,
-} from '@/src/components/ui/navigation-menu';
+} from '@/components/ui/navigation-menu';
 
 export function NavigationMenuHeader() {
   return (

@@ -1,29 +1,94 @@
-import { createContextHook } from '@/src/hooks/createContextHook';
-import { useState } from 'react';
+import { useMemo, useReducer } from 'react';
+import { createContextHook } from '@/hooks/createContextHook';
 
-export const useFilters = createContextHook(() => {
-  const [propertyType, setPropertyType] = useState<string>('');
-  const [bedrooms, setBedrooms] = useState<string>('');
-  const [saleStatus, setSaleStatus] = useState<string>('');
-  const [latitude, setLatitude] = useState(25.116987);
-  const [longitude, setLongitude] = useState(55.496249);
-  const [sortOption, setSortOption] = useState<string>('all');
-  const setCoordinates = (lat: number, lng: number) => {
-    setLatitude(lat);
-    setLongitude(lng);
+type Value = string;
+
+type IFilters = {
+  bedrooms: Value;
+  saleStatus: Value;
+  propertyType: Value;
+  latitude: Value;
+  longitude: Value;
+  sortOption: Value;
+};
+
+const initFilters: IFilters = {
+  bedrooms: '',
+  saleStatus: '',
+  propertyType: '',
+  latitude: '25.116987',
+  longitude: '55.496249',
+  sortOption: '',
+};
+
+type FiltersAction =
+  | {
+      type: 'SET_FILTER_BUNCH';
+      value: Partial<IFilters>;
+    }
+  | { type: 'RESET_FILTERS' };
+
+const filtersReducer = (state: IFilters, action: FiltersAction): IFilters => {
+  switch (action.type) {
+    case 'SET_FILTER_BUNCH':
+      return {
+        ...state,
+        ...action.value,
+      };
+
+    case 'RESET_FILTERS': {
+      return initFilters;
+    }
+
+    default:
+      return state;
+  }
+};
+
+export const useFilters = createContextHook(function useFilters(
+  initialFilters: IFilters = initFilters
+) {
+  const [filters, dispatch] = useReducer(filtersReducer, initialFilters);
+
+  const setAll = (filters: Partial<IFilters>) => {
+    dispatch({
+      type: 'SET_FILTER_BUNCH',
+      value: filters,
+    });
   };
+
+  const resetAll = () => {
+    dispatch({ type: 'RESET_FILTERS' });
+  };
+
+  const applySavedSearch = (savedSearch: string) => {
+    resetAll();
+    const params: Record<string, Value> = {};
+    new URLSearchParams(savedSearch).forEach((value, key) => {
+      if (value) {
+        params[key] = value;
+      }
+    });
+    dispatch({ type: 'SET_FILTER_BUNCH', value: params });
+  };
+
+  const query = useMemo(() => filtersToQuery(filters), [filters]);
 
   return {
-    latitude,
-    longitude,
-    propertyType,
-    bedrooms,
-    saleStatus,
-    setCoordinates,
-    setPropertyType,
-    setBedrooms,
-    setSaleStatus,
-    sortOption,
-    setSortOption,
+    filters,
+    query,
+    setAll,
+    resetAll,
+    applySavedSearch,
   };
 });
+
+const filtersToQuery = (filters: IFilters) => {
+  const params = new URLSearchParams();
+  Object.entries(filters).forEach(([key, value]) => {
+    if (value) {
+      params.set(key, value);
+    }
+  });
+  return params.toString();
+};

@@ -1,12 +1,12 @@
-import { EDiscountType, IProperty as PropertyType } from '@/src/types/property';
+import { EDiscountType, IProperty as PropertyType } from '@/types/property';
 import React from 'react';
-import { CardContent } from '@/src/components/ui/card';
-import { Badge } from '@/src/components/ui/badge';
+import { CardContent } from '@/components/ui/card';
+import { Badge } from '@/components/ui/badge';
 import Image from 'next/image';
-import { Separator } from '@/src/components/ui/separator';
+import { Separator } from '@/components/ui/separator';
 import { ChevronUp } from 'lucide-react';
-import { convertPrice } from '@/src/utils/price';
-import { useSettings } from '@/src/hooks/useSettings';
+import { convertPrice } from '@/utils/price';
+import { useSettings } from '@/hooks/useSettings';
 
 interface DetailsProps {
   property: PropertyType;

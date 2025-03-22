@@ -6,49 +6,31 @@ import {
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from '@/src/components/ui/select';
+} from '@/components/ui/select';
 import React from 'react';
-import { useFilters } from '@/src/hooks/useFilters';
-import { EBedroom } from '@/src/types/property';
+import { EBedroom } from '@/types/property';
+import { useFilters } from '@/hooks/useFilters';
 
-type SelectProps = {
-  className?: string;
-  onChange?: (value: string) => void;
-};
-
-export const Bedrooms: React.FC<SelectProps> = ({ className, onChange }) => {
-  const { bedrooms, setBedrooms } = useFilters();
+export const Bedrooms = () => {
+  const { filters, setAll } = useFilters();
 
   const handleChange = (value: string) => {
     if (value === 'all') {
-      setBedrooms('');
+      setAll({ bedrooms: '' });
     } else {
-      setBedrooms(value);
-    }
-
-    if (onChange) {
-      onChange(value);
-    }
-  };
-
-  const resetFilter = () => {
-    setBedrooms('all');
-    if (onChange) {
-      onChange('all');
+      setAll({ bedrooms: value });
     }
   };
 
   return (
-    <Select value={bedrooms} onValueChange={handleChange}>
+    <Select value={filters.bedrooms} onValueChange={handleChange}>
       <SelectTrigger
-        className={`rounded-full bg-[#f3f3f5] !text-[#1f1f1f] ${className}`}
+        className={`rounded-full bg-[#f3f3f5] !text-[#1f1f1f] border-none`}
       >
         <SelectValue placeholder="Количество комнат" />
       </SelectTrigger>
       <SelectContent className="max-h-60 max-w-55">
-        <SelectItem onClick={resetFilter} value="all">
-          Количество комнат
-        </SelectItem>
+        <SelectItem value="all">Количество комнат</SelectItem>
         <SelectItem value={EBedroom.ONE}>1 спальня</SelectItem>
         <SelectItem value={EBedroom.TWO}>2 спальни</SelectItem>
         <SelectItem value={EBedroom.THREE}>3 спальни</SelectItem>

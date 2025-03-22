@@ -11,8 +11,8 @@ import { useIMask } from 'react-imask';
 import { FactoryOpts } from 'imask';
 import { CircleX } from 'lucide-react';
 import { Input } from '../input';
-import { cn, mergeRefs } from '@/src/lib/utils';
-import { FormField, FormFieldProps } from '@/src/components/ui/form/formField';
+import { cn, mergeRefs } from '@/lib/utils';
+import { FormField, FormFieldProps } from '@/components/ui/form/formField';
 
 type InputRules = Pick<RegisterOptions, 'required' | 'validate'>;
 

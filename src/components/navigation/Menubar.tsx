@@ -1,11 +1,11 @@
 'use client';
-import { Button } from '@/src/components/ui/button';
-import { Location } from '@/src/components/filters/Location';
-import { PropertyType } from '@/src/components/filters/PropertyType';
-import { Price } from '@/src/components/filters/Price';
+import { Button } from '@/components/ui/button';
+import { Location } from '@/components/filters/Location';
+import { PropertyType } from '@/components/filters/PropertyType';
+import { Price } from '@/components/filters/Price';
 import { Search, SlidersHorizontal, Sparkle } from 'lucide-react';
-import { SalesStatus } from '@/src/components/filters/SalesStatus';
-import { Bedrooms } from '@/src/components/filters/Bedrooms';
+import { SalesStatus } from '@/components/filters/SalesStatus';
+import { Bedrooms } from '@/components/filters/Bedrooms';
 
 export const Menubar = () => {
   return (
@@ -15,7 +15,7 @@ export const Menubar = () => {
         <Search size={20} />
         Поиск
       </Button>
-      <Bedrooms className="border-none" />
+      <Bedrooms />
       <Price />
       <PropertyType className="border-none" />
       <SalesStatus className="border-none" />
