@@ -61,17 +61,6 @@ export const useFilters = createContextHook(function useFilters(
     dispatch({ type: 'RESET_FILTERS' });
   };
 
-  const applySavedSearch = (savedSearch: string) => {
-    resetAll();
-    const params: Record<string, Value> = {};
-    new URLSearchParams(savedSearch).forEach((value, key) => {
-      if (value) {
-        params[key] = value;
-      }
-    });
-    dispatch({ type: 'SET_FILTER_BUNCH', value: params });
-  };
-
   const query = useMemo(() => filtersToQuery(filters), [filters]);
 
   return {
@@ -79,7 +68,6 @@ export const useFilters = createContextHook(function useFilters(
     query,
     setAll,
     resetAll,
-    applySavedSearch,
   };
 });
 
