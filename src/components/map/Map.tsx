@@ -5,7 +5,7 @@ import { MapContainer, TileLayer } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import { useFilters } from '@/src/hooks/useFilters';
 
-export const Map: React.FC = () => {
+const Map: React.FC = () => {
   const { latitude, longitude } = useFilters();
 
   return (
@@ -24,3 +24,5 @@ export const Map: React.FC = () => {
     </div>
   );
 };
+
+export default Map;

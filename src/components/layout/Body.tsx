@@ -4,8 +4,12 @@ import React from 'react';
 
 import { Menubar } from '@/src/components/navigation/Menubar';
 import { Separator } from '@/src/components/ui/separator';
-import { Map } from '@/src/components/map/Map';
 import { PropertyList } from '@/src/components/properties';
+import dynamic from 'next/dynamic';
+
+const Map = dynamic(() => import('@/src/components/map/Map'), {
+  ssr: false,
+});
 
 export const Body = () => {
   return (
