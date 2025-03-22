@@ -9,12 +9,18 @@ import {
 import { Button } from '@/src/components/ui/button';
 import { cn } from '@/src/lib/utils';
 import Flag from 'react-world-flags';
-import {useFilters} from "@/src/hooks/useFilters";
-
+import { useSettings } from '@/src/hooks/useSettings';
+import { EMeasure } from '@/src/types/property';
+import { getMeasureLabel } from '@/src/utils/label';
 
 export const PopoverHeader: React.FC = () => {
   const [selectedLang, setSelectedLang] = useState('ru');
-  const { selectedCurrency, setSelectedCurrency, selectedMeasure, setSelectedMeasure } = useFilters();
+  const {
+    selectedCurrency,
+    setSelectedCurrency,
+    selectedMeasure,
+    setSelectedMeasure,
+  } = useSettings();
 
   const languages: Record<string, { label: string; flagCode: string }> = {
     ar: { label: 'Arabic', flagCode: 'AE' },
@@ -31,7 +37,7 @@ export const PopoverHeader: React.FC = () => {
         >
           <Flag code={languages[selectedLang].flagCode} className="w-5 h-5" />
           <span>{selectedCurrency}</span>
-          <span>{selectedMeasure}</span>
+          <span>{getMeasureLabel(selectedMeasure)}</span>
         </Button>
       </PopoverTrigger>
       <PopoverContent className="w-fit p-4 rounded-xl shadow-md bg-white">
@@ -56,25 +62,27 @@ export const PopoverHeader: React.FC = () => {
         <div className="mt-4">
           <h4 className="text-sm font-medium mb-2">Валюта</h4>
           <div className="flex flex-nowrap w-full divide-x border rounded-md">
-            {['AED', '$', '₽', '฿', 'OMR', '¥', 'IDR', '£', '€'].map((currency) => (
-              <Button
-                key={currency}
-                variant="ghost"
-                size="sm"
-                className={`rounded-none ${
-                  selectedCurrency === currency ? 'bg-blue-100' : ''
-                }`}
-                onClick={() => setSelectedCurrency(currency as any)}
-              >
-                {currency}
-              </Button>
-            ))}
+            {['AED', '$', '₽', '฿', 'OMR', '¥', 'IDR', '£', '€'].map(
+              (currency) => (
+                <Button
+                  key={currency}
+                  variant="ghost"
+                  size="sm"
+                  className={`rounded-none ${
+                    selectedCurrency === currency ? 'bg-blue-100' : ''
+                  }`}
+                  onClick={() => setSelectedCurrency(currency as any)}
+                >
+                  {currency}
+                </Button>
+              )
+            )}
           </div>
         </div>
         <div className="mt-4">
           <h4 className="text-sm font-medium mb-2">Единицы измерения</h4>
           <div className="grid grid-cols-2 gap-2">
-            {['m²', 'ft²'].map((measure) => (
+            {[EMeasure.SQM, EMeasure.SQFT].map((measure) => (
               <Button
                 key={measure}
                 variant="ghost"
@@ -83,9 +91,9 @@ export const PopoverHeader: React.FC = () => {
                   'p-2 border rounded-lg w-full',
                   selectedMeasure === measure && 'border-blue-500 bg-blue-100'
                 )}
-                onClick={() => setSelectedMeasure(measure as any)}
+                onClick={() => setSelectedMeasure(measure)}
               >
-                {measure}
+                {getMeasureLabel(measure)}
               </Button>
             ))}
           </div>

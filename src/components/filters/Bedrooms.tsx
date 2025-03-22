@@ -20,7 +20,12 @@ export const Bedrooms: React.FC<SelectProps> = ({ className, onChange }) => {
   const { bedrooms, setBedrooms } = useFilters();
 
   const handleChange = (value: string) => {
-    setBedrooms(value);
+    if (value === 'all') {
+      setBedrooms('');
+    } else {
+      setBedrooms(value);
+    }
+
     if (onChange) {
       onChange(value);
     }

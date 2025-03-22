@@ -9,7 +9,7 @@ const mocks: IProperty[] = [
     title: 'Palm Jumeirah Villa',
     developer: 'Emaar Properties',
     salesStatus: 'reg',
-    propertyType: 'Вилла',
+    propertyType: 'villa',
     price: 2500000,
     discount: { value: 5, type: EDiscountType.PERCENTAGE },
     units: [
@@ -18,7 +18,10 @@ const mocks: IProperty[] = [
       { type: EBedroom.SIX, size: 480, price: 5000000 },
     ],
     availableUnits: 12,
-    completionDate: new Date('11/05/2025').toDateString(),
+    completionDate: new Date('10/01/2026').toLocaleDateString('ru-RU', {
+      year: 'numeric',
+      month: 'short',
+    }),
   },
   {
     id: '2',
@@ -26,7 +29,7 @@ const mocks: IProperty[] = [
     imageUrl: 'https://source.unsplash.com/random/800x600?apartment',
     title: 'Downtown Dubai Apartment',
     developer: 'Damac Properties',
-    propertyType: 'Апартаменты',
+    propertyType: 'apparts',
     salesStatus: 'reg',
     price: 1800000,
     units: [
@@ -34,7 +37,10 @@ const mocks: IProperty[] = [
       { type: EBedroom.TWO, size: 110, price: 4000000 },
     ],
     availableUnits: 8,
-    completionDate: new Date('07/01/2026').toDateString(),
+    completionDate: new Date('10/01/2026').toLocaleDateString('ru-RU', {
+      year: 'numeric',
+      month: 'short',
+    }),
   },
   {
     id: '3',
@@ -43,7 +49,7 @@ const mocks: IProperty[] = [
     title: 'Burj Khalifa Residences',
     developer: 'Emaar Properties',
     salesStatus: 'anons',
-    propertyType: 'Апартаменты',
+    propertyType: 'apparts',
     price: 5000000,
     discount: { value: 7, type: EDiscountType.PERCENTAGE },
     units: [
@@ -51,7 +57,10 @@ const mocks: IProperty[] = [
       { type: EBedroom.FOUR, size: 250, price: 4500000 },
     ],
     availableUnits: 5,
-    completionDate: new Date('04/01/2025').toDateString(),
+    completionDate: new Date('10/01/2026').toLocaleDateString('ru-RU', {
+      year: 'numeric',
+      month: 'short',
+    }),
   },
   {
     id: '4',
@@ -60,14 +69,17 @@ const mocks: IProperty[] = [
     title: 'Bluewaters Island Villa',
     developer: 'Meraas',
     salesStatus: 'startsales',
-    propertyType: 'Вилла',
+    propertyType: 'villa',
     price: 3200000,
     units: [
       { type: EBedroom.FIVE, size: 400, price: 6700000 },
       { type: EBedroom.SIX, size: 480, price: 7800000 },
     ],
     availableUnits: 10,
-    completionDate: new Date('01/01/2027').toDateString(),
+    completionDate: new Date('10/01/2026').toLocaleDateString('ru-RU', {
+      year: 'numeric',
+      month: 'short',
+    }),
   },
   {
     id: '5',
@@ -76,7 +88,7 @@ const mocks: IProperty[] = [
     title: 'Dubai Marina Penthouse',
     developer: 'Select Group',
     salesStatus: 'startsales',
-    propertyType: 'Пентхаус',
+    propertyType: 'penthouse',
     price: 7000000,
     discount: { value: 10, type: EDiscountType.PERCENTAGE },
     units: [
@@ -84,7 +96,10 @@ const mocks: IProperty[] = [
       { type: EBedroom.FIVE, size: 330, price: 3500000 },
     ],
     availableUnits: 3,
-    completionDate: new Date('10/01/2024').toDateString(),
+    completionDate: new Date('10/01/2026').toLocaleDateString('ru-RU', {
+      year: 'numeric',
+      month: 'short',
+    }),
   },
   {
     id: '6',
@@ -92,14 +107,17 @@ const mocks: IProperty[] = [
     imageUrl: 'https://source.unsplash.com/random/800x600?luxury',
     title: 'Jumeirah Beach Mansion',
     developer: 'Nakheel',
-    propertyType: 'Вилла',
+    propertyType: 'villa',
     price: 4500000,
     units: [
       { type: EBedroom.SIX, size: 500, price: 8900000 },
       { type: EBedroom.SEVEN, size: 600, price: 6700000 },
     ],
     availableUnits: 6,
-    completionDate: new Date('04/01/2026').toDateString(),
+    completionDate: new Date('10/01/2026').toLocaleDateString('ru-RU', {
+      year: 'numeric',
+      month: 'short',
+    }),
   },
   {
     id: '7',
@@ -107,14 +125,17 @@ const mocks: IProperty[] = [
     imageUrl: 'https://source.unsplash.com/random/800x600?modern',
     title: 'Dubai Hills Apartment',
     developer: 'Emaar Properties',
-    propertyType: 'Апартаменты',
+    propertyType: 'apparts',
     price: 2200000,
     units: [
       { type: EBedroom.TWO, size: 120, price: 1100000 },
       { type: EBedroom.THREE, size: 160, price: 1700000 },
     ],
     availableUnits: 9,
-    completionDate: new Date('07/01/2025').toDateString(),
+    completionDate: new Date('10/01/2026').toLocaleDateString('ru-RU', {
+      year: 'numeric',
+      month: 'short',
+    }),
   },
   {
     id: '8',
@@ -122,7 +143,7 @@ const mocks: IProperty[] = [
     imageUrl: 'https://source.unsplash.com/random/800x600?skyscraper',
     title: 'One Za’abeel Sky Villa',
     developer: 'Ithra Dubai',
-    propertyType: 'Пентхаус',
+    propertyType: 'townhouse',
     price: 8500000,
     discount: { value: 6, type: EDiscountType.PERCENTAGE },
     units: [
@@ -130,7 +151,10 @@ const mocks: IProperty[] = [
       { type: EBedroom.FIVE, size: 400, price: 4000000 },
     ],
     availableUnits: 4,
-    completionDate: new Date('01/01/2025').toDateString(),
+    completionDate: new Date('10/01/2026').toLocaleDateString('ru-RU', {
+      year: 'numeric',
+      month: 'short',
+    }),
   },
   {
     id: '9',
@@ -138,14 +162,17 @@ const mocks: IProperty[] = [
     imageUrl: 'https://source.unsplash.com/random/800x600?highrise',
     title: 'Business Bay Executive Suite',
     developer: 'Damac Properties',
-    propertyType: 'Апартаменты',
+    propertyType: 'house',
     price: 3000000,
     units: [
       { type: EBedroom.TWO, size: 130, price: 1800000 },
       { type: EBedroom.THREE, size: 175, price: 2200000 },
     ],
     availableUnits: 7,
-    completionDate: new Date('10/01/2026').toDateString(),
+    completionDate: new Date('10/01/2026').toLocaleDateString('ru-RU', {
+      year: 'numeric',
+      month: 'short',
+    }),
   },
   {
     id: '10',
@@ -153,7 +180,7 @@ const mocks: IProperty[] = [
     imageUrl: 'https://source.unsplash.com/random/800x600?resort',
     title: 'Palm West Beach Residence',
     developer: 'Meraas',
-    propertyType: 'Вилла',
+    propertyType: 'studio',
     price: 6200000,
     discount: { value: 8, type: EDiscountType.PERCENTAGE },
     units: [
@@ -161,7 +188,10 @@ const mocks: IProperty[] = [
       { type: EBedroom.SIX, size: 550, price: 5500000 },
     ],
     availableUnits: 5,
-    completionDate: new Date('04/01/2027').toDateString(),
+    completionDate: new Date('10/01/2026').toLocaleDateString('ru-RU', {
+      year: 'numeric',
+      month: 'short',
+    }),
   },
 ];
 
@@ -171,7 +201,14 @@ export async function GET(request: NextRequest) {
   const propertyType = searchParams.get('propertyType');
   const bedrooms = searchParams.get('bedrooms');
   const saleStatus = searchParams.get('saleStatus');
+  const minPrice = parseInt(searchParams.get('minPrice') || '0', 10);
+  const maxPrice = parseInt(
+    searchParams.get('maxPrice') || '1000000000000',
+    10
+  );
 
+  console.log('minPrice', minPrice);
+  console.log('maxPrice', maxPrice);
   console.log('propertyType', propertyType);
   console.log('bedrooms', bedrooms);
   console.log('saleStatus', saleStatus);
@@ -185,7 +222,10 @@ export async function GET(request: NextRequest) {
         bedrooms ? item.units.some((unit) => unit.type === bedrooms) : true
       )
       .filter((item) => (saleStatus ? saleStatus === item.salesStatus : true))
-      .filter((item) => item.availableUnits > 0);
+      .filter((item) => item.availableUnits > 0)
+      .filter((item) => item.price >= minPrice && item.price <= maxPrice);
+
+    const result = filtered.length > 0 ? filtered : mocks;
 
     return NextResponse.json(filtered);
   } catch (error) {

@@ -22,7 +22,12 @@ export const PropertyType: React.FC<SelectProps> = ({
   const { propertyType, setPropertyType } = useFilters();
 
   const handleChange = (value: string) => {
-    setPropertyType(value);
+    if (value === 'all') {
+      setPropertyType('');
+    } else {
+      setPropertyType(value);
+    }
+
     if (onChange) {
       onChange(value);
     }

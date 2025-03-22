@@ -8,8 +8,8 @@ import {
   SelectValue,
 } from '@/src/components/ui/select';
 import { useFilters } from '@/src/hooks/useFilters';
-import React from "react";
-import { sortStatuses } from "@/src/utils/sortStatus";
+import React from 'react';
+import { sortStatuses } from '@/src/utils/sortStatus';
 
 type SortProps = {
   value?: string;
@@ -20,7 +20,12 @@ export const SortHead: React.FC<SortProps> = ({ onChange }) => {
   const { sortOption, setSortOption } = useFilters();
 
   const handleChange = (value: string) => {
-    setSortOption(value);
+    if (value === 'all') {
+      setSortOption('');
+    } else {
+      setSortOption(value);
+    }
+
     if (onChange) {
       onChange(value);
     }
@@ -39,14 +44,15 @@ export const SortHead: React.FC<SortProps> = ({ onChange }) => {
         <SelectValue placeholder="По умолчанию" />
       </SelectTrigger>
       <SelectContent className="align-middle">
-        <SelectItem onClick={resetFilter} value="all">По умолчанию</SelectItem>
+        <SelectItem onClick={resetFilter} value="all">
+          По умолчанию
+        </SelectItem>
 
         {Object.entries(sortStatuses).map(([key, label]) => (
           <SelectItem key={key} value={key}>
             {label}
           </SelectItem>
         ))}
-
       </SelectContent>
     </Select>
   );

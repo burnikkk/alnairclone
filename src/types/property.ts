@@ -28,6 +28,22 @@ export interface IUnit {
   price: number;
 }
 
+export enum EMeasure {
+  SQM = 'SQM',
+  SQFT = 'SQFT',
+}
+
+export type Currency =
+  | 'AED'
+  | '$'
+  | '€'
+  | '฿'
+  | '₽'
+  | 'OMR'
+  | '¥'
+  | 'IDR'
+  | '£';
+
 export interface IProperty {
   id: string;
   isRecommended: boolean;

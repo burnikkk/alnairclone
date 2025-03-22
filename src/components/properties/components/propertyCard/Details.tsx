@@ -5,7 +5,8 @@ import { Badge } from '@/src/components/ui/badge';
 import Image from 'next/image';
 import { Separator } from '@/src/components/ui/separator';
 import { ChevronUp } from 'lucide-react';
-import { useFilters } from '@/src/hooks/useFilters';
+import { convertPrice } from '@/src/utils/price';
+import { useSettings } from '@/src/hooks/useSettings';
 
 interface DetailsProps {
   property: PropertyType;
@@ -22,7 +23,7 @@ const formatToMillion = (value: number): string => {
 };
 
 export const Details = ({ property }: DetailsProps) => {
-  const { selectedCurrency, convertPrice } = useFilters();
+  const { selectedCurrency } = useSettings();
 
   return (
     <CardContent className="absolute bottom-0 left-0 w-full bg-white px-3 py-2 max-h-[120px] rounded-xl overflow-hidden group-hover:max-h-[272px] transition-[max-height] duration-300 ease-in-out">
@@ -45,7 +46,10 @@ export const Details = ({ property }: DetailsProps) => {
         <div>
           <p className="text-xs pt-2">{property.propertyType}</p>
           <p className="text-lg font-semibold">
-            От {formatToMillion(Number(convertPrice(property.price)))}{' '}
+            От{' '}
+            {formatToMillion(
+              Number(convertPrice(property.price, selectedCurrency))
+            )}{' '}
             {selectedCurrency}
           </p>
         </div>
@@ -72,7 +76,10 @@ export const Details = ({ property }: DetailsProps) => {
                 </span>
               </div>
               <span>
-                от {formatToMillion(Number(convertPrice(unit.price)))}{' '}
+                от{' '}
+                {formatToMillion(
+                  Number(convertPrice(unit.price, selectedCurrency))
+                )}{' '}
                 {selectedCurrency}
               </span>
             </div>

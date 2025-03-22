@@ -6,12 +6,13 @@ import {
 } from '@/src/components/ui/popover';
 import { Button } from '@/src/components/ui/button';
 import { Card, CardContent, CardFooter } from '@/src/components/ui/card';
-import { useFilters } from '@/src/hooks/useFilters';
 import { Form } from '@/src/components/ui/form/form';
 import { useForm } from 'react-hook-form';
 import { FormInput } from '@/src/components/ui/form/formInput';
 import { formatCurrency } from '@/src/lib/utils';
 import { FormTabs } from '@/src/components/ui/form/formTabs';
+import { useSettings } from '@/src/hooks/useSettings';
+import { getMeasureLabel } from '@/src/utils/label';
 
 const priceOptions = [
   '500000',
@@ -28,14 +29,12 @@ const priceSqOptions = ['500', '1000', '1500', '2000', '2500', '3000'];
 type PriceProps = {
   value?: string;
   onChange?: (value: string) => void;
-  className?: string;
 };
 
 type IPrice = { minPrice: string; maxPrice: string; pricePer: string };
 
-export const Price: React.FC<PriceProps> = ({ className, onChange }) => {
-  const { selectedCurrency, convertPrice, selectedMeasure, getMeasureCof } =
-    useFilters();
+export const Price: React.FC<PriceProps> = ({ onChange }) => {
+  const { selectedCurrency, selectedMeasure } = useSettings();
 
   const form = useForm<IPrice>({
     values: {
@@ -57,7 +56,21 @@ export const Price: React.FC<PriceProps> = ({ className, onChange }) => {
   const targetOptions = pricePer === 'object' ? priceOptions : priceSqOptions;
 
   const handleSubmit = (data: IPrice) => {
-    console.log('data', data);
+    const query = new URLSearchParams();
+
+    if (data.minPrice) query.append('minPrice', data.minPrice);
+    if (data.maxPrice) query.append('maxPrice', data.maxPrice);
+
+    fetch(`/api/properties?${query.toString()}`)
+      .then((response) => response.json())
+      .then((filteredData) => {
+        console.log('Отфильтрованные данные:', filteredData);
+        // Обновляем состояние с полученными данными
+        // setProperties(filteredData);
+      })
+      .catch((error) => {
+        console.error('Ошибка фильтрации:', error);
+      });
   };
 
   return (
@@ -76,7 +89,7 @@ export const Price: React.FC<PriceProps> = ({ className, onChange }) => {
             name="pricePer"
             options={[
               { value: 'object', label: 'за объект' },
-              { value: 'sqm', label: `за ${selectedMeasure}` },
+              { value: 'sqm', label: `за ${getMeasureLabel(selectedMeasure)}` },
             ]}
           />
           <Card>

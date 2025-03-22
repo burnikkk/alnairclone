@@ -21,7 +21,12 @@ export const SalesStatus: React.FC<SelectProps> = ({ className, onChange }) => {
   const { saleStatus, setSaleStatus } = useFilters();
 
   const handleChange = (value: string) => {
-    setSaleStatus(value);
+    if (value === 'all') {
+      setSaleStatus('');
+    } else {
+      setSaleStatus(value);
+    }
+
     if (onChange) {
       onChange(value);
     }
