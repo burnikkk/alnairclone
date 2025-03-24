@@ -57,4 +57,7 @@ export interface IProperty {
   units: IUnit[];
   availableUnits: number;
   completionDate: string;
+  longitude: number;
+  latitude: number;
+  city: string;
 }

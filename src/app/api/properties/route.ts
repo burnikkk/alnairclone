@@ -22,6 +22,9 @@ const mocks: IProperty[] = [
       year: 'numeric',
       month: 'short',
     }),
+    longitude: 55.1386,
+    latitude: 25.1122,
+    city: 'Dubai',
   },
   {
     id: '2',
@@ -41,6 +44,9 @@ const mocks: IProperty[] = [
       year: 'numeric',
       month: 'short',
     }),
+    longitude: 55.271,
+    latitude: 25.2048,
+    city: 'Dubai',
   },
   {
     id: '3',
@@ -61,6 +67,9 @@ const mocks: IProperty[] = [
       year: 'numeric',
       month: 'short',
     }),
+    longitude: 55.2744,
+    latitude: 25.1972,
+    city: 'Dubai',
   },
   {
     id: '4',
@@ -80,6 +89,9 @@ const mocks: IProperty[] = [
       year: 'numeric',
       month: 'short',
     }),
+    longitude: 55.1323,
+    latitude: 25.0906,
+    city: 'Dubai',
   },
   {
     id: '5',
@@ -100,6 +112,9 @@ const mocks: IProperty[] = [
       year: 'numeric',
       month: 'short',
     }),
+    longitude: 55.1844,
+    latitude: 25.2672,
+    city: 'Dubai',
   },
   {
     id: '6',
@@ -118,6 +133,9 @@ const mocks: IProperty[] = [
       year: 'numeric',
       month: 'short',
     }),
+    longitude: 55.1386,
+    latitude: 25.1972,
+    city: 'Dubai',
   },
   {
     id: '7',
@@ -136,6 +154,9 @@ const mocks: IProperty[] = [
       year: 'numeric',
       month: 'short',
     }),
+    longitude: 55.1644,
+    latitude: 25.2772,
+    city: 'Dubai',
   },
   {
     id: '8',
@@ -155,6 +176,9 @@ const mocks: IProperty[] = [
       year: 'numeric',
       month: 'short',
     }),
+    longitude: 55.2744,
+    latitude: 25.2972,
+    city: 'Dubai',
   },
   {
     id: '9',
@@ -173,6 +197,9 @@ const mocks: IProperty[] = [
       year: 'numeric',
       month: 'short',
     }),
+    longitude: 55.2244,
+    latitude: 25.1272,
+    city: 'Dubai',
   },
   {
     id: '10',
@@ -192,6 +219,9 @@ const mocks: IProperty[] = [
       year: 'numeric',
       month: 'short',
     }),
+    longitude: 55.2244,
+    latitude: 25.1472,
+    city: 'Dubai',
   },
 ];
 
