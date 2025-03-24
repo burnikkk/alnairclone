@@ -1,4 +1,4 @@
-import { Currency } from '@/types/property';
+import { Currency, EMeasure } from '@/types/property';
 
 interface CurrencyRates {
   [key: string]: number;
@@ -16,10 +16,17 @@ const currencyRates: CurrencyRates = {
   '£': 0.22,
 };
 
+const measureRates: { [key in EMeasure]: number } = {
+  [EMeasure.SQM]: 1,
+  [EMeasure.SQFT]: 0.10764,
+};
+
 export const convertPrice = (
   priceInAED: number,
-  selectedCurrency: Currency
+  selectedCurrency: Currency,
+  measure?: EMeasure
 ): string => {
-  const rate = currencyRates[selectedCurrency];
-  return (priceInAED * rate).toFixed(1);
+  const currencyRate = currencyRates[selectedCurrency] || 1;
+  const measureRate = measure ? measureRates[measure] || 1 : 1;
+  return ((priceInAED * currencyRate) / measureRate).toFixed(1);
 };

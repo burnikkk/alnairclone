@@ -9,7 +9,7 @@ import { Bedrooms } from '@/components/filters/Bedrooms';
 
 export const Menubar = () => {
   return (
-    <menu className="p-4 flex gap-2">
+    <menu className="p-4 flex gap-2 overflow-x-auto">
       <Location />
       <Button className="rounded-full">
         <Search size={20} />
@@ -17,8 +17,8 @@ export const Menubar = () => {
       </Button>
       <Bedrooms />
       <Price />
-      <PropertyType className="border-none" />
-      <SalesStatus className="border-none" />
+      <PropertyType />
+      <SalesStatus />
       <Button className="rounded-full">
         <Sparkle size={20} />
         Эксклюзивно на Alnair

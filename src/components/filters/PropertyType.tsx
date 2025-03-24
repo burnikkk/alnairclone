@@ -10,15 +10,7 @@ import {
 import React from 'react';
 import { useFilters } from '@/hooks/useFilters';
 
-type SelectProps = {
-  className?: string;
-  onChange?: (value: string) => void;
-};
-
-export const PropertyType: React.FC<SelectProps> = ({
-  className,
-  onChange,
-}) => {
+export const PropertyType = () => {
   const { filters, setAll } = useFilters();
 
   const handleChange = (value: string) => {
@@ -27,30 +19,17 @@ export const PropertyType: React.FC<SelectProps> = ({
     } else {
       setAll({ propertyType: value });
     }
-
-    if (onChange) {
-      onChange(value);
-    }
-  };
-
-  const resetFilter = () => {
-    setAll({ propertyType: '' });
-    if (onChange) {
-      onChange('all');
-    }
   };
 
   return (
     <Select value={filters.propertyType} onValueChange={handleChange}>
       <SelectTrigger
-        className={`rounded-full bg-[#f3f3f5] !text-[#1F1F1F] ${className}`}
+        className={`rounded-full bg-[#f3f3f5] !text-[#1F1F1F] border-none`}
       >
         <SelectValue placeholder="Тип жилья" />
       </SelectTrigger>
       <SelectContent className="max-h-60 w-55">
-        <SelectItem onClick={resetFilter} value="all">
-          Тип жилья
-        </SelectItem>
+        <SelectItem value="all">Тип жилья</SelectItem>
         <SelectItem value="villa">Вилла</SelectItem>
         <SelectItem value="penthouse">Пентхаус</SelectItem>
         <SelectItem value="townhouse">Таунхаус</SelectItem>

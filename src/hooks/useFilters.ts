@@ -10,6 +10,8 @@ type IFilters = {
   latitude: Value;
   longitude: Value;
   sortOption: Value;
+  minPrice: Value;
+  maxPrice: Value;
 };
 
 const initFilters: IFilters = {
@@ -19,6 +21,8 @@ const initFilters: IFilters = {
   latitude: '25.116987',
   longitude: '55.496249',
   sortOption: '',
+  minPrice: '',
+  maxPrice: '',
 };
 
 type FiltersAction =

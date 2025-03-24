@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   Popover,
   PopoverContent,
@@ -13,31 +13,24 @@ import { formatCurrency } from '@/lib/utils';
 import { FormTabs } from '@/components/ui/form/formTabs';
 import { useSettings } from '@/hooks/useSettings';
 import { getMeasureLabel } from '@/utils/label';
+import { useFilters } from '@/hooks/useFilters';
+import { convertPrice } from '@/utils/price';
+import { EMeasure } from '@/types/property';
 
-const priceOptions = [
-  '500000',
-  '1000000',
-  '1500000',
-  '3000000',
-  '5000000',
-  '8000000',
-  '15000000',
+const basePriceOptions = [
+  500000, 1000000, 1500000, 3000000, 5000000, 8000000, 15000000,
 ];
 
-const priceSqOptions = ['500', '1000', '1500', '2000', '2500', '3000'];
-
-type PriceProps = {
-  value?: string;
-  onChange?: (value: string) => void;
-};
+const basePriceSqOptions = [500, 1000, 1500, 2000, 2500, 3000];
 
 type IPrice = { minPrice: string; maxPrice: string; pricePer: string };
 
-export const Price: React.FC<PriceProps> = ({ onChange }) => {
+export const Price = () => {
   const { selectedCurrency, selectedMeasure } = useSettings();
+  const { setAll } = useFilters();
 
   const form = useForm<IPrice>({
-    values: {
+    defaultValues: {
       pricePer: 'object',
       minPrice: '',
       maxPrice: '',
@@ -45,28 +38,47 @@ export const Price: React.FC<PriceProps> = ({ onChange }) => {
   });
 
   const pricePer = form.watch('pricePer');
-  const minPrice = form.watch('minPrice');
-  const maxPrice = form.watch('maxPrice');
 
-  const priceLabel =
-    minPrice && maxPrice
-      ? `${formatCurrency(minPrice)} - ${formatCurrency(maxPrice)} ${selectedCurrency}`
-      : 'Стоимость';
+  const [displayPrice, setDisplayPrice] = useState<string>('Стоимость');
+
+  const priceOptions = basePriceOptions.map((price) =>
+    convertPrice(price, selectedCurrency)
+  );
+
+  const priceSqOptions = basePriceSqOptions.map((price) =>
+    convertPrice(price, selectedCurrency, selectedMeasure)
+  );
 
   const targetOptions = pricePer === 'object' ? priceOptions : priceSqOptions;
 
   const handleSubmit = (data: IPrice) => {
-    const query = new URLSearchParams();
+    let minPrice = parseFloat(data.minPrice) || 0;
+    let maxPrice = parseFloat(data.maxPrice) || 0;
 
-    if (data.minPrice) query.append('minPrice', data.minPrice);
-    if (data.maxPrice) query.append('maxPrice', data.maxPrice);
+    if (data.pricePer === 'sqm') {
+      minPrice = minPrice * (selectedMeasure === EMeasure.SQFT ? 0.10764 : 1);
+      maxPrice = maxPrice * (selectedMeasure === EMeasure.SQFT ? 0.10764 : 1);
+    }
+
+    setAll({
+      minPrice: minPrice.toString(),
+      maxPrice: maxPrice.toString(),
+    });
+
+    setDisplayPrice(
+      minPrice && maxPrice
+        ? `${minPrice} - ${maxPrice} ${pricePer === 'sqm' ? getMeasureLabel(selectedMeasure) + '/' + selectedCurrency : selectedCurrency}`
+        : 'Стоимость'
+    );
+
+    const query = new URLSearchParams();
+    if (minPrice) query.append('minPrice', minPrice.toString());
+    if (maxPrice) query.append('maxPrice', maxPrice.toString());
 
     fetch(`/api/properties?${query.toString()}`)
       .then((response) => response.json())
       .then((filteredData) => {
         console.log('Отфильтрованные данные:', filteredData);
-        // Обновляем состояние с полученными данными
-        // setProperties(filteredData);
       })
       .catch((error) => {
         console.error('Ошибка фильтрации:', error);
@@ -80,7 +92,7 @@ export const Price: React.FC<PriceProps> = ({ onChange }) => {
           variant="outline"
           className="w-fit rounded-full bg-[#f3f3f5] !text-[#1F1F1F] border-none"
         >
-          {priceLabel}
+          {displayPrice}
         </Button>
       </PopoverTrigger>
       <PopoverContent className="md:w-[400px]">
@@ -130,7 +142,10 @@ export const Price: React.FC<PriceProps> = ({ onChange }) => {
                       className={`w-full text-left ${form.watch('minPrice') === price ? 'text-[#4249ce]' : ''}`}
                       onClick={() => form.setValue('minPrice', price)}
                     >
-                      {formatCurrency(price)} {selectedCurrency}
+                      {formatCurrency(price)}{' '}
+                      {pricePer === 'sqm'
+                        ? `${getMeasureLabel(selectedMeasure)}/${selectedCurrency}`
+                        : selectedCurrency}
                     </Button>
                   ))}
                 </div>
@@ -142,7 +157,10 @@ export const Price: React.FC<PriceProps> = ({ onChange }) => {
                       className={`w-full text-left ${form.watch('maxPrice') === price ? 'text-[#4249ce]' : ''}`}
                       onClick={() => form.setValue('maxPrice', price)}
                     >
-                      {formatCurrency(price)} {selectedCurrency}
+                      {formatCurrency(price)}{' '}
+                      {pricePer === 'sqm'
+                        ? `${getMeasureLabel(selectedMeasure)}/${selectedCurrency}`
+                        : selectedCurrency}
                     </Button>
                   ))}
                 </div>

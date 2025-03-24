@@ -18,7 +18,7 @@ const mocks: IProperty[] = [
       { type: EBedroom.SIX, size: 480, price: 5000000 },
     ],
     availableUnits: 12,
-    completionDate: new Date('10/01/2026').toLocaleDateString('ru-RU', {
+    completionDate: new Date('11/01/2026').toLocaleDateString('ru-RU', {
       year: 'numeric',
       month: 'short',
     }),
@@ -37,7 +37,7 @@ const mocks: IProperty[] = [
       { type: EBedroom.TWO, size: 110, price: 4000000 },
     ],
     availableUnits: 8,
-    completionDate: new Date('10/01/2026').toLocaleDateString('ru-RU', {
+    completionDate: new Date('09/01/2028').toLocaleDateString('ru-RU', {
       year: 'numeric',
       month: 'short',
     }),
@@ -57,7 +57,7 @@ const mocks: IProperty[] = [
       { type: EBedroom.FOUR, size: 250, price: 4500000 },
     ],
     availableUnits: 5,
-    completionDate: new Date('10/01/2026').toLocaleDateString('ru-RU', {
+    completionDate: new Date('6/01/2025').toLocaleDateString('ru-RU', {
       year: 'numeric',
       month: 'short',
     }),
@@ -76,7 +76,7 @@ const mocks: IProperty[] = [
       { type: EBedroom.SIX, size: 480, price: 7800000 },
     ],
     availableUnits: 10,
-    completionDate: new Date('10/01/2026').toLocaleDateString('ru-RU', {
+    completionDate: new Date('8/01/2027').toLocaleDateString('ru-RU', {
       year: 'numeric',
       month: 'short',
     }),
@@ -96,7 +96,7 @@ const mocks: IProperty[] = [
       { type: EBedroom.FIVE, size: 330, price: 3500000 },
     ],
     availableUnits: 3,
-    completionDate: new Date('10/01/2026').toLocaleDateString('ru-RU', {
+    completionDate: new Date('10/01/2027').toLocaleDateString('ru-RU', {
       year: 'numeric',
       month: 'short',
     }),
@@ -114,7 +114,7 @@ const mocks: IProperty[] = [
       { type: EBedroom.SEVEN, size: 600, price: 6700000 },
     ],
     availableUnits: 6,
-    completionDate: new Date('10/01/2026').toLocaleDateString('ru-RU', {
+    completionDate: new Date('10/01/2028').toLocaleDateString('ru-RU', {
       year: 'numeric',
       month: 'short',
     }),
@@ -132,7 +132,7 @@ const mocks: IProperty[] = [
       { type: EBedroom.THREE, size: 160, price: 1700000 },
     ],
     availableUnits: 9,
-    completionDate: new Date('10/01/2026').toLocaleDateString('ru-RU', {
+    completionDate: new Date('01/01/2026').toLocaleDateString('ru-RU', {
       year: 'numeric',
       month: 'short',
     }),
@@ -169,7 +169,7 @@ const mocks: IProperty[] = [
       { type: EBedroom.THREE, size: 175, price: 2200000 },
     ],
     availableUnits: 7,
-    completionDate: new Date('10/01/2026').toLocaleDateString('ru-RU', {
+    completionDate: new Date('12/01/2026').toLocaleDateString('ru-RU', {
       year: 'numeric',
       month: 'short',
     }),
@@ -224,8 +224,6 @@ export async function GET(request: NextRequest) {
       .filter((item) => (saleStatus ? saleStatus === item.salesStatus : true))
       .filter((item) => item.availableUnits > 0)
       .filter((item) => item.price >= minPrice && item.price <= maxPrice);
-
-    const result = filtered.length > 0 ? filtered : mocks;
 
     return NextResponse.json(filtered);
   } catch (error) {
