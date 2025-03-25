@@ -4,31 +4,20 @@ import React, { useEffect, useState } from 'react';
 import { MapContainer, Marker, Popup, TileLayer } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import { useFilters } from '@/hooks/useFilters';
-import L from 'leaflet';
 import { formatCurrency } from '@/lib/utils';
 import { convertPrice } from '@/utils/price';
 import { useSettings } from '@/hooks/useSettings';
+import { Icon } from 'leaflet';
+import { IProperty } from '@/types/property';
 
-const customIcon = new L.Icon({
-  iconUrl: './marker-icon.png',
-  iconSize: [25, 41],
-  iconAnchor: [12, 41],
-  popupAnchor: [1, -34],
+const customIcon = new Icon({
+  iconUrl: '@/public/CardComponents/square.png',
+  iconSize: [38, 38],
 });
-
-interface IProperty {
-  id: string;
-  title: string;
-  imageUrl: string;
-  price: number;
-  latitude: number;
-  longitude: number;
-  city: string;
-}
 
 const Map: React.FC = () => {
   const { filters } = useFilters();
-  const { selectedCurrency, selectedMeasure } = useSettings();
+  const { selectedCurrency } = useSettings();
   const [properties, setProperties] = useState<IProperty[]>([]);
 
   useEffect(() => {
@@ -67,18 +56,13 @@ const Map: React.FC = () => {
                 <img
                   src={property.imageUrl || '/CardComponents/img.png'}
                   alt={property.title}
-                  className="w-32 h-20 object-cover rounded"
-                  referrerPolicy="no-referrer"
+                  className="w-full h-[100px] rounded-lg"
                 />
                 <h3 className="text-lg font-semibold">{property.title}</h3>
                 <p className="text-sm text-gray-600">{property.city}</p>
                 <p className="text-md font-bold">
                   {formatCurrency(
-                    convertPrice(
-                      property.price,
-                      selectedCurrency,
-                      selectedMeasure
-                    )
+                    convertPrice(property.price, selectedCurrency)
                   )}{' '}
                   {selectedCurrency}
                 </p>

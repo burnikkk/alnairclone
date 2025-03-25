@@ -6,6 +6,7 @@ import { Price } from '@/components/filters/Price';
 import { Search, SlidersHorizontal, Sparkle } from 'lucide-react';
 import { SalesStatus } from '@/components/filters/SalesStatus';
 import { Bedrooms } from '@/components/filters/Bedrooms';
+import { AllComponents } from '@/components/filters/allFilters';
 
 export const Menubar = () => {
   return (
@@ -27,6 +28,7 @@ export const Menubar = () => {
         <SlidersHorizontal size={20} />
         Еще фильтры
       </Button>
+      <AllComponents />
     </menu>
   );
 };
