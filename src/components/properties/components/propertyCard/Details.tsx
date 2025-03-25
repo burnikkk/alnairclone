@@ -29,7 +29,7 @@ export const Details = ({ property }: DetailsProps) => {
     <CardContent className="absolute bottom-0 left-0 w-full bg-white px-3 py-2 max-h-[120px] rounded-xl overflow-hidden group-hover:max-h-[272px] transition-[max-height] duration-300 ease-in-out">
       <div className="grid grid-cols-[40px_1fr] items-center gap-3 pb-2 h-[56px]">
         <Image
-          src={'/CardComponents/img.png'}
+          src={'/icons/img.png'}
           width={40}
           height={40}
           alt="Логотип"

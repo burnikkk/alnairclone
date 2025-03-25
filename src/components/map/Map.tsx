@@ -9,9 +9,10 @@ import { convertPrice } from '@/utils/price';
 import { useSettings } from '@/hooks/useSettings';
 import { Icon } from 'leaflet';
 import { IProperty } from '@/types/property';
+import Image from 'next/image';
 
 const customIcon = new Icon({
-  iconUrl: '@/public/CardComponents/square.png',
+  iconUrl: '/icons/square.png',
   iconSize: [38, 38],
 });
 
@@ -45,31 +46,36 @@ const Map: React.FC = () => {
           attribution='&copy; <a href="https://carto.com/">CARTO</a>'
         />
 
-        {properties.map((property) => (
-          <Marker
-            key={property.id}
-            position={[property.latitude, property.longitude]}
-            icon={customIcon}
-          >
-            <Popup>
-              <div className="text-center">
-                <img
-                  src={property.imageUrl || '/CardComponents/img.png'}
-                  alt={property.title}
-                  className="w-full h-[100px] rounded-lg"
-                />
-                <h3 className="text-lg font-semibold">{property.title}</h3>
-                <p className="text-sm text-gray-600">{property.city}</p>
-                <p className="text-md font-bold">
-                  {formatCurrency(
-                    convertPrice(property.price, selectedCurrency)
-                  )}{' '}
-                  {selectedCurrency}
-                </p>
-              </div>
-            </Popup>
-          </Marker>
-        ))}
+        {properties.map((property) => {
+          console.log('property.imageUrl', property.imageUrl);
+          return (
+            <Marker
+              key={property.id}
+              position={[property.latitude, property.longitude]}
+              icon={customIcon}
+            >
+              <Popup>
+                <div className="text-center">
+                  <Image
+                    width={100}
+                    height={100}
+                    src={'/icons/img.png'}
+                    alt={property.title}
+                    className="w-full h-[100px] rounded-lg"
+                  />
+                  <h3 className="text-lg font-semibold">{property.title}</h3>
+                  <p className="text-sm text-gray-600">{property.city}</p>
+                  <p className="text-md font-bold">
+                    {formatCurrency(
+                      convertPrice(property.price, selectedCurrency)
+                    )}{' '}
+                    {selectedCurrency}
+                  </p>
+                </div>
+              </Popup>
+            </Marker>
+          );
+        })}
       </MapContainer>
     </div>
   );
