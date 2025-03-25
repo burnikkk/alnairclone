@@ -34,7 +34,7 @@ const Map: React.FC = () => {
   }, [filters.minPrice, filters.maxPrice]);
 
   return (
-    <div className="w-svw h-svh hidden md:block">
+    <div className="pl-8 md:pl-0 w-svw h-svh">
       <MapContainer
         key={`${filters.latitude}-${filters.longitude}`}
         center={[Number(filters.latitude), Number(filters.longitude)]}

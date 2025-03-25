@@ -16,7 +16,7 @@ export const Body = () => {
     <div>
       <Menubar />
       <Separator />
-      <div className="flex">
+      <div className="relative md:flex">
         <PropertyList />
         <Map />
       </div>
