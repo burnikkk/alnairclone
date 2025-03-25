@@ -7,19 +7,16 @@ import {
   DialogTitle,
   DialogTrigger,
 } from '@/components/ui/dialog';
-import React, { useState } from 'react';
+import React, { FC, PropsWithChildren, useState } from 'react';
 import { IProperty } from '@/types/property';
-import { Button } from '@/components/ui/button';
 import { Histogram } from '@/components/filters/filterParts/histogram';
 
-export const AllComponents = () => {
+export const AllFilters: FC<PropsWithChildren> = ({ children }) => {
   const [properties, setProperties] = useState<IProperty[]>([]);
 
   return (
     <Dialog>
-      <DialogTrigger asChild>
-        <Button>Test</Button>
-      </DialogTrigger>
+      <DialogTrigger asChild>{children}</DialogTrigger>
 
       <DialogContent className="sm:min-w-[400px] md:min-w-[600px] lg:min-w-[850px] p-6 border-none">
         <DialogHeader className="bg-gray-200 rounded-lg p-6">

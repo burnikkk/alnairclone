@@ -6,16 +6,18 @@ import { Price } from '@/components/filters/Price';
 import { Search, SlidersHorizontal, Sparkle } from 'lucide-react';
 import { SalesStatus } from '@/components/filters/SalesStatus';
 import { Bedrooms } from '@/components/filters/Bedrooms';
-import { AllComponents } from '@/components/filters/allFilters';
+import { AllFilters } from '@/components/filters/AllFilters';
 
 export const Menubar = () => {
   return (
     <menu className="p-4 flex gap-2 overflow-x-auto">
       <Location />
-      <Button className="rounded-full">
-        <Search size={20} />
-        Поиск
-      </Button>
+      <AllFilters>
+        <Button className="rounded-full">
+          <Search size={20} />
+          Поиск
+        </Button>
+      </AllFilters>
       <Bedrooms />
       <Price />
       <PropertyType />
@@ -24,11 +26,12 @@ export const Menubar = () => {
         <Sparkle size={20} />
         Эксклюзивно на Alnair
       </Button>
-      <Button className="rounded-full">
-        <SlidersHorizontal size={20} />
-        Еще фильтры
-      </Button>
-      <AllComponents />
+      <AllFilters>
+        <Button className="rounded-full">
+          <SlidersHorizontal size={20} />
+          Еще фильтры
+        </Button>
+      </AllFilters>
     </menu>
   );
 };
