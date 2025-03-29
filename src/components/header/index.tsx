@@ -7,7 +7,7 @@ import { AvatarHeader } from '@/components/header/components/Avatar';
 import { Search } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import * as React from 'react';
-import { AllFilters } from '@/components/filters/AllFilters';
+import { AllFilters } from '@/components/filters/allFilters';
 
 export const Header = () => {
   return (

@@ -1,8 +1,9 @@
 import { getMeasureLabel } from '@/utils/label';
-import { EMeasure, IPrice } from '@/types/property';
+import { EMeasure } from '@/types/property';
+import { IPriceFilter } from '@/types/filters';
 
 export const getDisplayPrice = (
-  data: IPrice,
+  data: IPriceFilter,
   selectedMeasure: EMeasure,
   selectedCurrency: string
 ) => {

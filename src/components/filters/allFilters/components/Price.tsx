@@ -4,6 +4,9 @@ import * as React from 'react';
 import { Bar, BarChart, CartesianGrid, Tooltip, XAxis } from 'recharts';
 import { Card, CardContent } from '@/components/ui/card';
 import { ChartContainer, ChartTooltipContent } from '@/components/ui/chart';
+import { useFormContext } from 'react-hook-form';
+import { IFilters } from '@/types/filters';
+import { PriceForm } from '@/components/filters/shared/PriceForm';
 
 const fetchPriceData = async () => {
   try {
@@ -31,10 +34,15 @@ const processPriceData = (prices: number[]) => {
   }));
 };
 
-export function Histogram() {
+export function Price() {
   const [chartData, setChartData] = React.useState<
     { price: string; count: number }[]
   >([]);
+
+  const form = useFormContext<IFilters>();
+  console.log('minPrice:', form.watch('minPrice'));
+  console.log('maxPrice:', form.watch('maxPrice'));
+  console.log('pricePer:', form.watch('pricePer'));
 
   React.useEffect(() => {
     const loadData = async () => {
@@ -46,17 +54,22 @@ export function Histogram() {
   }, []);
 
   return (
-    <Card>
-      <CardContent>
-        <ChartContainer config={{}} className="h-[100px] w-full">
-          <BarChart width={600} height={100} data={chartData}>
-            <CartesianGrid strokeDasharray="3 3" />
-            <XAxis dataKey="price" tickLine={false} tickMargin={10} />
-            <Tooltip content={<ChartTooltipContent />} />
-            <Bar dataKey="count" fill="#8884d8" radius={4} />
-          </BarChart>
-        </ChartContainer>
-      </CardContent>
-    </Card>
+    <>
+      <Card>
+        <CardContent>
+          <ChartContainer config={{}} className="h-[100px] w-full">
+            <BarChart width={600} height={100} data={chartData}>
+              <CartesianGrid strokeDasharray="3 3" />
+              <XAxis dataKey="price" tickLine={false} tickMargin={10} />
+              <Tooltip content={<ChartTooltipContent />} />
+              <Bar dataKey="count" fill="#8884d8" radius={4} />
+            </BarChart>
+          </ChartContainer>
+        </CardContent>
+      </Card>
+      <div>
+        <PriceForm />
+      </div>
+    </>
   );
 }

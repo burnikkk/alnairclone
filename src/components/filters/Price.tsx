@@ -8,50 +8,48 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardFooter } from '@/components/ui/card';
 import { Form } from '@/components/ui/form/form';
 import { useForm } from 'react-hook-form';
-import { formatCurrency } from '@/lib/utils';
 import { FormTabs } from '@/components/ui/form/formTabs';
 import { useSettings } from '@/hooks/useSettings';
 import { getMeasureLabel } from '@/utils/label';
-import { convertPrice } from '@/utils/price';
-import { handleSubmit } from '@/utils/handleSumbit';
-import { IPrice } from '@/types/property';
 import { getDisplayPrice } from '@/utils/displayPrice';
-import { PriceForm } from '@/components/filters/filterParts/PriceForm';
+import { PriceForm } from '@/components/filters/shared/PriceForm';
+import { useFilters } from '@/hooks/useFilters';
+import { IPriceFilter } from '@/types/filters';
+import { PriceList } from '@/components/filters/PriceList';
 
 const basePriceOptions = [
-  500000, 1000000, 1500000, 3000000, 5000000, 8000000, 15000000,
+  500_000, 1_000_000, 1_500_000, 3_000_000, 5_000_000, 8_000_000, 15_000_000,
 ];
 
-const basePriceSqOptions = [500, 1000, 1500, 2000, 2500, 3000];
+const basePriceSqOptions = [500, 1_000, 1_500, 2_000, 2_500, 3_000];
 
 export const Price = () => {
+  const { filters, setAll } = useFilters();
   const { selectedCurrency, selectedMeasure } = useSettings();
 
-  const form = useForm<IPrice>({
-    defaultValues: {
-      pricePer: 'object',
-      minPrice: '',
-      maxPrice: '',
+  const form = useForm<IPriceFilter>({
+    values: {
+      minPrice: filters.minPrice,
+      maxPrice: filters.maxPrice,
+      pricePer: filters.pricePer,
     },
   });
 
   const pricePer = form.watch('pricePer');
 
-  const priceOptions = basePriceOptions.map((price) =>
-    convertPrice(price, selectedCurrency)
-  );
-
-  const priceSqOptions = basePriceSqOptions.map((price) =>
-    convertPrice(price, selectedCurrency, selectedMeasure)
-  );
-
-  const targetOptions = pricePer === 'object' ? priceOptions : priceSqOptions;
+  const targetOptions =
+    pricePer === 'object' ? basePriceOptions : basePriceSqOptions;
 
   const displayPrice = getDisplayPrice(
     form.getValues(),
     selectedMeasure,
     selectedCurrency
   );
+
+  const priceListSuffix =
+    pricePer === 'sqm'
+      ? `${getMeasureLabel(selectedMeasure)}/${selectedCurrency}`
+      : selectedCurrency;
 
   return (
     <Popover>
@@ -64,7 +62,7 @@ export const Price = () => {
         </Button>
       </PopoverTrigger>
       <PopoverContent className="md:w-[400px]">
-        <Form context={form} onSubmit={handleSubmit}>
+        <Form context={form} onSubmit={setAll}>
           <FormTabs
             name="pricePer"
             options={[
@@ -74,42 +72,20 @@ export const Price = () => {
           />
           <Card>
             <CardContent className="py-4">
-              <PriceForm form={form} />
+              <PriceForm />
               <div className="grid grid-cols-2 gap-2 mt-4">
-                <div>
-                  {targetOptions.slice(0, -1).map((price, index) => (
-                    <Button
-                      key={index}
-                      variant="ghost"
-                      className={`w-full text-left ${
-                        form.watch('minPrice') === price ? 'text-[#4249ce]' : ''
-                      }`}
-                      onClick={() => form.setValue('minPrice', price)}
-                    >
-                      {formatCurrency(price)}{' '}
-                      {pricePer === 'sqm'
-                        ? `${getMeasureLabel(selectedMeasure)}/${selectedCurrency}`
-                        : selectedCurrency}
-                    </Button>
-                  ))}
-                </div>
-                <div>
-                  {targetOptions.slice(1).map((price, index) => (
-                    <Button
-                      key={index}
-                      variant="ghost"
-                      className={`w-full text-left ${
-                        form.watch('maxPrice') === price ? 'text-[#4249ce]' : ''
-                      }`}
-                      onClick={() => form.setValue('maxPrice', price)}
-                    >
-                      {formatCurrency(price)}{' '}
-                      {pricePer === 'sqm'
-                        ? `${getMeasureLabel(selectedMeasure)}/${selectedCurrency}`
-                        : selectedCurrency}
-                    </Button>
-                  ))}
-                </div>
+                <PriceList
+                  value={form.watch('minPrice')}
+                  options={targetOptions.slice(0, -1)}
+                  onSelect={(v) => form.setValue('minPrice', v)}
+                  suffix={priceListSuffix}
+                />
+                <PriceList
+                  value={form.watch('maxPrice')}
+                  options={targetOptions.slice(1)}
+                  onSelect={(v) => form.setValue('maxPrice', v)}
+                  suffix={priceListSuffix}
+                />
               </div>
             </CardContent>
             <CardFooter className="pt-2">

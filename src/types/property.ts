@@ -49,8 +49,6 @@ export type Currency =
   | 'IDR'
   | '£';
 
-export type IPrice = { minPrice: string; maxPrice: string; pricePer: string };
-
 export interface IProperty {
   id: string;
   isRecommended: boolean;

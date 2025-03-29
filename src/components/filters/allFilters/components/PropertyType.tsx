@@ -5,7 +5,7 @@ import { useFilters } from '@/hooks/useFilters';
 import { Button } from '@/components/ui/button';
 import { propertyTypes } from '@/utils/propertyTypes';
 
-export const PropertyTypesButtons = () => {
+export const PropertyType = () => {
   const { filters, setAll } = useFilters();
 
   const handleClick = (value: string) => {

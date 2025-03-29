@@ -69,7 +69,7 @@ const FormInput = ({
   return (
     <FormField name={name} label={label}>
       {(id) => (
-        <div className="relative">
+        <div className="relative w-full">
           <Input
             id={id}
             {...rest}

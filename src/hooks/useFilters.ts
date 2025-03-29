@@ -1,30 +1,19 @@
 import { useMemo, useReducer } from 'react';
 import { createContextHook } from '@/hooks/createContextHook';
-
-type Value = string;
-
-type IFilters = {
-  bedrooms: Value;
-  saleStatus: Value;
-  propertyType: Value;
-  latitude: Value;
-  longitude: Value;
-  sortOption: Value;
-  minPrice: Value;
-  maxPrice: Value;
-  salesType: Value;
-  searchQuery: Value;
-};
+import { IFilters } from '@/types/filters';
 
 const initFilters: IFilters = {
   bedrooms: '',
   saleStatus: '',
   propertyType: '',
+  pricePer: 'object',
   latitude: '25.116987',
   longitude: '55.496249',
   sortOption: '',
   minPrice: '',
   maxPrice: '',
+  minArea: '',
+  maxArea: '',
   salesType: '',
   searchQuery: '',
 };
@@ -71,22 +60,11 @@ export const useFilters = createContextHook(function useFilters(
 
   const query = useMemo(() => filtersToQuery(filters), [filters]);
 
-  const filterData = (data: any[]) => {
-    if (!data || !Array.isArray(data)) return [];
-
-    return data.filter(
-      (item) =>
-        item.title.toLowerCase().includes(filters.searchQuery.toLowerCase()) ||
-        item.developer.toLowerCase().includes(filters.searchQuery.toLowerCase())
-    );
-  };
-
   return {
     filters,
     query,
     setAll,
     resetAll,
-    filterData,
   };
 });
 

@@ -1,24 +1,24 @@
 'use client';
 
 import React from 'react';
+import { salesStatuses } from '@/utils/salesStatuses';
 import { useFilters } from '@/hooks/useFilters';
 import { Button } from '@/components/ui/button';
-import { salesTypes } from '@/utils/salesTypes';
 
-export const SalesTypesButtons = () => {
+export const SalesStatus = () => {
   const { filters, setAll } = useFilters();
 
   const handleClick = (value: string) => {
-    setAll({ salesType: value });
+    setAll({ saleStatus: value });
   };
 
   return (
     <div className="flex flex-wrap gap-2">
-      {Object.entries(salesTypes).map(([key, label]) => (
+      {Object.entries(salesStatuses).map(([key, label]) => (
         <Button
           key={key}
           size="sm"
-          variant={filters.salesType === key ? 'default' : 'outline'}
+          variant={filters.saleStatus === key ? 'default' : 'outline'}
           className="rounded-full bg-[#f3f3f5] !text-[#1F1F1F] border-none"
           onClick={() => handleClick(key)}
         >

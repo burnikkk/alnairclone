@@ -6,7 +6,7 @@ import { Price } from '@/components/filters/Price';
 import { Search, SlidersHorizontal, Sparkle } from 'lucide-react';
 import { SalesStatus } from '@/components/filters/SalesStatus';
 import { Bedrooms } from '@/components/filters/Bedrooms';
-import { AllFilters } from '@/components/filters/AllFilters';
+import { AllFilters } from '@/components/filters/allFilters';
 import { ResetFilters } from '@/components/filters/ResetFilters';
 
 export const Menubar = () => {
