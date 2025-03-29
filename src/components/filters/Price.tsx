@@ -15,7 +15,7 @@ import { getDisplayPrice } from '@/utils/displayPrice';
 import { PriceForm } from '@/components/filters/shared/PriceForm';
 import { useFilters } from '@/hooks/useFilters';
 import { IPriceFilter } from '@/types/filters';
-import { PriceList } from '@/components/filters/PriceList';
+import { PriceList } from '@/components/filters/shared/PriceList';
 
 const basePriceOptions = [
   500_000, 1_000_000, 1_500_000, 3_000_000, 5_000_000, 8_000_000, 15_000_000,
@@ -52,7 +52,7 @@ export const Price = () => {
       : selectedCurrency;
 
   return (
-    <Popover>
+    <Popover onOpenChange={() => form.reset()}>
       <PopoverTrigger asChild>
         <Button
           variant="outline"
