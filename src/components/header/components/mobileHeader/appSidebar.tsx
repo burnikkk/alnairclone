@@ -5,6 +5,7 @@ import {
   SidebarFooter,
   SidebarHeader,
   SidebarRail,
+  SidebarTrigger,
 } from '@/components/ui/sidebar';
 import { MobileNavMenu } from '@/components/header/components/mobileHeader/MobileNavMenu';
 import { PopoverHeader } from '@/components/header/components/PopoverHeader';
@@ -17,18 +18,17 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   return (
     <Sidebar {...props}>
       <SidebarHeader className="w-full p-3 grid grid-cols-[auto_auto_auto] items-center justify-between gap-2">
-        <button>
+        <SidebarTrigger>
           <SquareArrowLeft
             className="h-6 w-6 cursor-pointer"
             aria-hidden="true"
           />
-        </button>
+        </SidebarTrigger>
 
         <Location />
-
-        <button>
+        <SidebarTrigger>
           <X className="h-6 w-6 cursor-pointer" aria-hidden="true" />
-        </button>
+        </SidebarTrigger>
       </SidebarHeader>
 
       <SidebarContent className="w-full">

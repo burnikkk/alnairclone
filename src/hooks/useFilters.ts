@@ -12,6 +12,8 @@ type IFilters = {
   sortOption: Value;
   minPrice: Value;
   maxPrice: Value;
+  salesType: Value;
+  searchQuery: Value;
 };
 
 const initFilters: IFilters = {
@@ -23,6 +25,8 @@ const initFilters: IFilters = {
   sortOption: '',
   minPrice: '',
   maxPrice: '',
+  salesType: '',
+  searchQuery: '',
 };
 
 type FiltersAction =
@@ -67,11 +71,22 @@ export const useFilters = createContextHook(function useFilters(
 
   const query = useMemo(() => filtersToQuery(filters), [filters]);
 
+  const filterData = (data: any[]) => {
+    if (!data || !Array.isArray(data)) return [];
+
+    return data.filter(
+      (item) =>
+        item.title.toLowerCase().includes(filters.searchQuery.toLowerCase()) ||
+        item.developer.toLowerCase().includes(filters.searchQuery.toLowerCase())
+    );
+  };
+
   return {
     filters,
     query,
     setAll,
     resetAll,
+    filterData,
   };
 });
 

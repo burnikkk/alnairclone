@@ -22,6 +22,14 @@ export const Bedrooms = () => {
     }
   };
 
+  const getBedroomLabel = (value: string) => {
+    const num = parseInt(value.replace('K', ''), 10);
+    if (isNaN(num)) return '';
+    if (num === 1) return 'спальня';
+    if (num >= 2 && num <= 4) return 'спальни';
+    return 'спален';
+  };
+
   return (
     <Select value={filters.bedrooms} onValueChange={handleChange}>
       <SelectTrigger
@@ -31,17 +39,13 @@ export const Bedrooms = () => {
       </SelectTrigger>
       <SelectContent className="max-h-60 max-w-55">
         <SelectItem value="all">Количество комнат</SelectItem>
-        <SelectItem value={EBedroom.ONE}>1 спальня</SelectItem>
-        <SelectItem value={EBedroom.TWO}>2 спальни</SelectItem>
-        <SelectItem value={EBedroom.THREE}>3 спальни</SelectItem>
-        <SelectItem value={EBedroom.FOUR}>4 спальни</SelectItem>
-        <SelectItem value={EBedroom.FIVE}>5 спален</SelectItem>
-        <SelectItem value={EBedroom.SIX}>6 спален</SelectItem>
-        <SelectItem value={EBedroom.SEVEN}>7 спален</SelectItem>
-        <SelectItem value={EBedroom.EIGHT}>8 спален</SelectItem>
-        <SelectItem value={EBedroom.NINE}>9 спален</SelectItem>
-        <SelectItem value={EBedroom.TEN}>10 спален</SelectItem>
-        <SelectItem value={EBedroom.FREE}>Свободная планировка</SelectItem>
+        {Object.entries(EBedroom).map(([key, value]) => (
+          <SelectItem key={key} value={value}>
+            {value === 'free_planing'
+              ? 'Свободная планировка'
+              : `${value.replace('K', '')} ${getBedroomLabel(value)}`}
+          </SelectItem>
+        ))}
       </SelectContent>
     </Select>
   );

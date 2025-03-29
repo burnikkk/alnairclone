@@ -33,10 +33,12 @@ export const PopoverHeader: React.FC = () => {
       <PopoverTrigger asChild>
         <Button
           variant="outline"
-          className="flex items-center gap-2 px-4 py-2 bg-gray-200 rounded-lg transition-colors duration-300"
+          className="flex items-center gap-2 px-2 py-2 h-10 bg-gray-200 rounded-lg transition-colors duration-300 mr-4"
         >
           <Flag code={languages[selectedLang].flagCode} className="w-5 h-5" />
+          <p className="font-light text-gray-400">/</p>
           <span>{selectedCurrency}</span>
+          <p className="font-light text-gray-400">/</p>
           <span>{getMeasureLabel(selectedMeasure)}</span>
         </Button>
       </PopoverTrigger>
@@ -49,7 +51,7 @@ export const PopoverHeader: React.FC = () => {
                 key={code}
                 variant="outline"
                 className={cn(
-                  'flex items-center gap-1 justify-center p-2 border rounded-lg',
+                  'flex items-center gap-1 justify-center border rounded-lg',
                   selectedLang === code && 'border-blue-500 bg-blue-100'
                 )}
                 onClick={() => setSelectedLang(code)}

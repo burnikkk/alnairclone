@@ -8,7 +8,7 @@ import {
   SelectValue,
 } from '@/components/ui/select';
 import React from 'react';
-import { sortStatuses } from '@/utils/sortStatus';
+import { sortStatuses } from '@/utils/sortStatuses';
 import { useFilters } from '@/hooks/useFilters';
 
 export const SortHead = () => {

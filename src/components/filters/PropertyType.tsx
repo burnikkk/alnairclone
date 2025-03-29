@@ -9,6 +9,7 @@ import {
 } from '@/components/ui/select';
 import React from 'react';
 import { useFilters } from '@/hooks/useFilters';
+import { propertyTypes } from '@/utils/propertyTypes';
 
 export const PropertyType = () => {
   const { filters, setAll } = useFilters();
@@ -30,12 +31,11 @@ export const PropertyType = () => {
       </SelectTrigger>
       <SelectContent className="max-h-60 w-55">
         <SelectItem value="all">Тип жилья</SelectItem>
-        <SelectItem value="villa">Вилла</SelectItem>
-        <SelectItem value="penthouse">Пентхаус</SelectItem>
-        <SelectItem value="townhouse">Таунхаус</SelectItem>
-        <SelectItem value="apparts">Апартаменты</SelectItem>
-        <SelectItem value="studio">Студия</SelectItem>
-        <SelectItem value="house">Дом</SelectItem>
+        {Object.entries(propertyTypes).map(([key, label]) => (
+          <SelectItem key={key} value={key}>
+            {label}
+          </SelectItem>
+        ))}
       </SelectContent>
     </Select>
   );

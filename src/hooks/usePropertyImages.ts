@@ -23,7 +23,7 @@ export default function usePropertyImage(query: string = 'modern apartment') {
   );
 
   return {
-    imageUrl: data?.urls?.small || '/CardComponents/img.png',
+    imageUrl: data?.urls?.small || '/icons/img.png',
     isLoading,
     error,
   };

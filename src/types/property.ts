@@ -28,6 +28,11 @@ export interface IUnit {
   price: number;
 }
 
+export interface ILocation {
+  selectedCity: string;
+  setSelectedCity: (city: string) => void;
+}
+
 export enum EMeasure {
   SQM = 'SQM',
   SQFT = 'SQFT',
@@ -43,6 +48,8 @@ export type Currency =
   | '¥'
   | 'IDR'
   | '£';
+
+export type IPrice = { minPrice: string; maxPrice: string; pricePer: string };
 
 export interface IProperty {
   id: string;
@@ -60,4 +67,5 @@ export interface IProperty {
   longitude: number;
   latitude: number;
   city: string;
+  salesType?: string;
 }

@@ -7,6 +7,7 @@ import { Search, SlidersHorizontal, Sparkle } from 'lucide-react';
 import { SalesStatus } from '@/components/filters/SalesStatus';
 import { Bedrooms } from '@/components/filters/Bedrooms';
 import { AllFilters } from '@/components/filters/AllFilters';
+import { ResetFilters } from '@/components/filters/ResetFilters';
 
 export const Menubar = () => {
   return (
@@ -32,6 +33,7 @@ export const Menubar = () => {
           Еще фильтры
         </Button>
       </AllFilters>
+      <ResetFilters />
     </menu>
   );
 };

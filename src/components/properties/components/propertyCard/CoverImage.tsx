@@ -2,7 +2,7 @@ import React from 'react';
 import { Badge } from '@/components/ui/badge';
 import Image from 'next/image';
 import usePropertyImage from '@/hooks/usePropertyImages';
-import { salesStatuses } from '@/utils/salesStatus';
+import { salesStatuses } from '@/utils/salesStatuses';
 
 interface CoverImageProps {
   title: string;
@@ -46,7 +46,7 @@ export const CoverImage = ({
         )}
       </div>
       <Image
-        src={imageUrl || '/CardComponents/img.png'}
+        src={imageUrl || '/icons/img.png'}
         alt={title || 'нет данных'}
         layout="fill"
         objectFit="cover"

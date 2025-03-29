@@ -17,6 +17,7 @@ import {
 import { Navigation } from 'lucide-react';
 import Flag from 'react-world-flags';
 import { useFilters } from '@/hooks/useFilters';
+import { useLocation } from '@/hooks/useLocation';
 
 const cityCoordinates: Record<string, { lat: number; lng: number }> = {
   Dubai: { lat: 25.116987, lng: 55.496249 },
@@ -39,7 +40,7 @@ const cityCoordinates: Record<string, { lat: number; lng: number }> = {
 
 export const Location = () => {
   const { setAll } = useFilters();
-  const [selectedCity, setSelectedCity] = useState('Dubai');
+  const { selectedCity, setSelectedCity } = useLocation();
   const [open, setOpen] = useState(false);
 
   const handleCitySelect = (city: string) => {
@@ -51,7 +52,6 @@ export const Location = () => {
     }
     setOpen(false);
   };
-
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
@@ -79,6 +79,7 @@ export const Location = () => {
 
         <NavigationMenu>
           <NavigationMenuList className="grid grid-cols-3 gap-6 p-4 items-start">
+            {/* ОАЭ */}
             <NavigationMenuItem>
               <h3 className="font-bold text-lg flex items-center gap-2">
                 <Flag code="AE" className="w-5 h-5" />
@@ -98,6 +99,7 @@ export const Location = () => {
               ))}
             </NavigationMenuItem>
 
+            {/* Таиланд */}
             <NavigationMenuItem>
               <h3 className="font-bold text-lg flex items-center gap-2">
                 <Flag code="TH" className="w-5 h-5" />
@@ -117,6 +119,7 @@ export const Location = () => {
               ))}
             </NavigationMenuItem>
 
+            {/* Оман */}
             <NavigationMenuItem>
               <h3 className="font-bold text-lg flex items-center gap-2">
                 <Flag code="OM" className="w-5 h-5" />
@@ -129,6 +132,7 @@ export const Location = () => {
               ))}
             </NavigationMenuItem>
 
+            {/* Индонезия */}
             <NavigationMenuItem className="col-span-3">
               <h3 className="font-bold text-lg flex items-center gap-2">
                 <Flag code="ID" className="w-5 h-5" />

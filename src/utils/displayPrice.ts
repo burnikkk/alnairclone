@@ -1,0 +1,26 @@
+import { getMeasureLabel } from '@/utils/label';
+import { EMeasure, IPrice } from '@/types/property';
+
+export const getDisplayPrice = (
+  data: IPrice,
+  selectedMeasure: EMeasure,
+  selectedCurrency: string
+) => {
+  let minPrice = parseFloat(data.minPrice) || 0;
+  let maxPrice = parseFloat(data.maxPrice) || 0;
+
+  if (data.pricePer === 'sqm') {
+    minPrice *= selectedMeasure === EMeasure.SQFT ? 0.10764 : 1;
+    maxPrice *= selectedMeasure === EMeasure.SQFT ? 0.10764 : 1;
+  }
+
+  if (minPrice && maxPrice) {
+    return `${minPrice} - ${maxPrice} ${
+      data.pricePer === 'sqm'
+        ? `${getMeasureLabel(selectedMeasure)}/${selectedCurrency}`
+        : selectedCurrency
+    }`;
+  }
+
+  return 'Стоимость';
+};

@@ -4,16 +4,16 @@ import React, { useEffect, useState } from 'react';
 import { MapContainer, Marker, Popup, TileLayer } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import { useFilters } from '@/hooks/useFilters';
-import { formatCurrency } from '@/lib/utils';
-import { convertPrice } from '@/utils/price';
 import { useSettings } from '@/hooks/useSettings';
 import { Icon } from 'leaflet';
 import { IProperty } from '@/types/property';
 import Image from 'next/image';
+import { convertPrice } from '@/utils/price';
+import { formatCurrency } from '@/lib/utils';
 
 const customIcon = new Icon({
   iconUrl: '/icons/square.png',
-  iconSize: [38, 38],
+  iconSize: [18, 18],
 });
 
 const Map: React.FC = () => {
@@ -55,22 +55,31 @@ const Map: React.FC = () => {
               icon={customIcon}
             >
               <Popup>
-                <div className="text-center">
-                  <Image
-                    width={100}
-                    height={100}
-                    src={'/icons/img.png'}
-                    alt={property.title}
-                    className="w-full h-[100px] rounded-lg"
-                  />
-                  <h3 className="text-lg font-semibold">{property.title}</h3>
-                  <p className="text-sm text-gray-600">{property.city}</p>
-                  <p className="text-md font-bold">
-                    {formatCurrency(
-                      convertPrice(property.price, selectedCurrency)
-                    )}{' '}
-                    {selectedCurrency}
-                  </p>
+                <div className="flex w-[250px] p-0 bg-white rounded-2xl overflow-hidden">
+                  <div className="relative w-1/2 h-[100px]">
+                    <Image
+                      src={'/icons/img.png'}
+                      alt={property.title}
+                      layout="fill"
+                      objectFit="cover"
+                      className="rounded-2xl"
+                    />
+                  </div>
+
+                  <div className="w-1/2 flex flex-col justify-center px-4">
+                    <h3 className="text-sm font-semibold !m-0">
+                      {property.title}
+                    </h3>
+                    <p className="text-sm text-gray-600 !m-0">
+                      {property.city}
+                    </p>
+                    <p className="text-md font-bold !m-0">
+                      {formatCurrency(
+                        convertPrice(property.price, selectedCurrency)
+                      )}{' '}
+                      {selectedCurrency}
+                    </p>
+                  </div>
                 </div>
               </Popup>
             </Marker>

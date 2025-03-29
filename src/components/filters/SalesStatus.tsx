@@ -8,7 +8,7 @@ import {
   SelectValue,
 } from '@/components/ui/select';
 import React from 'react';
-import { salesStatuses } from '@/utils/salesStatus';
+import { salesStatuses } from '@/utils/salesStatuses';
 import { useFilters } from '@/hooks/useFilters';
 
 export const SalesStatus = () => {
