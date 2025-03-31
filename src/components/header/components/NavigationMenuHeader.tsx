@@ -15,7 +15,6 @@ import { useTranslation } from 'next-i18next';
 
 export function NavigationMenuHeader() {
   const { t } = useTranslation('NavigationMenuHeader');
-
   return (
     <NavigationMenu>
       <NavigationMenuList>
