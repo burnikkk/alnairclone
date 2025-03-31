@@ -1,0 +1,21 @@
+{
+  "NavigationMenuHeader": {
+    "about_us": "About Us",
+    "knowledge_base": "Knowledge Base",
+    "search": "Search",
+    "commercial_offer": "Commercial Offer",
+    "feeds_integration": "Feeds and Integration",
+    "booking": "Booking",
+    "agency_management": "Agency Creation and User Management",
+    "services": "Services",
+    "about_us_full": "All About Us",
+    "for_agencies": "For Agencies",
+    "terms_of_use": "Terms of Use",
+    "operating_terms": "Operating Terms",
+    "privacy_policy": "Privacy Policy",
+    "cookie_policy": "Cookie Policy",
+    "contacts": "Contacts",
+    "developers": "Developers",
+    "districts": "Districts"
+  }
+}
