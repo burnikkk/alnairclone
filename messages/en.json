@@ -17,5 +17,73 @@
     "contacts": "Contacts",
     "developers": "Developers",
     "districts": "Districts"
+  },
+  "PopoverHeader": {
+    "language": "Language",
+    "currency": "Currency",
+    "measure": "Measure",
+    "ar": "Arabic",
+    "en": "English",
+    "ru": "Russian"
+  },
+  "RegistrationButton": {
+    "registration": "Sign in or Sign Up"
+  },
+
+  "LocaleSwitcher": {
+    "label": "Change Language",
+    "locale": "{locale, select, en {English} ae {Arabic} ru {Russian} other {Unknown}}"
+  },
+  "Location": {
+    "select_city": "Select city",
+    "select_description": "Alnair works in 19 cities in 9 countries"
+  },
+  "Bedrooms": {
+    "all": "Bedrooms",
+    "free_planing": "Free planning",
+    "bedroom_1": "1 bedroom",
+    "bedroom_2": "2 bedrooms",
+    "bedroom_3": "3 bedrooms",
+    "bedroom_4": "4 bedrooms",
+    "bedroom_5": "5 bedrooms",
+    "bedroom_6": "6 bedrooms",
+    "bedroom_7": "7 bedrooms",
+    "bedroom_8": "8 bedrooms",
+    "bedroom_9": "9 bedrooms",
+    "bedroom_10": "10 bedrooms"
+  },
+  "propertyTypes": {
+    "all": "Proprety Types",
+    "villa": "Villa",
+    "penthouse": "Penthouse",
+    "townhouse": "Townhouse",
+    "apparts": "Apartments",
+    "studio": "Studio",
+    "house": "House"
+  },
+  "SalesStatus": {
+    "all": "Sales Status",
+    "anons": "Sales announcement",
+    "reg": "Interest registration (EOI)",
+    "startsales": "Sales launch",
+    "insales": "For sale",
+    "stopped": "Suspended"
+  },
+  "SortStatuses": {
+    "all": "Default",
+    "new": "Newest first",
+    "old": "Oldest first",
+    "price-desc": "Price descending",
+    "price-asc": "Price ascending",
+    "sqm-desc": "Price per m² descending",
+    "sqm-asc": "Price per m² ascending",
+    "date-desc": "Completion date descending",
+    "date-asc": "Completion date ascending"
+  },
+  "resetAll": {
+    "resetAll": "Reset filters"
+  },
+  "Menubar": {
+    "Search": "Search"
   }
 }

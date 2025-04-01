@@ -10,8 +10,10 @@ import {
 import React from 'react';
 import { useFilters } from '@/hooks/useFilters';
 import { propertyTypes } from '@/utils/propertyTypes';
+import { useTranslations } from 'next-intl';
 
 export const PropertyType = () => {
+  const t = useTranslations('propertyTypes');
   const { filters, setAll } = useFilters();
 
   const handleChange = (value: string) => {
@@ -27,13 +29,13 @@ export const PropertyType = () => {
       <SelectTrigger
         className={`rounded-full bg-[#f3f3f5] !text-[#1F1F1F] border-none`}
       >
-        <SelectValue placeholder="Тип жилья" />
+        <SelectValue placeholder={t('all')} />
       </SelectTrigger>
       <SelectContent className="max-h-60 w-55">
-        <SelectItem value="all">Тип жилья</SelectItem>
-        {Object.entries(propertyTypes).map(([key, label]) => (
+        <SelectItem value="all">{t('all')}</SelectItem>
+        {Object.entries(propertyTypes).map(([key]) => (
           <SelectItem key={key} value={key}>
-            {label}
+            {t(key)}
           </SelectItem>
         ))}
       </SelectContent>

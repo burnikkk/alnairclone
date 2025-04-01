@@ -18,6 +18,7 @@ import { Navigation } from 'lucide-react';
 import Flag from 'react-world-flags';
 import { useFilters } from '@/hooks/useFilters';
 import { useLocation } from '@/hooks/useLocation';
+import { useTranslations } from 'next-intl';
 
 const cityCoordinates: Record<string, { lat: number; lng: number }> = {
   Dubai: { lat: 25.116987, lng: 55.496249 },
@@ -39,6 +40,7 @@ const cityCoordinates: Record<string, { lat: number; lng: number }> = {
 };
 
 export const Location = () => {
+  const t = useTranslations('Location');
   const { setAll } = useFilters();
   const { selectedCity, setSelectedCity } = useLocation();
   const [open, setOpen] = useState(false);
@@ -57,7 +59,7 @@ export const Location = () => {
       <DialogTrigger asChild>
         <Button
           className="rounded-full bg-[#4f5fd9] text-white hover:bg-[#6e7df0]"
-          aria-label="Выбрать город"
+          aria-label="Choose City"
         >
           <Navigation size={20} />
           {selectedCity}
@@ -70,11 +72,9 @@ export const Location = () => {
       >
         <DialogHeader>
           <DialogTitle className="font-bold text-2xl">
-            Выберите город
+            {t('select_city')}
           </DialogTitle>
-          <DialogDescription>
-            Alnair работает в 16 городах в 9 странах
-          </DialogDescription>
+          <DialogDescription>{t('select_description')}</DialogDescription>
         </DialogHeader>
 
         <NavigationMenu>

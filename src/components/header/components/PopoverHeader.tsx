@@ -12,8 +12,11 @@ import Flag from 'react-world-flags';
 import { useSettings } from '@/hooks/useSettings';
 import { EMeasure } from '@/types/property';
 import { getMeasureLabel } from '@/utils/label';
+import { useTranslations } from 'next-intl';
 
 export const PopoverHeader: React.FC = () => {
+  const t = useTranslations('PopoverHeader');
+
   const [selectedLang, setSelectedLang] = useState('ru');
   const {
     selectedCurrency,
@@ -23,9 +26,9 @@ export const PopoverHeader: React.FC = () => {
   } = useSettings();
 
   const languages: Record<string, { label: string; flagCode: string }> = {
-    ar: { label: 'Arabic', flagCode: 'AE' },
-    en: { label: 'English', flagCode: 'GB' },
-    ru: { label: 'Russian', flagCode: 'RU' },
+    ar: { label: t('ar'), flagCode: 'AE' },
+    en: { label: t('en'), flagCode: 'GB' },
+    ru: { label: t('ru'), flagCode: 'RU' },
   };
 
   return (
@@ -42,17 +45,17 @@ export const PopoverHeader: React.FC = () => {
           <span>{getMeasureLabel(selectedMeasure)}</span>
         </Button>
       </PopoverTrigger>
-      <PopoverContent className="w-fit p-4 rounded-xl shadow-md bg-white">
+      <PopoverContent className="w-[400px] p-4 rounded-xl shadow-md bg-white">
         <div>
-          <h4 className="text-sm font-medium mb-2">Язык</h4>
-          <div className="grid grid-cols-3 gap-2">
+          <h4 className="text-sm font-medium pb-2">{t('language')}</h4>
+          <div className="grid grid-cols-3 w-full border divide-x rounded-md">
             {Object.entries(languages).map(([code, { label, flagCode }]) => (
               <Button
                 key={code}
-                variant="outline"
+                variant="ghost"
                 className={cn(
-                  'flex items-center gap-1 justify-center border rounded-lg',
-                  selectedLang === code && 'border-blue-500 bg-blue-100'
+                  'rounded-none',
+                  selectedLang === code && 'bg-blue-100 text-blue-500'
                 )}
                 onClick={() => setSelectedLang(code)}
               >
@@ -62,17 +65,18 @@ export const PopoverHeader: React.FC = () => {
           </div>
         </div>
         <div className="mt-4">
-          <h4 className="text-sm font-medium mb-2">Валюта</h4>
-          <div className="flex flex-nowrap w-full divide-x border rounded-md">
+          <h4 className="text-sm font-medium pb-2">{t('currency')}</h4>
+          <div className="grid grid-cols-9 w-full border divide-x rounded-md">
             {['AED', '$', '₽', '฿', 'OMR', '¥', 'IDR', '£', '€'].map(
-              (currency) => (
+              (currency, index, array) => (
                 <Button
                   key={currency}
                   variant="ghost"
                   size="sm"
-                  className={`rounded-none ${
-                    selectedCurrency === currency ? 'bg-blue-100' : ''
-                  }`}
+                  className={cn(
+                    'rounded-none border-gray-200',
+                    selectedCurrency === currency && 'bg-blue-100 text-blue-500'
+                  )}
                   onClick={() => setSelectedCurrency(currency as any)}
                 >
                   {currency}
@@ -82,16 +86,16 @@ export const PopoverHeader: React.FC = () => {
           </div>
         </div>
         <div className="mt-4">
-          <h4 className="text-sm font-medium mb-2">Единицы измерения</h4>
-          <div className="grid grid-cols-2 gap-2">
+          <h4 className="text-sm font-medium pb-2">{t('measure')}</h4>
+          <div className="grid grid-cols-2 w-full border divide-x rounded-md">
             {[EMeasure.SQM, EMeasure.SQFT].map((measure) => (
               <Button
                 key={measure}
                 variant="ghost"
                 size="sm"
                 className={cn(
-                  'p-2 border rounded-lg w-full',
-                  selectedMeasure === measure && 'border-blue-500 bg-blue-100'
+                  'rounded-none',
+                  selectedMeasure === measure && 'bg-blue-100 text-blue-500'
                 )}
                 onClick={() => setSelectedMeasure(measure)}
               >

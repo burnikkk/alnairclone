@@ -16,5 +16,74 @@
   "contacts": "جهات الاتصال",
   "developers": "المطورون",
   "districts": "المناطق"
-}
+},
+"PopoverHeader": {
+  "language": "اللغة",
+  "currency": "العملة",
+  "measure": "وحدة القياس",
+  "ar": "العربية",
+  "en": "الإنجليزية",
+  "ru": "الروسية"
+},
+  "RegistrationButton": {
+    "registration": "سجل مجانا واستخدم جميع ميزات"
+  },
+
+  "LocaleSwitcher": {
+    "label": "Change Language Arab",
+    "locale": "{locale, select, en {English} ae {Arabic} ru {Russian} other {Unknown}}"
+  },
+
+  "Location": {
+    "select_city": "اختر المدينة",
+    "select_description": "يعمل Alnair في 19 مدن في 9 دول"
+},
+  "Bedrooms": {
+    "all": "الكل",
+    "free_planing": "تخطيط حر",
+    "bedroom_1": "غرفة نوم واحدة",
+    "bedroom_2": "غرفتا نوم",
+    "bedroom_3": "3 غرف نوم",
+    "bedroom_4": "4 غرف نوم",
+    "bedroom_5": "5 غرف نوم",
+    "bedroom_6": "6 غرف نوم",
+    "bedroom_7": "7 غرف نوم",
+    "bedroom_8": "8 غرف نوم",
+    "bedroom_9": "9 غرف نوم",
+    "bedroom_10": "10 غرف نوم"
+  },
+  "propertyTypes": {
+    "all": "الكل",
+    "villa": "فيلا",
+    "penthouse": "بنتهاوس",
+    "townhouse": "تاون هاوس",
+    "apparts": "شقق",
+    "studio": "استوديو",
+    "house": "منزل"
+  },
+  "SalesStatus": {
+    "all": "الكل",
+    "anons": "إعلان البيع",
+    "reg": "(EOI)تسجيل الاهتمام",
+    "startsales": "بدء البيع",
+    "insales": "متاح للبيع",
+    "stopped": "متوقف"
+  },
+  "SortStatuses": {
+    "all": "الكل",
+    "new": "الأحدث أولاً",
+    "old": "الأقدم أولاً",
+    "price-desc": "السعر تنازلي",
+    "price-asc": "السعر تصاعدي",
+    "sqm-desc": "السعر لكل متر مربع تنازلي",
+    "sqm-asc": "السعر لكل متر مربع تصاعدي",
+    "date-desc": "تاريخ الانتهاء تنازلي",
+    "date-asc": "تاريخ الانتهاء تصاعدي"
+  },
+  "resetAll": {
+    "resetAll": "Reset filters"
+  },
+  "Menubar": {
+    "Search": "Search"
+  }
 }

@@ -16,5 +16,74 @@
   "contacts": "Контакты",
   "developers": "Застройщики",
   "districts": "Районы"
-}
+},
+  "PopoverHeader": {
+    "language": "Язык",
+    "currency": "Валюта",
+    "measure": "Единицы измерения",
+    "ar": "Арабский",
+    "en": "Английский",
+    "ru": "Русский"
+  },
+"RegistrationButton": {
+  "registration": "Вход или регистрация"
+},
+
+  "LocaleSwitcher": {
+    "label": "Сменить язык",
+    "locale": "{locale, select, en {English} ae {Arabic} ru {Russian} other {Unknown}}"
+  },
+
+  "Location": {
+    "select_city": "Выберите город",
+    "select_description": "Alnair работает в 19 городах в 9 странах"
+  },
+  "Bedrooms": {
+    "all": "Количество комнат",
+    "free_planing": "Свободная планировка",
+    "bedroom_1": "1 спальня",
+    "bedroom_2": "2 спальни",
+    "bedroom_3": "3 спальни",
+    "bedroom_4": "4 спальни",
+    "bedroom_5": "5 спален",
+    "bedroom_6": "6 спален",
+    "bedroom_7": "7 спален",
+    "bedroom_8": "8 спален",
+    "bedroom_9": "9 спален",
+    "bedroom_10": "10 спален"
+  },
+  "propertyTypes": {
+    "all": "Тип жилья",
+    "villa": "Вилла",
+    "penthouse": "Пентхаус",
+    "townhouse": "Таунхаус",
+    "apparts": "Апартаменты",
+    "studio": "Студия",
+    "house": "Дом"
+  },
+  "SalesStatus": {
+    "all": "Статус продаж",
+    "anons": "Анонс продаж",
+    "reg": "Регистрация интереса (EOI)",
+    "startsales": "Старт продаж",
+    "insales": "В продаже",
+    "stopped": "Приостановлен"
+  },
+  "SortStatuses": {
+    "all": "По умолчанию",
+    "new": "Сначала новые",
+    "old": "Сначала старые",
+    "price-desc": "Цена по убыванию",
+    "price-asc": "Цена по возрастанию",
+    "sqm-desc": "Цена за м² по убыванию",
+    "sqm-asc": "Цена за м² по возрастанию",
+    "date-desc": "Дата завершения по убыванию",
+    "date-asc": "Дата завершения по возрастанию"
+  },
+  "resetAll": {
+    "resetAll": "Очистить фильтры"
+  },
+  "Menubar": {
+    "Search": "Поиск"
+  }
 }

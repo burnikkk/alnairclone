@@ -11,10 +11,10 @@ import {
   NavigationMenuTrigger,
   navigationMenuTriggerStyle,
 } from '@/components/ui/navigation-menu';
-import { useTranslation } from 'next-i18next';
+import { useTranslations } from 'next-intl';
 
 export function NavigationMenuHeader() {
-  const { t } = useTranslation('NavigationMenuHeader');
+  const t = useTranslations('NavigationMenuHeader');
   return (
     <NavigationMenu>
       <NavigationMenuList>

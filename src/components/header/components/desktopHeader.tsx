@@ -2,6 +2,7 @@ import { NavigationMenuHeader } from '@/components/header/components/NavigationM
 import { AvatarHeader } from '@/components/header/components/Avatar';
 import { PopoverHeader } from '@/components/header/components/PopoverHeader';
 import { RegistrationButton } from '@/components/header/components/RegistrationButton';
+import { LocaleSwitcher } from '@/components/header/components/LocaleSwitcher';
 
 export const DesktopHeader = () => {
   return (
@@ -15,6 +16,7 @@ export const DesktopHeader = () => {
       </div>
 
       <div className="flex items-center gap-4 pr-4">
+        <LocaleSwitcher />
         <PopoverHeader />
         <RegistrationButton />
       </div>

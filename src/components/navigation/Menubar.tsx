@@ -8,15 +8,17 @@ import { SalesStatus } from '@/components/filters/SalesStatus';
 import { Bedrooms } from '@/components/filters/Bedrooms';
 import { AllFilters } from '@/components/filters/allFilters';
 import { ResetFilters } from '@/components/filters/ResetFilters';
+import { useTranslations } from 'next-intl';
 
 export const Menubar = () => {
+  const t = useTranslations('Menubar');
   return (
     <menu className="p-4 flex gap-2 overflow-x-auto">
       <Location />
       <AllFilters>
         <Button className="rounded-full">
           <Search size={20} />
-          Поиск
+          {t('Search')}
         </Button>
       </AllFilters>
       <Bedrooms />

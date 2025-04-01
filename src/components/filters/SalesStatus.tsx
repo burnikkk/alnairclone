@@ -10,8 +10,10 @@ import {
 import React from 'react';
 import { salesStatuses } from '@/utils/salesStatuses';
 import { useFilters } from '@/hooks/useFilters';
+import { useTranslations } from 'next-intl';
 
 export const SalesStatus = () => {
+  const t = useTranslations('SalesStatus');
   const { filters, setAll } = useFilters();
 
   const handleChange = (value: string) => {
@@ -27,13 +29,13 @@ export const SalesStatus = () => {
       <SelectTrigger
         className={`rounded-full bg-[#f3f3f5] !text-[#1F1F1F] border-none`}
       >
-        <SelectValue placeholder="Статус продаж" />
+        <SelectValue placeholder={t('all')} />
       </SelectTrigger>
-      <SelectContent className="max-h-60 w-55">
-        <SelectItem value="all">Статус продаж</SelectItem>
-        {Object.entries(salesStatuses).map(([key, label]) => (
+      <SelectContent className="max-h-60 w-full">
+        <SelectItem value="all">{t('all')}</SelectItem>
+        {Object.entries(salesStatuses).map(([key]) => (
           <SelectItem key={key} value={key}>
-            {label}
+            {t(key)}
           </SelectItem>
         ))}
       </SelectContent>
