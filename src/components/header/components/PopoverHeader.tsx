@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React from 'react';
 import {
   Popover,
   PopoverContent,
@@ -12,24 +12,19 @@ import Flag from 'react-world-flags';
 import { useSettings } from '@/hooks/useSettings';
 import { EMeasure } from '@/types/property';
 import { getMeasureLabel } from '@/utils/label';
-import { useTranslations } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
+import { LocaleSwitcher } from '@/components/header/components/LocaleSwitcher';
 
 export const PopoverHeader: React.FC = () => {
   const t = useTranslations('PopoverHeader');
-
-  const [selectedLang, setSelectedLang] = useState('ru');
+  const locale = useLocale();
   const {
     selectedCurrency,
     setSelectedCurrency,
     selectedMeasure,
     setSelectedMeasure,
   } = useSettings();
-
-  const languages: Record<string, { label: string; flagCode: string }> = {
-    ar: { label: t('ar'), flagCode: 'AE' },
-    en: { label: t('en'), flagCode: 'GB' },
-    ru: { label: t('ru'), flagCode: 'RU' },
-  };
+  const flagCodes = t.raw('flagCode') as Record<string, string>;
 
   return (
     <Popover>
@@ -38,7 +33,7 @@ export const PopoverHeader: React.FC = () => {
           variant="outline"
           className="flex items-center gap-2 px-2 py-2 h-10 bg-gray-200 rounded-lg transition-colors duration-300 mr-4"
         >
-          <Flag code={languages[selectedLang].flagCode} className="w-5 h-5" />
+          <Flag code={flagCodes[locale]} className="w-5 h-5" />
           <p className="font-light text-gray-400">/</p>
           <span>{selectedCurrency}</span>
           <p className="font-light text-gray-400">/</p>
@@ -48,27 +43,13 @@ export const PopoverHeader: React.FC = () => {
       <PopoverContent className="w-[400px] p-4 rounded-xl shadow-md bg-white">
         <div>
           <h4 className="text-sm font-medium pb-2">{t('language')}</h4>
-          <div className="grid grid-cols-3 w-full border divide-x rounded-md">
-            {Object.entries(languages).map(([code, { label, flagCode }]) => (
-              <Button
-                key={code}
-                variant="ghost"
-                className={cn(
-                  'rounded-none',
-                  selectedLang === code && 'bg-blue-100 text-blue-500'
-                )}
-                onClick={() => setSelectedLang(code)}
-              >
-                <Flag code={flagCode} className="w-5 h-5" /> {label}
-              </Button>
-            ))}
-          </div>
+          <LocaleSwitcher />
         </div>
         <div className="mt-4">
           <h4 className="text-sm font-medium pb-2">{t('currency')}</h4>
           <div className="grid grid-cols-9 w-full border divide-x rounded-md">
             {['AED', '$', '₽', '฿', 'OMR', '¥', 'IDR', '£', '€'].map(
-              (currency, index, array) => (
+              (currency) => (
                 <Button
                   key={currency}
                   variant="ghost"

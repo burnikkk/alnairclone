@@ -7,6 +7,8 @@ import { Separator } from '@/components/ui/separator';
 import { ChevronUp } from 'lucide-react';
 import { convertPrice } from '@/utils/price';
 import { useSettings } from '@/hooks/useSettings';
+import { useTranslations } from 'next-intl';
+import CompletionDate from '@/components/properties/components/propertyCard/CompletionDate';
 
 interface DetailsProps {
   property: PropertyType;
@@ -14,16 +16,18 @@ interface DetailsProps {
 
 const formatToMillion = (value: number): string => {
   if (value >= 1_000_000) {
-    return `${(value / 1_000_000).toFixed(1)} млн`;
+    return `${(value / 1_000_000).toFixed(1)} `;
   }
   if (value >= 1_000) {
-    return `${(value / 1_000).toFixed(1)} тыс`;
+    return `${(value / 1_000).toFixed(1)} `;
   }
   return value.toString();
 };
 
 export const Details = ({ property }: DetailsProps) => {
   const { selectedCurrency } = useSettings();
+  const t = useTranslations('details');
+  const tPropertyTypes = useTranslations('propertyTypes');
 
   return (
     <CardContent className="absolute bottom-0 left-0 w-full bg-white px-3 py-2 max-h-[120px] rounded-xl overflow-hidden group-hover:max-h-[272px] transition-[max-height] duration-300 ease-in-out">
@@ -44,13 +48,15 @@ export const Details = ({ property }: DetailsProps) => {
 
       <div className="flex flex-row items-center justify-between pb-2 h-[60px]">
         <div>
-          <p className="text-xs pt-2">{property.propertyType}</p>
+          <p className="text-xs pt-2">
+            {tPropertyTypes(property.propertyType)}
+          </p>
           <p className="text-lg font-semibold">
-            От{' '}
+            {t('from')}{' '}
             {formatToMillion(
               Number(convertPrice(property.price, selectedCurrency))
             )}{' '}
-            {selectedCurrency}
+            {t('mln')} {selectedCurrency}
           </p>
         </div>
         <div className="flex flex-row justify-end items-center">
@@ -72,11 +78,11 @@ export const Details = ({ property }: DetailsProps) => {
               <div>
                 <span className="font-semibold mr-1">{unit.type}</span>
                 <span className="font-normal text-gray-500">
-                  от {unit.size}
+                  {t('from')} {unit.size}
                 </span>
               </div>
               <span>
-                от{' '}
+                {t('from')}{' '}
                 {formatToMillion(
                   Number(convertPrice(unit.price, selectedCurrency))
                 )}{' '}
@@ -90,9 +96,11 @@ export const Details = ({ property }: DetailsProps) => {
 
         <div className="flex justify-between items-center text-sm">
           <span className="font-semibold">
-            {property.availableUnits} юнитов доступно
+            {property.availableUnits} {t('units_available')}
           </span>
-          <span className="text-gray-500">{property.completionDate}</span>
+          <span className="text-gray-500">
+            <CompletionDate date={property.completionDate} />
+          </span>
         </div>
       </div>
     </CardContent>

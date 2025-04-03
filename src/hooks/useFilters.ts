@@ -16,6 +16,7 @@ const initFilters: IFilters = {
   maxArea: '',
   salesType: '',
   searchQuery: '',
+  exclusive: false,
 };
 
 type FiltersAction =

@@ -21,11 +21,15 @@
   "PopoverHeader": {
     "language": "Language",
     "currency": "Currency",
-    "measure": "Measure",
-    "ar": "Arabic",
+    "measure": "Measurement units",
+    "ae": "Arabic",
     "en": "English",
-    "ru": "Russian"
-  },
+    "ru": "Russian",
+    "flagCode": {
+      "ae": "AE",
+      "en": "GB",
+      "ru": "RU"
+    }},
   "RegistrationButton": {
     "registration": "Sign in or Sign Up"
   },
@@ -84,6 +88,51 @@
     "resetAll": "Reset filters"
   },
   "Menubar": {
-    "Search": "Search"
+    "search": "Search",
+    "moreFilters": "More Filters"
+  },
+  "AllFilters": {
+    "search_in_projects": "Search among 1982 projects in {city}",
+    "type": "Type",
+    "property_type": "Property Type",
+    "sales_status": "Sales Status",
+    "bedrooms": "Bedrooms",
+    "close": "Close",
+    "clear_filters": "Clear Filters"
+  },
+  "salesTypes": {
+    "primary": "Primary sale",
+    "secondary": "Secondary sale"
+  },
+  "Exclusive":{
+    "exclusive": "Alnair Exclusive"
+  },
+  "ResetFilters": {
+    "reset": "Reset Filters"
+  },
+  "Price": {
+    "per_object": "per object",
+    "per_sqm": "per sqm",
+    "show": "Show",
+    "button_placeholder": "Price",
+    "currency_label": "Currency"
+  },
+  "CurrencyForm": {
+    "minPrice": "Min. price",
+    "maxPrice": "Max. price"
+  },
+  "MeasureForm": {
+    "minArea": "Area from",
+    "maxArea": "Area to"
+  },
+  "results_count": "{} out of {} results",
+  "details": {
+    "from": "From",
+    "units_available": "units available",
+    "mln": "millions",
+    "k": "k"
+  },
+  "CoverImage": {
+    "recommended": "Recommended"
   }
 }

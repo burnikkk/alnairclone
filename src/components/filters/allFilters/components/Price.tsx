@@ -6,7 +6,8 @@ import { Card, CardContent } from '@/components/ui/card';
 import { ChartContainer, ChartTooltipContent } from '@/components/ui/chart';
 import { useFormContext } from 'react-hook-form';
 import { IFilters } from '@/types/filters';
-import { PriceForm } from '@/components/filters/shared/PriceForm';
+import { CurrencyForm } from '@/components/filters/shared/FormParts/CurrencyForm';
+import { MeasureForm } from '@/components/filters/shared/FormParts/MeasureForm';
 
 const fetchPriceData = async () => {
   try {
@@ -68,7 +69,10 @@ export function Price() {
         </CardContent>
       </Card>
       <div>
-        <PriceForm />
+        <div className="pb-4">
+          <CurrencyForm />
+        </div>
+        <MeasureForm />
       </div>
     </>
   );

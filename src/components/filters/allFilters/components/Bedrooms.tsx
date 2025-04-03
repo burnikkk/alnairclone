@@ -4,20 +4,14 @@ import React from 'react';
 import { useFilters } from '@/hooks/useFilters';
 import { Button } from '@/components/ui/button';
 import { EBedroom } from '@/types/property';
+import { useTranslations } from 'next-intl';
 
 export const Bedrooms = () => {
   const { filters, setAll } = useFilters();
+  const t = useTranslations('Bedrooms');
 
   const handleClick = (value: string) => {
     setAll({ bedrooms: value });
-  };
-
-  const getBedroomLabel = (value: string) => {
-    const num = parseInt(value.replace('K', ''), 10);
-    if (isNaN(num)) return '';
-    if (num === 1) return 'спальня';
-    if (num >= 2 && num <= 4) return 'спальни';
-    return 'спален';
   };
 
   return (
@@ -30,9 +24,11 @@ export const Bedrooms = () => {
           className="rounded-full bg-[#f3f3f5] !text-[#1F1F1F] border-none"
           onClick={() => handleClick(key)}
         >
-          {value === 'free_planing'
-            ? 'Свободная планировка'
-            : `${value.replace('K', '')} ${getBedroomLabel(value)}`}
+          {t(
+            value === 'free_planing'
+              ? 'free_planing'
+              : `bedroom_${value.replace('K', '')}`
+          )}
         </Button>
       ))}
     </div>

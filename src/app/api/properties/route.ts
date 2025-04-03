@@ -19,10 +19,7 @@ const mocks: IProperty[] = [
       { type: EBedroom.SIX, size: 480, price: 5000000 },
     ],
     availableUnits: 12,
-    completionDate: new Date('11/01/2026').toLocaleDateString('ru-RU', {
-      year: 'numeric',
-      month: 'short',
-    }),
+    completionDate: '11/01/2026',
     longitude: 55.1386,
     latitude: 25.1122,
     city: 'Dubai',
@@ -42,10 +39,7 @@ const mocks: IProperty[] = [
       { type: EBedroom.TWO, size: 110, price: 4000000 },
     ],
     availableUnits: 8,
-    completionDate: new Date('09/01/2028').toLocaleDateString('ru-RU', {
-      year: 'numeric',
-      month: 'short',
-    }),
+    completionDate: '09/01/2028',
     longitude: 55.271,
     latitude: 25.2048,
     city: 'Dubai',
@@ -66,10 +60,7 @@ const mocks: IProperty[] = [
       { type: EBedroom.FOUR, size: 250, price: 4500000 },
     ],
     availableUnits: 5,
-    completionDate: new Date('6/01/2025').toLocaleDateString('ru-RU', {
-      year: 'numeric',
-      month: 'short',
-    }),
+    completionDate: '6/01/2025',
     longitude: 55.2744,
     latitude: 25.1972,
     city: 'Dubai',
@@ -89,10 +80,7 @@ const mocks: IProperty[] = [
       { type: EBedroom.SIX, size: 480, price: 7800000 },
     ],
     availableUnits: 10,
-    completionDate: new Date('8/01/2027').toLocaleDateString('ru-RU', {
-      year: 'numeric',
-      month: 'short',
-    }),
+    completionDate: '8/01/2027',
     longitude: 55.1323,
     latitude: 25.0906,
     city: 'Dubai',
@@ -113,10 +101,7 @@ const mocks: IProperty[] = [
       { type: EBedroom.FIVE, size: 330, price: 3500000 },
     ],
     availableUnits: 3,
-    completionDate: new Date('10/01/2027').toLocaleDateString('ru-RU', {
-      year: 'numeric',
-      month: 'short',
-    }),
+    completionDate: '10/01/2027',
     longitude: 55.1844,
     latitude: 25.2672,
     city: 'Dubai',
@@ -135,10 +120,7 @@ const mocks: IProperty[] = [
       { type: EBedroom.SEVEN, size: 600, price: 6700000 },
     ],
     availableUnits: 6,
-    completionDate: new Date('10/01/2028').toLocaleDateString('ru-RU', {
-      year: 'numeric',
-      month: 'short',
-    }),
+    completionDate: '10/01/2028',
     longitude: 55.1386,
     latitude: 25.1972,
     city: 'Dubai',
@@ -157,10 +139,7 @@ const mocks: IProperty[] = [
       { type: EBedroom.THREE, size: 160, price: 1700000 },
     ],
     availableUnits: 9,
-    completionDate: new Date('01/01/2026').toLocaleDateString('ru-RU', {
-      year: 'numeric',
-      month: 'short',
-    }),
+    completionDate: '01/01/2026',
     longitude: 55.1644,
     latitude: 25.2772,
     city: 'Dubai',
@@ -180,10 +159,7 @@ const mocks: IProperty[] = [
       { type: EBedroom.FIVE, size: 400, price: 4000000 },
     ],
     availableUnits: 4,
-    completionDate: new Date('10/01/2026').toLocaleDateString('ru-RU', {
-      year: 'numeric',
-      month: 'short',
-    }),
+    completionDate: '10/01/2026',
     longitude: 55.2744,
     latitude: 25.2972,
     city: 'Dubai',
@@ -202,10 +178,7 @@ const mocks: IProperty[] = [
       { type: EBedroom.THREE, size: 175, price: 2200000 },
     ],
     availableUnits: 7,
-    completionDate: new Date('12/01/2026').toLocaleDateString('ru-RU', {
-      year: 'numeric',
-      month: 'short',
-    }),
+    completionDate: '12/01/2026',
     longitude: 55.2244,
     latitude: 25.1272,
     city: 'Dubai',
@@ -219,16 +192,14 @@ const mocks: IProperty[] = [
     propertyType: 'studio',
     salesType: 'primary',
     price: 6200000,
+    exclusive: true,
     discount: { value: 8, type: EDiscountType.PERCENTAGE },
     units: [
       { type: EBedroom.FIVE, size: 450, price: 4800000 },
       { type: EBedroom.SIX, size: 550, price: 5500000 },
     ],
     availableUnits: 5,
-    completionDate: new Date('10/01/2026').toLocaleDateString('ru-RU', {
-      year: 'numeric',
-      month: 'short',
-    }),
+    completionDate: '10/01/2026',
     longitude: 55.2244,
     latitude: 25.1472,
     city: 'Dubai',
@@ -240,6 +211,7 @@ export async function GET(request: NextRequest) {
 
   const propertyType = searchParams.get('propertyType');
   const salesType = searchParams.get('salesType');
+  const exclusive = searchParams.get('exclusive');
   const bedrooms = searchParams.get('bedrooms');
   const saleStatus = searchParams.get('saleStatus');
   const title = searchParams.get('title')?.toLowerCase();
@@ -260,6 +232,7 @@ export async function GET(request: NextRequest) {
   console.log('saleStatus', saleStatus);
 
   try {
+    const totalObjects = mocks.length;
     const filtered = mocks
       .filter((item) =>
         propertyType ? item.propertyType === propertyType : true
@@ -269,6 +242,7 @@ export async function GET(request: NextRequest) {
       )
       .filter((item) => (saleStatus ? saleStatus === item.salesStatus : true))
       .filter((item) => item.availableUnits > 0)
+      .filter((item) => (exclusive ? item.exclusive : true))
       .filter((item) => (salesType ? salesType === item.salesType : true))
       .filter((item) => item.price >= minPrice && item.price <= maxPrice)
       .filter((item) =>
@@ -286,6 +260,7 @@ export async function GET(request: NextRequest) {
             )
           : true
       );
+
     return NextResponse.json(filtered);
   } catch (error) {
     console.error('Error handling GET request:', error);

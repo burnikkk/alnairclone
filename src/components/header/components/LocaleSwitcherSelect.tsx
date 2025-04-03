@@ -1,50 +1,53 @@
 'use client';
 
-import { ChangeEvent, ReactNode, useTransition } from 'react';
+import { useTransition } from 'react';
 import { usePathname, useRouter } from 'next/navigation';
 import { cn } from '@/lib/utils';
-
-type Props = {
-  children: ReactNode;
-  defaultValue: string;
-  label: string;
-};
+import { useTranslations } from 'next-intl';
+import { Button } from '@/components/ui/button';
+import Flag from 'react-world-flags';
 
 export default function LocaleSwitcherSelect({
-  children,
   defaultValue,
   label,
-}: Props) {
+}: {
+  defaultValue: string;
+  label: string;
+}) {
   const router = useRouter();
   const [isPending, startTransition] = useTransition();
   const pathname = usePathname();
+  const t = useTranslations('PopoverHeader');
 
-  function onSelectChange(e: ChangeEvent<HTMLSelectElement>) {
-    const nextLocale = e.target.value;
+  const flagCodes = t.raw('flagCode') as Record<string, string>;
 
+  function changeLocale(nextLocale: string) {
     const pathWithoutLocale = pathname.replace(/^\/(ru|en|ae)/, '');
-
     startTransition(() => {
       router.replace(`/${nextLocale}${pathWithoutLocale}`);
     });
   }
 
   return (
-    <label
-      className={cn(
-        'relative text-gray-800',
-        isPending && 'transition-opacity [&:disabled]:opacity-50'
-      )}
-    >
+    <div>
       <p className="sr-only">{label}</p>
-      <select
-        className="inline-flex appearance-none pl-2 pr-6"
-        defaultValue={defaultValue}
-        disabled={isPending}
-        onChange={onSelectChange}
-      >
-        {children}
-      </select>
-    </label>
+      <div className="grid grid-cols-3 w-full border divide-x rounded-md">
+        {Object.keys(flagCodes).map((code) => (
+          <Button
+            key={code}
+            variant="ghost"
+            className={cn(
+              'rounded-none',
+              defaultValue === code && 'bg-blue-100 text-blue-500'
+            )}
+            onClick={() => changeLocale(code)}
+            disabled={isPending}
+          >
+            <Flag code={flagCodes[code]} className="w-5 h-5" />
+            {t(code)}
+          </Button>
+        ))}
+      </div>
+    </div>
   );
 }

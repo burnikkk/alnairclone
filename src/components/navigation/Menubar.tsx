@@ -3,12 +3,13 @@ import { Button } from '@/components/ui/button';
 import { Location } from '@/components/filters/Location';
 import { PropertyType } from '@/components/filters/PropertyType';
 import { Price } from '@/components/filters/Price';
-import { Search, SlidersHorizontal, Sparkle } from 'lucide-react';
+import { Search, SlidersHorizontal } from 'lucide-react';
 import { SalesStatus } from '@/components/filters/SalesStatus';
 import { Bedrooms } from '@/components/filters/Bedrooms';
 import { AllFilters } from '@/components/filters/allFilters';
 import { ResetFilters } from '@/components/filters/ResetFilters';
 import { useTranslations } from 'next-intl';
+import { ExclusiveFilterButton } from '@/components/filters/Exclusive';
 
 export const Menubar = () => {
   const t = useTranslations('Menubar');
@@ -18,21 +19,18 @@ export const Menubar = () => {
       <AllFilters>
         <Button className="rounded-full">
           <Search size={20} />
-          {t('Search')}
+          {t('search')}
         </Button>
       </AllFilters>
       <Bedrooms />
       <Price />
       <PropertyType />
       <SalesStatus />
-      <Button className="rounded-full">
-        <Sparkle size={20} />
-        Эксклюзивно на Alnair
-      </Button>
+      <ExclusiveFilterButton />
       <AllFilters>
         <Button className="rounded-full">
           <SlidersHorizontal size={20} />
-          Еще фильтры
+          {t('moreFilters')}
         </Button>
       </AllFilters>
       <ResetFilters />

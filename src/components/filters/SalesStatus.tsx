@@ -31,7 +31,7 @@ export const SalesStatus = () => {
       >
         <SelectValue placeholder={t('all')} />
       </SelectTrigger>
-      <SelectContent className="max-h-60 w-full">
+      <SelectContent className="max-h-60 w-60">
         <SelectItem value="all">{t('all')}</SelectItem>
         {Object.entries(salesStatuses).map(([key]) => (
           <SelectItem key={key} value={key}>

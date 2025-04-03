@@ -4,9 +4,11 @@ import React from 'react';
 import { salesStatuses } from '@/utils/salesStatuses';
 import { useFilters } from '@/hooks/useFilters';
 import { Button } from '@/components/ui/button';
+import { useTranslations } from 'next-intl';
 
 export const SalesStatus = () => {
   const { filters, setAll } = useFilters();
+  const t = useTranslations('SalesStatus');
 
   const handleClick = (value: string) => {
     setAll({ saleStatus: value });
@@ -14,7 +16,7 @@ export const SalesStatus = () => {
 
   return (
     <div className="flex flex-wrap gap-2">
-      {Object.entries(salesStatuses).map(([key, label]) => (
+      {Object.entries(salesStatuses).map(([key]) => (
         <Button
           key={key}
           size="sm"
@@ -22,7 +24,7 @@ export const SalesStatus = () => {
           className="rounded-full bg-[#f3f3f5] !text-[#1F1F1F] border-none"
           onClick={() => handleClick(key)}
         >
-          {label}
+          {t(key)}
         </Button>
       ))}
     </div>

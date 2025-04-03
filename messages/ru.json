@@ -21,10 +21,14 @@
     "language": "Язык",
     "currency": "Валюта",
     "measure": "Единицы измерения",
-    "ar": "Арабский",
+    "ae": "Арабский",
     "en": "Английский",
-    "ru": "Русский"
-  },
+    "ru": "Русский",
+    "flagCode": {
+      "ae": "AE",
+      "en": "GB",
+      "ru": "RU"
+    }},
 "RegistrationButton": {
   "registration": "Вход или регистрация"
 },
@@ -84,6 +88,51 @@
     "resetAll": "Очистить фильтры"
   },
   "Menubar": {
-    "Search": "Поиск"
+    "search": "Поиск",
+    "moreFilters": "Еще фильтры"
+  },
+  "AllFilters": {
+    "search_in_projects": "Найти среди 1982 объектов в {city}",
+    "type": "Тип",
+    "property_type": "Тип жилья",
+    "sales_status": "Статус продаж",
+    "bedrooms": "Количество комнат",
+    "close": "Закрыть",
+    "clear_filters": "Очистить фильтры"
+  },
+  "salesTypes": {
+    "primary": "Первичная продажа",
+    "secondary": "Вторичная продажа"
+  },
+  "Exclusive":{
+    "exclusive": "Эксклюзивно на Alnair"
+  },
+  "ResetFilters": {
+    "reset": "Очистить фильтры"
+  },
+  "Price": {
+    "per_object": "за объект",
+    "per_sqm": "за м²",
+    "show": "Показать",
+    "button_placeholder": "Стоимость",
+    "currency_label": "Валюта"
+  },
+  "CurrencyForm": {
+    "minPrice": "Мин. цена",
+    "maxPrice": "Макс. цена"
+  },
+  "MeasureForm": {
+    "minArea": "Площадь от",
+    "maxArea": "Площадь до"
+  },
+  "results_count": "{} из {} результатов",
+  "details": {
+    "from": "От",
+    "units_available": "юнитов доступно",
+    "mln": "млн",
+    "k": "тыс"
+  },
+  "CoverImage": {
+    "recommended": "Рекомендовано"
   }
 }

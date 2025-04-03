@@ -42,7 +42,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         <MobileNavMenu />
       </SidebarContent>
 
-      <SidebarFooter className="w-full p-1">
+      <SidebarFooter className="bg-gray-200 ">
         <PopoverHeader />
       </SidebarFooter>
 

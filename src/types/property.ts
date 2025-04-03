@@ -66,4 +66,5 @@ export interface IProperty {
   latitude: number;
   city: string;
   salesType?: string;
+  exclusive?: boolean;
 }

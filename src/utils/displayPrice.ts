@@ -1,6 +1,6 @@
-import { getMeasureLabel } from '@/utils/label';
 import { EMeasure } from '@/types/property';
 import { IPriceFilter } from '@/types/filters';
+import { getMeasureLabel } from '@/utils/label';
 
 export const getDisplayPrice = (
   data: IPriceFilter,
@@ -22,6 +22,4 @@ export const getDisplayPrice = (
         : selectedCurrency
     }`;
   }
-
-  return 'Стоимость';
 };

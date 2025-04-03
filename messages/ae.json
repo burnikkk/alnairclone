@@ -20,11 +20,15 @@
 "PopoverHeader": {
   "language": "اللغة",
   "currency": "العملة",
-  "measure": "وحدة القياس",
-  "ar": "العربية",
+  "measure": "وحدات القياس",
+  "ae": "العربية",
   "en": "الإنجليزية",
-  "ru": "الروسية"
-},
+  "ru": "الروسية",
+  "flagCode": {
+    "ae": "AE",
+    "en": "GB",
+    "ru": "RU"
+  }},
   "RegistrationButton": {
     "registration": "سجل مجانا واستخدم جميع ميزات"
   },
@@ -81,9 +85,54 @@
     "date-asc": "تاريخ الانتهاء تصاعدي"
   },
   "resetAll": {
-    "resetAll": "Reset filters"
+    "resetAll": "إعادة تعيين الفلاتر"
   },
   "Menubar": {
-    "Search": "Search"
+    "search": "بحث",
+    "moreFilters": "المزيد من الفلاتر"
+  },
+  "AllFilters": {
+    "search_in_projects": "ابحث بين 1982 مشروعًا في {city}",
+    "type": "نوع",
+    "property_type": "نوع العقار",
+    "sales_status": "حالة المبيعات",
+    "bedrooms": "غرف النوم",
+    "close": "إغلاق",
+    "clear_filters": "مسح الفلاتر"
+  },
+  "salesTypes": {
+    "primary": "بيع أولي",
+    "secondary": "بيع ثانوي"
+  },
+  "Exclusive":{
+    "exclusive": "حصري لدى Alnair"
+  },
+  "ResetFilters": {
+    "reset": "إعادة تعيين الفلاتر"
+  },
+  "Price": {
+    "per_object": "لكل كائن",
+    "per_sqm": "لكل متر مربع",
+    "show": "عرض",
+    "button_placeholder": "السعر",
+    "currency_label": "العملة"
+  },
+  "CurrencyForm": {
+    "minPrice": "السعر الأدنى",
+    "maxPrice": "السعر الأقصى"
+  },
+  "MeasureForm": {
+    "minArea": "المساحة من",
+    "maxArea": "المساحة إلى"
+  },
+  "results_count": "{} من أصل {} نتائج",
+  "details": {
+    "from": "من",
+    "units_available": "وحدات متاحة",
+    "mln": "مليون",
+    "k": "тыс"
+  },
+  "CoverImage": {
+    "recommended": "موصى به"
   }
 }

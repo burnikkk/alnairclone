@@ -2,7 +2,7 @@ import React from 'react';
 import { Badge } from '@/components/ui/badge';
 import Image from 'next/image';
 import usePropertyImage from '@/hooks/usePropertyImages';
-import { salesStatuses } from '@/utils/salesStatuses';
+import { useTranslations } from 'next-intl';
 
 interface CoverImageProps {
   title: string;
@@ -18,9 +18,12 @@ export const CoverImage = ({
   salesStatusType,
 }: CoverImageProps) => {
   const { imageUrl } = usePropertyImage(type);
+  const t = useTranslations('SalesStatus');
+  const tr = useTranslations('CoverImage');
 
-  const getSalesStatusLabel = (status: string) =>
-    salesStatuses[status] || 'Неизвестный статус';
+  const getSalesStatusLabel = (status: string, t: (key: string) => string) => {
+    return t(status);
+  };
 
   const getBadgeClass = (status: string) => {
     if (status === 'reg') return 'bg-[#819] text-white';
@@ -34,14 +37,14 @@ export const CoverImage = ({
       <div className="absolute top-3 left-3   grid items-start gap-2">
         {isRecommended && (
           <Badge className=" bg-[#edeef7] text-[#4f5fd9] rounded-full text-xs font-normal z-10 uppercase">
-            Рекомендовано
+            {tr('recommended')}
           </Badge>
         )}
         {salesStatusType && salesStatusType !== 'all' && (
           <Badge
             className={`rounded-full text-xs font-normal z-10 uppercase ${getBadgeClass(salesStatusType)}`}
           >
-            {getSalesStatusLabel(salesStatusType)}
+            {getSalesStatusLabel(salesStatusType, t)}
           </Badge>
         )}
       </div>

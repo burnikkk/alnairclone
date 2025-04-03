@@ -1,4 +1,5 @@
 type FilterValue = string;
+type FilterBValue = boolean;
 
 export type IFilters = {
   bedrooms: FilterValue;
@@ -14,6 +15,7 @@ export type IFilters = {
   maxArea: FilterValue;
   salesType: FilterValue;
   searchQuery: FilterValue;
+  exclusive: FilterBValue;
 };
 
 export type IPriceFilter = Pick<IFilters, 'minPrice' | 'maxPrice' | 'pricePer'>;
