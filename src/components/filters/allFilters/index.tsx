@@ -9,7 +9,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from '@/components/ui/dialog';
-import React, { FC, PropsWithChildren } from 'react';
+import React, { FC, PropsWithChildren, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { SalesType } from '@/components/filters/allFilters/components/SalesType';
 import { Form } from '@/components/ui/form/form';
@@ -25,6 +25,7 @@ import { SalesStatus } from '@/components/filters/allFilters/components/SalesSta
 import { PropertyType } from '@/components/filters/allFilters/components/PropertyType';
 import { Bedrooms } from '@/components/filters/allFilters/components/Bedrooms';
 import { ExclusiveSwitch } from '@/components/filters/allFilters/components/Exclusive';
+import { debounce } from 'lodash';
 
 export const AllFilters: FC<PropsWithChildren> = ({ children }) => {
   const t = useTranslations('AllFilters');
@@ -36,9 +37,9 @@ export const AllFilters: FC<PropsWithChildren> = ({ children }) => {
     values: filters,
   });
 
-  // useEffect(() => {
-  //   form.watch(debounce(() => setAll(form.getValues()), 500));
-  // }, [form, setAll]);
+  useEffect(() => {
+    form.watch(debounce(() => setAll(form.getValues()), 500));
+  }, [form, setAll]);
 
   return (
     <Dialog>
