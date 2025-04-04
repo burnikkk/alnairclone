@@ -9,6 +9,7 @@ import { convertPrice } from '@/utils/price';
 import { useSettings } from '@/hooks/useSettings';
 import { useTranslations } from 'next-intl';
 import CompletionDate from '@/components/properties/components/propertyCard/CompletionDate';
+import { formatCurrency } from '@/utils/currency';
 
 interface DetailsProps {
   property: PropertyType;
@@ -53,10 +54,11 @@ export const Details = ({ property }: DetailsProps) => {
           </p>
           <p className="text-lg font-semibold">
             {t('from')}{' '}
-            {formatToMillion(
-              Number(convertPrice(property.price, selectedCurrency))
-            )}{' '}
-            {t('mln')} {selectedCurrency}
+            {formatCurrency(property.price, {
+              currency: selectedCurrency,
+              short: true,
+            })}{' '}
+            {selectedCurrency}
           </p>
         </div>
         <div className="flex flex-row justify-end items-center">
