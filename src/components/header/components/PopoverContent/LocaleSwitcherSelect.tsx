@@ -20,6 +20,7 @@ export default function LocaleSwitcherSelect({
   const t = useTranslations('PopoverHeader');
 
   const flagCodes = t.raw('flagCode') as Record<string, string>;
+  const locales = Object.keys(flagCodes);
 
   function changeLocale(nextLocale: string) {
     const pathWithoutLocale = pathname.replace(/^\/(ru|en|ae)/, '');
@@ -31,14 +32,18 @@ export default function LocaleSwitcherSelect({
   return (
     <div>
       <p className="sr-only">{label}</p>
-      <div className="grid grid-cols-3 w-full border divide-x rounded-md">
-        {Object.keys(flagCodes).map((code) => (
+      <div className="grid grid-cols-3 w-full border border-gray-300 rounded-md">
+        {locales.map((code, index) => (
           <Button
             key={code}
             variant="ghost"
             className={cn(
-              'rounded-none',
-              defaultValue === code && 'bg-blue-100 text-blue-500'
+              'rounded-none border flex items-center gap-2',
+              index === 0 && 'rounded-l-md',
+              index === locales.length - 1 && 'rounded-r-md',
+              defaultValue === code
+                ? 'bg-blue-100 text-blue-500 border-blue-500'
+                : 'text-black'
             )}
             onClick={() => changeLocale(code)}
             disabled={isPending}

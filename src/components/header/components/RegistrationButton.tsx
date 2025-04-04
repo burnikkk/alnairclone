@@ -8,7 +8,7 @@ export const RegistrationButton = () => {
   const t = useTranslations('RegistrationButton');
   return (
     <Link href="https://alnair.ae/app/login/email">
-      <Button className=" h-10 rounded-lg bg-[#4f5fd9] text-white hover:bg-[#6e7df0]">
+      <Button className="h-10 rounded-lg bg-violet text-white hover:bg-violet-light">
         {t('registration')}
       </Button>
     </Link>

@@ -1,5 +1,5 @@
 import { useLocale, useTranslations } from 'next-intl';
-import LocaleSwitcherSelect from '@/components/header/components/LocaleSwitcherSelect';
+import LocaleSwitcherSelect from '@/components/header/components/PopoverContent/LocaleSwitcherSelect';
 
 export const LocaleSwitcher = () => {
   const t = useTranslations('PopoverHeader');

@@ -60,7 +60,7 @@ export const Price = () => {
           variant="outline"
           className="w-fit rounded-full bg-[#f3f3f5] !text-[#1F1F1F] border-none"
         >
-          {t(displayPrice || 'button_placeholder')}
+          {displayPrice ? displayPrice : t('button_placeholder')}
         </Button>
       </PopoverTrigger>
 
@@ -93,7 +93,7 @@ export const Price = () => {
               </div>
             </CardContent>
             <CardFooter className="pt-2">
-              <Button type="submit" className="w-full text-white bg-[#4249ce]">
+              <Button type="submit" className="w-full text-white bg-violet">
                 {t('show')}
               </Button>
             </CardFooter>

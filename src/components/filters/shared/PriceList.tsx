@@ -22,8 +22,8 @@ export const PriceList: FC<PriceListProps> = ({
           key={index}
           type="button"
           variant="ghost"
-          className={`w-full text-left ${
-            value === String(price) ? 'text-[#4249ce]' : ''
+          className={`w-full text-left hover:text-violet ${
+            value === String(price) ? 'text-violet' : ''
           }`}
           onClick={() => onSelect(String(price))}
         >

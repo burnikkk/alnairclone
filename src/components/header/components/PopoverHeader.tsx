@@ -7,23 +7,18 @@ import {
   PopoverTrigger,
 } from '@/components/ui/popover';
 import { Button } from '@/components/ui/button';
-import { cn } from '@/lib/utils';
 import Flag from 'react-world-flags';
 import { useSettings } from '@/hooks/useSettings';
-import { EMeasure } from '@/types/property';
 import { getMeasureLabel } from '@/utils/label';
 import { useLocale, useTranslations } from 'next-intl';
-import { LocaleSwitcher } from '@/components/header/components/LocaleSwitcher';
+import { LocaleSwitcher } from '@/components/header/components/PopoverContent/LocaleSwitcher';
+import { CurrencySwitcher } from '@/components/header/components/PopoverContent/CurrencySwitcher';
+import { MeasureSwitcher } from '@/components/header/components/PopoverContent/MeasureSwither';
 
 export const PopoverHeader: React.FC = () => {
   const t = useTranslations('PopoverHeader');
   const locale = useLocale();
-  const {
-    selectedCurrency,
-    setSelectedCurrency,
-    selectedMeasure,
-    setSelectedMeasure,
-  } = useSettings();
+  const { selectedCurrency, selectedMeasure } = useSettings();
   const flagCodes = t.raw('flagCode') as Record<string, string>;
 
   return (
@@ -45,45 +40,13 @@ export const PopoverHeader: React.FC = () => {
           <h4 className="text-sm font-medium pb-2">{t('language')}</h4>
           <LocaleSwitcher />
         </div>
-        <div className="mt-4">
+        <div className="pt-4">
           <h4 className="text-sm font-medium pb-2">{t('currency')}</h4>
-          <div className="grid grid-cols-9 w-full border divide-x rounded-md">
-            {['AED', '$', '₽', '฿', 'OMR', '¥', 'IDR', '£', '€'].map(
-              (currency) => (
-                <Button
-                  key={currency}
-                  variant="ghost"
-                  size="sm"
-                  className={cn(
-                    'rounded-none border-gray-200',
-                    selectedCurrency === currency && 'bg-blue-100 text-blue-500'
-                  )}
-                  onClick={() => setSelectedCurrency(currency as any)}
-                >
-                  {currency}
-                </Button>
-              )
-            )}
-          </div>
+          <CurrencySwitcher />
         </div>
-        <div className="mt-4">
+        <div className="pt-4">
           <h4 className="text-sm font-medium pb-2">{t('measure')}</h4>
-          <div className="grid grid-cols-2 w-full border divide-x rounded-md">
-            {[EMeasure.SQM, EMeasure.SQFT].map((measure) => (
-              <Button
-                key={measure}
-                variant="ghost"
-                size="sm"
-                className={cn(
-                  'rounded-none',
-                  selectedMeasure === measure && 'bg-blue-100 text-blue-500'
-                )}
-                onClick={() => setSelectedMeasure(measure)}
-              >
-                {getMeasureLabel(measure)}
-              </Button>
-            ))}
-          </div>
+          <MeasureSwitcher />
         </div>
       </PopoverContent>
     </Popover>

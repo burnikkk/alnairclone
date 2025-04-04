@@ -5,6 +5,7 @@ import { useFilters } from '@/hooks/useFilters';
 import { Button } from '@/components/ui/button';
 import { salesTypes } from '@/utils/salesTypes';
 import { useTranslations } from 'next-intl';
+import { cn } from '@/lib/utils';
 
 export const SalesType = () => {
   const { filters, setAll } = useFilters();
@@ -20,8 +21,13 @@ export const SalesType = () => {
         <Button
           key={key}
           size="sm"
-          variant={filters.salesType === key ? 'default' : 'outline'}
-          className="rounded-full bg-[#f3f3f5] !text-[#1F1F1F] border-none"
+          variant="outline"
+          className={cn(
+            'rounded-full border-none',
+            filters.salesType === key
+              ? 'bg-violet text-white'
+              : 'bg-[#f3f3f5] text-[#1F1F1F] hover:bg-violet hover:text-white'
+          )}
           onClick={() => handleClick(key)}
         >
           {t(key)}

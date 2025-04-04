@@ -20,15 +20,16 @@ import { Price } from '@/components/filters/allFilters/components/Price';
 import { SearchBar } from '@/components/filters/allFilters/components/SearchBar';
 import { IPriceFilter } from '@/types/filters';
 import { Block } from '@/components/filters/allFilters/components/Block';
-import { debounce } from 'lodash';
 import { useTranslations } from 'next-intl';
 import { SalesStatus } from '@/components/filters/allFilters/components/SalesStatus';
 import { PropertyType } from '@/components/filters/allFilters/components/PropertyType';
 import { Bedrooms } from '@/components/filters/allFilters/components/Bedrooms';
 import { ExclusiveSwitch } from '@/components/filters/allFilters/components/Exclusive';
+import { debounce } from 'lodash';
 
 export const AllFilters: FC<PropsWithChildren> = ({ children }) => {
   const t = useTranslations('AllFilters');
+  const tr = useTranslations('Price');
   const { filters, setAll, resetAll } = useFilters();
   const { selectedCity } = useLocation();
 
@@ -75,23 +76,23 @@ export const AllFilters: FC<PropsWithChildren> = ({ children }) => {
           </div>
 
           <DialogFooter className="w-full sticky bottom-0 grid grid-cols-2 gap-4 bg-gray-200 rounded-b-lg p-10">
-            <DialogClose asChild>
-              <Button
-                type="button"
-                variant="secondary"
-                className="p-7 text-center cursor-pointer hover:bg-primary/5"
-              >
-                {t('close')}
-              </Button>
-            </DialogClose>
             <Button
               type="button"
               variant="secondary"
-              className="p-7 text-center bg-[#4f5fd9] text-white hover:bg-[#7b87e3] cursor-pointer"
+              className="p-7 text-center text-lg bg-white hover:bg-gray-100 cursor-pointer"
               onClick={resetAll}
             >
               {t('clear_filters')}
             </Button>
+            <DialogClose asChild>
+              <Button
+                type="submit"
+                variant="secondary"
+                className="p-7 text-center text-lg bg-violet text-white hover:bg-violet-light cursor-pointer"
+              >
+                {tr('show')}
+              </Button>
+            </DialogClose>
           </DialogFooter>
         </Form>
       </DialogContent>

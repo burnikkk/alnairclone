@@ -7,13 +7,13 @@ export const CurrencyForm = () => {
   const t = useTranslations('CurrencyForm');
 
   return (
-    <div className="grid grid-cols-2 text-center bg-gray-100 text-gray-500 p-2 rounded-md text-sm">
+    <div className="grid grid-cols-2 text-center bg-gray-100 text-gray-600 p-2 rounded-md text-sm">
       <div>
         <FormInput
           name="minPrice"
           placeholder={`${t('minPrice')} (${selectedCurrency})`}
           inputMode="numeric"
-          className="text-lg font-semibold text-black text-center border-none shadow-none"
+          className="text-lg font-semibold  text-center border-none shadow-none"
           IMask={{
             mask: Number,
             thousandsSeparator: ' ',
@@ -25,7 +25,7 @@ export const CurrencyForm = () => {
           name="maxPrice"
           placeholder={`${t('maxPrice')} (${selectedCurrency})`}
           inputMode="numeric"
-          className="text-lg font-semibold text-black text-center border-none shadow-none"
+          className="text-lg font-semibold  text-center border-none shadow-none"
           IMask={{
             mask: Number,
             thousandsSeparator: ' ',
