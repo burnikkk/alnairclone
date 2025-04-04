@@ -232,7 +232,6 @@ export async function GET(request: NextRequest) {
   console.log('saleStatus', saleStatus);
 
   try {
-    const totalObjects = mocks.length;
     const filtered = mocks
       .filter((item) =>
         propertyType ? item.propertyType === propertyType : true
@@ -242,7 +241,7 @@ export async function GET(request: NextRequest) {
       )
       .filter((item) => (saleStatus ? saleStatus === item.salesStatus : true))
       .filter((item) => item.availableUnits > 0)
-      .filter((item) => (exclusive ? item.exclusive : true))
+      .filter((item) => (exclusive === 'true' ? item.exclusive : true))
       .filter((item) => (salesType ? salesType === item.salesType : true))
       .filter((item) => item.price >= minPrice && item.price <= maxPrice)
       .filter((item) =>
@@ -260,8 +259,13 @@ export async function GET(request: NextRequest) {
             )
           : true
       );
+    const foundCount = filtered.length;
 
-    return NextResponse.json(filtered);
+    return NextResponse.json({
+      data: filtered,
+      found: foundCount,
+      total: mocks.length,
+    });
   } catch (error) {
     console.error('Error handling GET request:', error);
 

@@ -1,15 +1,15 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { MapContainer, Marker, Popup, TileLayer } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import { useFilters } from '@/hooks/useFilters';
 import { useSettings } from '@/hooks/useSettings';
 import { Icon } from 'leaflet';
-import { IProperty } from '@/types/property';
 import Image from 'next/image';
 import { convertPrice } from '@/utils/price';
 import { formatCurrency } from '@/lib/utils';
+import { useProperties } from '@/hooks/useProperties';
 
 const customIcon = new Icon({
   iconUrl: '/icons/square.png',
@@ -19,19 +19,7 @@ const customIcon = new Icon({
 const Map: React.FC = () => {
   const { filters } = useFilters();
   const { selectedCurrency } = useSettings();
-  const [properties, setProperties] = useState<IProperty[]>([]);
-
-  useEffect(() => {
-    const query = new URLSearchParams({
-      minPrice: filters.minPrice,
-      maxPrice: filters.maxPrice,
-    }).toString();
-
-    fetch(`/api/properties?${query}`)
-      .then((res) => res.json())
-      .then((data) => setProperties(data))
-      .catch((error) => console.error('Ошибка загрузки данных:', error));
-  }, [filters.minPrice, filters.maxPrice]);
+  const { data: properties } = useProperties();
 
   return (
     <div className="pl-8 md:pl-0 w-svw h-svh">
@@ -46,8 +34,7 @@ const Map: React.FC = () => {
           attribution='&copy; <a href="https://carto.com/">CARTO</a>'
         />
 
-        {properties.map((property) => {
-          console.log('property.imageUrl', property.imageUrl);
+        {properties?.map((property) => {
           return (
             <Marker
               key={property.id}

@@ -13,7 +13,7 @@ import {
 } from '@/components/ui/navigation-menu';
 import { useTranslations } from 'next-intl';
 
-export function NavigationMenuHeader() {
+export const NavigationMenuHeader = () => {
   const t = useTranslations('NavigationMenuHeader');
   return (
     <NavigationMenu>
@@ -72,7 +72,7 @@ export function NavigationMenuHeader() {
       </NavigationMenuList>
     </NavigationMenu>
   );
-}
+};
 
 const ListItem = React.forwardRef<
   React.ForwardedRef<HTMLAnchorElement>,

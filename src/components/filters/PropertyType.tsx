@@ -25,7 +25,10 @@ export const PropertyType = () => {
   };
 
   return (
-    <Select value={filters.propertyType} onValueChange={handleChange}>
+    <Select
+      onValueChange={handleChange}
+      value={filters.propertyType.split(',')[0]}
+    >
       <SelectTrigger
         className={`rounded-full bg-[#f3f3f5] !text-[#1F1F1F] border-none`}
       >

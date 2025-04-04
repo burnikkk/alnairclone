@@ -12,13 +12,13 @@ import { AllFilters } from '@/components/filters/allFilters';
 export const Header = () => {
   return (
     <div className="h-14">
-      <div className="hidden md:block flex items-center justify-between p-2">
+      <div className="md:block flex items-center justify-between p-2">
         <header>
           <DesktopHeader />
         </header>
       </div>
 
-      <div className="block md:hidden h-14 flex items-top justify-between p-3 relative">
+      <div className="md:hidden h-14 flex items-top justify-between p-3 relative">
         <div className="flex-shrink-0">
           <AllFilters>
             <Button className="rounded-full">

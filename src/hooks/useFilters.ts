@@ -16,7 +16,7 @@ const initFilters: IFilters = {
   maxArea: '',
   salesType: '',
   searchQuery: '',
-  exclusive: false,
+  exclusive: 'false',
 };
 
 type FiltersAction =
@@ -73,9 +73,7 @@ const filtersToQuery = (filters: IFilters) => {
   const params = new URLSearchParams();
   Object.entries(filters).forEach(([key, value]) => {
     if (value) {
-      if (typeof value === 'string') {
-        params.set(key, value);
-      }
+      params.set(key, value);
     }
   });
   return params.toString();

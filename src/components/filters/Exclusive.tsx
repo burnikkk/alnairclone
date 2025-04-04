@@ -8,14 +8,14 @@ export const ExclusiveFilterButton = () => {
   const t = useTranslations('Exclusive');
 
   const toggleExclusive = () => {
-    setAll({ exclusive: !filters.exclusive });
+    setAll({ exclusive: `${filters.exclusive !== 'true'}` });
   };
 
   return (
     <Button
       onClick={toggleExclusive}
       className={`rounded-full transition-colors ${
-        filters.exclusive
+        filters.exclusive === 'true'
           ? 'bg-[#4f5fd9] text-white hover:bg-[#4f5fd9]/90 hover:text-white'
           : 'bg-[#f3f3f5] text-[#1f1f1f]'
       }`}
