@@ -5,7 +5,6 @@ import { Badge } from '@/components/ui/badge';
 import Image from 'next/image';
 import { Separator } from '@/components/ui/separator';
 import { ChevronUp } from 'lucide-react';
-import { convertPrice } from '@/utils/price';
 import { useSettings } from '@/hooks/useSettings';
 import { useTranslations } from 'next-intl';
 import CompletionDate from '@/components/properties/components/propertyCard/CompletionDate';
@@ -14,16 +13,6 @@ import { formatCurrency } from '@/utils/currency';
 interface DetailsProps {
   property: PropertyType;
 }
-
-const formatToMillion = (value: number): string => {
-  if (value >= 1_000_000) {
-    return `${(value / 1_000_000).toFixed(1)} `;
-  }
-  if (value >= 1_000) {
-    return `${(value / 1_000).toFixed(1)} `;
-  }
-  return value.toString();
-};
 
 export const Details = ({ property }: DetailsProps) => {
   const { selectedCurrency } = useSettings();
@@ -85,9 +74,10 @@ export const Details = ({ property }: DetailsProps) => {
               </div>
               <span>
                 {t('from')}{' '}
-                {formatToMillion(
-                  Number(convertPrice(unit.price, selectedCurrency))
-                )}{' '}
+                {formatCurrency(unit.price, {
+                  currency: selectedCurrency,
+                  short: true,
+                })}{' '}
                 {selectedCurrency}
               </span>
             </div>

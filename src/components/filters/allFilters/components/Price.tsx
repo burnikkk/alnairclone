@@ -6,15 +6,21 @@ import { MeasureForm } from '@/components/filters/shared/FormParts/MeasureForm';
 import { ChartSlider } from '@/components/ui/chartSlider';
 import { useFormContext } from 'react-hook-form';
 import { IFilters } from '@/types/filters';
+import { IProperty as PropertyType } from '@/types/property';
 
-const STEP = 100_000;
+const STEP = 1_000_000;
 const MIN = 0;
 const MAX = 10_000_000;
 
-export function Price() {
+interface PriceProps {
+  properties: PropertyType[];
+}
+
+export function Price({ properties }: PriceProps) {
   const form = useFormContext<IFilters>();
   const minPrice = +form.watch('minPrice');
   const maxPrice = +form.watch('maxPrice');
+
   const from = !minPrice || isNaN(minPrice) ? MIN : minPrice;
   const to = !maxPrice || isNaN(maxPrice) ? MAX : maxPrice;
   const range = [from, to] as [number, number];
@@ -24,12 +30,18 @@ export function Price() {
     form.setValue('maxPrice', String(max));
   };
 
+  const buckets = Array.from({ length: (MAX - MIN) / STEP }, (_, i) => {
+    const lower = i * STEP;
+    const upper = lower + STEP;
+    return properties.filter(
+      (property) => property.price >= lower && property.price < upper
+    ).length;
+  });
+
   return (
     <>
       <ChartSlider
-        data={[
-          2, 8, 5, 7, 4, 6, 10, 3, 9, 4, 6, 7, 5, 8, 3, 6, 5, 4, 7, 3, 6, 5,
-        ]}
+        data={buckets}
         min={MIN}
         max={MAX}
         range={range}

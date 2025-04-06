@@ -92,13 +92,14 @@
     "moreFilters": "المزيد من الفلاتر"
   },
   "AllFilters": {
-    "search_in_projects": "ابحث بين 1982 مشروعًا في {city}",
+    "search_in_projects": "ابحث بين {totalObj} مشروعًا في {city}",
     "type": "نوع",
     "property_type": "نوع العقار",
     "sales_status": "حالة المبيعات",
     "bedrooms": "غرف النوم",
     "close": "إغلاق",
-    "clear_filters": "مسح الفلاتر"
+    "clear_filters": "مسح الفلاتر",
+    "full_price": "Show {founded} objects"
   },
   "salesTypes": {
     "primary": "بيع أولي",

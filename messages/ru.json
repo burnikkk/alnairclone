@@ -92,13 +92,14 @@
     "moreFilters": "Еще фильтры"
   },
   "AllFilters": {
-    "search_in_projects": "Найти среди 1982 объектов в {city}",
+    "search_in_projects": "Найти среди {totalObj} объектов в {city}",
     "type": "Тип",
     "property_type": "Тип жилья",
     "sales_status": "Статус продаж",
     "bedrooms": "Количество комнат",
     "close": "Закрыть",
-    "clear_filters": "Очистить фильтры"
+    "clear_filters": "Очистить фильтры",
+    "full_price": "Показать {founded} объектов"
   },
   "salesTypes": {
     "primary": "Первичная продажа",

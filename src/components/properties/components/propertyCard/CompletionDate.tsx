@@ -1,11 +1,11 @@
 import { useLocale } from 'next-intl';
-import { useMemo } from 'react';
+import { FC, useMemo } from 'react';
 
 interface CompletionDateProps {
   date: string;
 }
 
-const CompletionDate: React.FC<CompletionDateProps> = ({ date }) => {
+const CompletionDate: FC<CompletionDateProps> = ({ date }) => {
   const locale = useLocale() as 'ru' | 'en' | 'ae';
 
   const locales: Record<'ru' | 'en' | 'ae', string> = {

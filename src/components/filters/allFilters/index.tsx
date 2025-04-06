@@ -17,7 +17,7 @@ import { useFilters } from '@/hooks/useFilters';
 import { useForm } from 'react-hook-form';
 import { useLocation } from '@/hooks/useLocation';
 import { Price } from '@/components/filters/allFilters/components/Price';
-import { SearchBar } from '@/components/filters/allFilters/components/SearchBar';
+import { SearchBar } from '@/components/filters/allFilters/components/SearchBar/SearchBar';
 import { IFilters } from '@/types/filters';
 import { Block } from '@/components/filters/allFilters/components/Block';
 import { useTranslations } from 'next-intl';
@@ -26,12 +26,13 @@ import { PropertyType } from '@/components/filters/allFilters/components/Propert
 import { Bedrooms } from '@/components/filters/allFilters/components/Bedrooms';
 import { ExclusiveSwitch } from '@/components/filters/allFilters/components/Exclusive';
 import { debounce } from 'lodash';
+import { useProperties } from '@/hooks/useProperties';
 
 export const AllFilters: FC<PropsWithChildren> = ({ children }) => {
   const t = useTranslations('AllFilters');
-  const tr = useTranslations('Price');
   const { filters, setAll, resetAll } = useFilters();
   const { selectedCity } = useLocation();
+  const { found, total, data } = useProperties();
 
   const form = useForm<IFilters>({
     values: filters,
@@ -49,12 +50,17 @@ export const AllFilters: FC<PropsWithChildren> = ({ children }) => {
         <Form context={form} onSubmit={setAll}>
           <DialogHeader className="bg-gray-200 rounded-t-lg p-15">
             <DialogTitle className="font-semibold text-2xl pb-4">
-              <p>{t('search_in_projects', { city: selectedCity })}</p>
+              <p>
+                {t('search_in_projects', {
+                  totalObj: total ?? 0,
+                  city: selectedCity,
+                })}
+              </p>
             </DialogTitle>
             <SearchBar />
           </DialogHeader>
           <div className="px-15 py-8 flex flex-col gap-6">
-            <Price />
+            <Price properties={data ?? []} />
 
             <Block title={t('type')}>
               <SalesType />
@@ -86,7 +92,9 @@ export const AllFilters: FC<PropsWithChildren> = ({ children }) => {
                 variant="secondary"
                 className="p-7 text-center text-lg bg-violet text-white hover:bg-violet-light cursor-pointer"
               >
-                {tr('show')}
+                {t('full_price', {
+                  founded: found ?? 0,
+                })}
               </Button>
             </DialogClose>
           </DialogFooter>

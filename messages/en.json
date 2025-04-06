@@ -92,13 +92,14 @@
     "moreFilters": "More Filters"
   },
   "AllFilters": {
-    "search_in_projects": "Search among 1982 projects in {city}",
+    "search_in_projects": "Search among {totalObj} projects in {city}",
     "type": "Type",
     "property_type": "Property Type",
     "sales_status": "Sales Status",
     "bedrooms": "Bedrooms",
     "close": "Close",
-    "clear_filters": "Clear Filters"
+    "clear_filters": "Clear Filters",
+    "full_price": "Show {founded} objects"
   },
   "salesTypes": {
     "primary": "Primary sale",
