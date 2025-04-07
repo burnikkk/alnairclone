@@ -14,6 +14,7 @@ import { useLocale, useTranslations } from 'next-intl';
 import { LocaleSwitcher } from '@/components/header/components/PopoverContent/LocaleSwitcher';
 import { CurrencySwitcher } from '@/components/header/components/PopoverContent/CurrencySwitcher';
 import { MeasureSwitcher } from '@/components/header/components/PopoverContent/MeasureSwither';
+import { cn } from '@/lib/utils';
 
 export const PopoverHeader: React.FC = () => {
   const t = useTranslations('PopoverHeader');
@@ -26,7 +27,11 @@ export const PopoverHeader: React.FC = () => {
       <PopoverTrigger asChild>
         <Button
           variant="outline"
-          className="flex items-center gap-2 px-2 py-2 h-10 bg-gray-200 rounded-lg transition-colors duration-300 mr-4"
+          className={cn(
+            'flex items-center gap-2 px-2 py-2 h-10',
+            'bg-gray-200 rounded-lg transition-colors duration-300 mr-4',
+            'hover:bg-gray-300 hover:text-black'
+          )}
         >
           <Flag code={flagCodes[locale]} className="w-5 h-5" />
           <p className="font-light text-gray-400">/</p>

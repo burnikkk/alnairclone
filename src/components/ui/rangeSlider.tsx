@@ -28,12 +28,12 @@ const RangeSlider = React.forwardRef<
       )}
       {...props}
     >
-      <SliderPrimitive.Track className="relative h-2 w-full grow overflow-hidden rounded-full bg-secondary">
-        <SliderPrimitive.Range className="absolute h-full bg-primary" />
+      <SliderPrimitive.Track className=" w-full grow overflow-hidden rounded-full">
+        <SliderPrimitive.Range className="absolute h-full bg-white" />
       </SliderPrimitive.Track>
       {initialValue.map((value, index) => (
         <React.Fragment key={index}>
-          <SliderPrimitive.Thumb className="relative block h-5 w-5 rounded-full border-2 border-primary bg-background ring-offset-background transition-colors focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50">
+          <SliderPrimitive.Thumb className="relative block h-7 w-7 rounded-full border-2 border-primary ring-offset-background transition-colors focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50">
             {label && (
               <span
                 className={cn(

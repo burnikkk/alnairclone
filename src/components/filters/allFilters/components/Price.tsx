@@ -1,16 +1,14 @@
 'use client';
 
 import * as React from 'react';
+import { useEffect } from 'react';
 import { CurrencyForm } from '@/components/filters/shared/FormParts/CurrencyForm';
 import { MeasureForm } from '@/components/filters/shared/FormParts/MeasureForm';
 import { ChartSlider } from '@/components/ui/chartSlider';
 import { useFormContext } from 'react-hook-form';
 import { IFilters } from '@/types/filters';
 import { IProperty as PropertyType } from '@/types/property';
-
-const STEP = 1_000_000;
-const MIN = 0;
-const MAX = 10_000_000;
+import { debounce } from 'lodash';
 
 interface PriceProps {
   properties: PropertyType[];
@@ -20,10 +18,17 @@ export function Price({ properties }: PriceProps) {
   const form = useFormContext<IFilters>();
   const minPrice = +form.watch('minPrice');
   const maxPrice = +form.watch('maxPrice');
+  const STEP = 1_000_000;
+  const MIN = 0;
+  const MAX = 10_000_000;
 
   const from = !minPrice || isNaN(minPrice) ? MIN : minPrice;
   const to = !maxPrice || isNaN(maxPrice) ? MAX : maxPrice;
   const range = [from, to] as [number, number];
+
+  useEffect(() => {
+    form.watch(debounce(() => range, 500));
+  }, [form, range]);
 
   const setRange = ([min, max]: [number, number]) => {
     form.setValue('minPrice', String(min));

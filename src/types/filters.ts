@@ -15,6 +15,8 @@ export type IFilters = {
   salesType: FilterValue;
   searchQuery: FilterValue;
   exclusive: 'true' | 'false';
+  title: FilterValue;
+  developer: FilterValue;
 };
 
 export type IPriceFilter = Pick<IFilters, 'minPrice' | 'maxPrice' | 'pricePer'>;

@@ -475,8 +475,9 @@ const MultipleSelector = React.forwardRef<
                 <Badge
                   key={option.value}
                   className={cn(
-                    'data-[disabled]:bg-muted-foreground data-[disabled]:text-muted data-[disabled]:hover:bg-muted-foreground',
-                    'data-[fixed]:bg-muted-foreground data-[fixed]:text-muted data-[fixed]:hover:bg-muted-foreground',
+                    'bg-violet text-white hover:bg-light-violet',
+                    'data-[disabled]:bg-violet data-[disabled]:text-white data-[disabled]:hover:bg-light-violet',
+                    'data-[fixed]:bg-violet data-[fixed]:text-white data-[fixed]:hover:bg-light-violet',
                     badgeClassName
                   )}
                   data-fixed={option.fixed}
@@ -500,7 +501,7 @@ const MultipleSelector = React.forwardRef<
                     }}
                     onClick={() => handleUnselect(option)}
                   >
-                    <X className="h-3 w-3 text-muted-foreground hover:text-foreground" />
+                    <X className="h-3 w-3 text-white cursor-pointer" />
                   </button>
                 </Badge>
               );

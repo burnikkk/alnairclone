@@ -9,6 +9,8 @@ import { useSettings } from '@/hooks/useSettings';
 import { useTranslations } from 'next-intl';
 import CompletionDate from '@/components/properties/components/propertyCard/CompletionDate';
 import { formatCurrency } from '@/utils/currency';
+import { convertPrice } from '@/utils/convertPrice';
+import { useCurrencyRates } from '@/hooks/useCurrencyRates';
 
 interface DetailsProps {
   property: PropertyType;
@@ -16,6 +18,7 @@ interface DetailsProps {
 
 export const Details = ({ property }: DetailsProps) => {
   const { selectedCurrency } = useSettings();
+  const { rates: exchangeRates } = useCurrencyRates(selectedCurrency);
   const t = useTranslations('details');
   const tPropertyTypes = useTranslations('propertyTypes');
 
@@ -43,10 +46,13 @@ export const Details = ({ property }: DetailsProps) => {
           </p>
           <p className="text-lg font-semibold">
             {t('from')}{' '}
-            {formatCurrency(property.price, {
-              currency: selectedCurrency,
-              short: true,
-            })}{' '}
+            {formatCurrency(
+              convertPrice(property.price, selectedCurrency, exchangeRates),
+              {
+                currency: selectedCurrency,
+                short: true,
+              }
+            )}{' '}
             {selectedCurrency}
           </p>
         </div>
@@ -57,7 +63,7 @@ export const Details = ({ property }: DetailsProps) => {
               {property.discount.type === EDiscountType.PERCENTAGE ? '%' : ''}
             </Badge>
           )}
-          <ChevronUp className="bg-[#f3f3f5] border-box rounded-full hover: rotate-180" />
+          <ChevronUp className="bg-[#f3f3f5] border-box rounded-full hover:rotate-180" />
         </div>
       </div>
       <Separator />
@@ -74,10 +80,13 @@ export const Details = ({ property }: DetailsProps) => {
               </div>
               <span>
                 {t('from')}{' '}
-                {formatCurrency(unit.price, {
-                  currency: selectedCurrency,
-                  short: true,
-                })}{' '}
+                {formatCurrency(
+                  convertPrice(unit.price, selectedCurrency, exchangeRates),
+                  {
+                    currency: selectedCurrency,
+                    short: true,
+                  }
+                )}{' '}
                 {selectedCurrency}
               </span>
             </div>

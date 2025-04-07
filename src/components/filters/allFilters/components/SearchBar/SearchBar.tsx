@@ -1,6 +1,8 @@
 'use client';
 import React from 'react';
-import MultipleSelector, { Option } from '@/components/ui/multi-selector';
+import MultipleSelector, {
+  Option,
+} from '@/components/ui/multi-selector-search';
 import { useFilters } from '@/hooks/useFilters';
 import { SearchIcon } from 'lucide-react';
 import { cn } from '@/lib/utils';
@@ -20,8 +22,8 @@ export const SearchBar = () => {
       .map((opt) => opt.value!.replace('developer:', ''));
 
     setAll({
-      title: titles.length > 0 ? titles : '',
-      developer: developers.length > 0 ? developers : '',
+      title: titles.length > 0 ? titles.join(', ') : '',
+      developer: developers.length > 0 ? developers.join(', ') : '',
     });
   };
 

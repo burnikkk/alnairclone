@@ -1,4 +1,4 @@
-import { Option } from '@/components/ui/multi-selector';
+import { Option } from '@/components/ui/multi-selector-search';
 
 export const fetchSearchResults = async (query: string): Promise<Option[]> => {
   const res = await fetch(`/api/properties?searchQuery=${query}`);

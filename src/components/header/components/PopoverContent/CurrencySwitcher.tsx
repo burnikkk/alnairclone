@@ -2,10 +2,21 @@ import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 import React from 'react';
 import { useSettings } from '@/hooks/useSettings';
+import { Currency, currencySymbols } from '@/types/property';
 
 export const CurrencySwitcher = () => {
   const { selectedCurrency, setSelectedCurrency } = useSettings();
-  const currencies = ['AED', '$', '₽', '฿', 'OMR', '¥', 'IDR', '£', '€'];
+  const currencies: Currency[] = [
+    'AED',
+    'USD',
+    'EUR',
+    'THB',
+    'RUB',
+    'OMR',
+    'JPY',
+    'IDR',
+    'GBP',
+  ];
 
   return (
     <div className="grid grid-cols-9 w-full border border-gray-300 rounded-md">
@@ -24,7 +35,7 @@ export const CurrencySwitcher = () => {
           )}
           onClick={() => setSelectedCurrency(currency as any)}
         >
-          {currency}
+          {currencySymbols[currency]}
         </Button>
       ))}
     </div>

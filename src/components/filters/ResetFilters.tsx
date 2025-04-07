@@ -7,11 +7,11 @@ export const ResetFilters = () => {
   const { filters, resetAll } = useFilters();
   const t = useTranslations('ResetFilters');
 
-  const hasActiveFilters = Object.values(filters).some(
+  const activeFiltersCount = Object.values(filters).filter(
     (value) => value !== null && value !== '' && value !== undefined
-  );
+  ).length;
 
-  if (!hasActiveFilters) return null;
+  if (activeFiltersCount <= 4) return null;
 
   return (
     <Button size="sm" className="rounded-full" onClick={resetAll}>

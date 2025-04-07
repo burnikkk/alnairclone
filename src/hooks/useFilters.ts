@@ -9,6 +9,8 @@ const initFilters: IFilters = {
   pricePer: 'object',
   latitude: '25.116987',
   longitude: '55.496249',
+  title: '',
+  developer: '',
   sortOption: '',
   minPrice: '',
   maxPrice: '',

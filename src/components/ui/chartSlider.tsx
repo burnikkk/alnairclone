@@ -28,12 +28,12 @@ const ChartSlider: React.FC<ChartSliderProps> = ({
   onRangeChange,
 }) => {
   const chartColumns = data.length - 1;
-  const step = roundStep((max - min) / chartColumns);
+  const step = roundStep(100 / chartColumns);
 
   const normalizedData = normalizeToMax100(data);
 
   return (
-    <div className="w-full flex flex-col items-center gap-5">
+    <div className="w-full flex flex-col items-center">
       <div className="relative w-full h-20 flex items-end flex-nowrap gap-1">
         {normalizedData.map((value, index) => {
           const columnRange = index * step;
@@ -42,7 +42,7 @@ const ChartSlider: React.FC<ChartSliderProps> = ({
             <div
               key={index}
               className={cn(
-                'w-full rounded-[2px] transition-all bg-indigo-500',
+                'w-full rounded-[2px] transition-all bg-violet',
                 !isInRange && 'opacity-20'
               )}
               style={{ height: `${value}%` }}

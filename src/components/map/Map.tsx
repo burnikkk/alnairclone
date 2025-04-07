@@ -7,19 +7,22 @@ import { useFilters } from '@/hooks/useFilters';
 import { useSettings } from '@/hooks/useSettings';
 import { Icon } from 'leaflet';
 import Image from 'next/image';
-import { convertPrice } from '@/utils/price';
+import { convertPrice } from '@/utils/convertPrice';
 import { formatCurrency } from '@/lib/utils';
 import { useProperties } from '@/hooks/useProperties';
+import { useCurrencyRates } from '@/hooks/useCurrencyRates';
 
 const customIcon = new Icon({
   iconUrl: '/icons/square.png',
   iconSize: [18, 18],
+  className: 'border-1 border-white rounded-lg',
 });
 
 const Map: React.FC = () => {
   const { filters } = useFilters();
   const { selectedCurrency } = useSettings();
   const { data: properties } = useProperties();
+  const { rates: exchangeRates } = useCurrencyRates(selectedCurrency);
 
   return (
     <div className="pl-8 md:pl-0 w-svw h-svh">
@@ -62,7 +65,11 @@ const Map: React.FC = () => {
                     </p>
                     <p className="text-md font-bold !m-0">
                       {formatCurrency(
-                        convertPrice(property.price, selectedCurrency)
+                        convertPrice(
+                          property.price,
+                          selectedCurrency,
+                          exchangeRates
+                        )
                       )}{' '}
                       {selectedCurrency}
                     </p>

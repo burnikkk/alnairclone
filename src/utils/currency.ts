@@ -1,14 +1,14 @@
-type FormatCurrencyOptions = {
-  currency?: string;
-  locale?: string;
-  thousandsSeparator?: string;
-  round?: boolean;
-  short?: boolean;
-};
+import { Currency } from '@/types/property';
 
 export const formatCurrency = (
   amount: number,
-  options: Partial<FormatCurrencyOptions> = {}
+  options: {
+    currency?: Currency;
+    locale?: string;
+    thousandsSeparator?: string;
+    round?: boolean;
+    short?: boolean;
+  } = {}
 ) => {
   const {
     currency = 'AED',
@@ -33,14 +33,21 @@ export const formatCurrency = (
   });
 
   const fullFormatter = new Intl.NumberFormat(locale, {
+    style: 'currency',
     currency,
     minimumFractionDigits: 0,
     maximumFractionDigits: 0,
   });
 
-  const formatter = short ? shortFormatter : fullFormatter;
-
-  const formattedValue = formatter.format(getAmount());
+  let formattedValue = '';
+  try {
+    formattedValue = (short ? shortFormatter : fullFormatter).format(
+      getAmount()
+    );
+  } catch (e) {
+    console.error('Currency formatting error:', e);
+    formattedValue = getAmount().toFixed(0);
+  }
 
   return thousandsSeparator
     ? formattedValue.replace(/,/g, thousandsSeparator)

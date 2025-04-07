@@ -18,6 +18,7 @@ import { PriceList } from '@/components/filters/shared/PriceList';
 import { CurrencyForm } from '@/components/filters/shared/FormParts/CurrencyForm';
 import { MeasureForm } from '@/components/filters/shared/FormParts/MeasureForm';
 import { useTranslations } from 'next-intl';
+import { cn } from '@/lib/utils';
 
 const basePriceOptions = [
   500_000, 1_000_000, 1_500_000, 3_000_000, 5_000_000, 8_000_000, 15_000_000,
@@ -58,7 +59,10 @@ export const Price = () => {
       <PopoverTrigger asChild>
         <Button
           variant="outline"
-          className="w-fit rounded-full bg-[#f3f3f5] !text-[#1F1F1F] border-none"
+          className={cn(
+            'w-fit rounded-full bg-[#f3f3f5] !text-[#1F1F1F] border-none',
+            'hover:bg-[#f3f3f5] hover:text-[#1F1F1F]'
+          )}
         >
           {displayPrice ? displayPrice : t('button_placeholder')}
         </Button>

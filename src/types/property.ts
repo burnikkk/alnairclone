@@ -40,15 +40,26 @@ export enum EMeasure {
 
 export type Currency =
   | 'AED'
-  | '$'
-  | '€'
-  | '฿'
-  | '₽'
+  | 'USD'
+  | 'EUR'
+  | 'THB'
+  | 'RUB'
   | 'OMR'
-  | '¥'
+  | 'JPY'
   | 'IDR'
-  | '£';
+  | 'GBP';
 
+export const currencySymbols: Record<Currency, string> = {
+  AED: 'AED',
+  USD: '$',
+  EUR: '€',
+  THB: '฿',
+  RUB: '₽',
+  OMR: 'OMR',
+  JPY: '¥',
+  IDR: 'IDR',
+  GBP: '£',
+};
 export interface IProperty {
   id: string;
   isRecommended: boolean;
