@@ -1,18 +1,25 @@
 'use client';
 
 import React from 'react';
-import { useFilters } from '@/hooks/useFilters';
 import { Button } from '@/components/ui/button';
 import { salesTypes } from '@/utils/salesTypes';
 import { useTranslations } from 'next-intl';
 import { cn } from '@/lib/utils';
+import { IFilters } from '@/types/filters';
+import { useFormContext } from 'react-hook-form';
 
 export const SalesType = () => {
-  const { filters, setAll } = useFilters();
   const t = useTranslations('salesTypes');
 
-  const handleClick = (value: string) => {
-    setAll({ salesType: value });
+  const form = useFormContext<IFilters>();
+  const selectedSalesType = form.watch('salesType').split(',');
+
+  const handleSelect = (value: string) => {
+    const newValues = selectedSalesType.includes(value)
+      ? selectedSalesType.filter((i) => i !== value)
+      : [...selectedSalesType, value];
+
+    form.setValue('salesType', newValues.join(','));
   };
 
   return (
@@ -21,14 +28,15 @@ export const SalesType = () => {
         <Button
           key={key}
           size="sm"
+          type="button"
           variant="outline"
           className={cn(
             'rounded-full border-none',
-            filters.salesType === key
+            selectedSalesType.includes(key)
               ? 'bg-violet text-white'
               : 'bg-[#f3f3f5] text-[#1F1F1F] hover:bg-violet hover:text-white'
           )}
-          onClick={() => handleClick(key)}
+          onClick={() => handleSelect(key)}
         >
           {t(key)}
         </Button>

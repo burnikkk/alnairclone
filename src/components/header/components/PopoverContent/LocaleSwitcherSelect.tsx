@@ -1,11 +1,10 @@
 'use client';
 
-import { useTransition } from 'react';
-import { usePathname, useRouter } from 'next/navigation';
 import { cn } from '@/lib/utils';
 import { useTranslations } from 'next-intl';
 import { Button } from '@/components/ui/button';
 import Flag from 'react-world-flags';
+import { usePathname, useRouter } from '@/i18n/navigation';
 
 export default function LocaleSwitcherSelect({
   defaultValue,
@@ -15,19 +14,14 @@ export default function LocaleSwitcherSelect({
   label: string;
 }) {
   const router = useRouter();
-  const [isPending, startTransition] = useTransition();
   const pathname = usePathname();
   const t = useTranslations('PopoverHeader');
-
   const flagCodes = t.raw('flagCode') as Record<string, string>;
   const locales = Object.keys(flagCodes);
 
-  function changeLocale(nextLocale: string) {
-    const pathWithoutLocale = pathname.replace(/^\/(ru|en|ae)/, '');
-    startTransition(() => {
-      router.replace(`/${nextLocale}${pathWithoutLocale}`);
-    });
-  }
+  const changeLocale = (nextLocale: string) => {
+    router.push(pathname, { locale: nextLocale });
+  };
 
   return (
     <div>
@@ -46,7 +40,6 @@ export default function LocaleSwitcherSelect({
                 : 'text-black'
             )}
             onClick={() => changeLocale(code)}
-            disabled={isPending}
           >
             <Flag code={flagCodes[code]} className="w-5 h-5" />
             {t(code)}

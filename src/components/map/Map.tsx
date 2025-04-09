@@ -4,13 +4,9 @@ import React from 'react';
 import { MapContainer, Marker, Popup, TileLayer } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import { useFilters } from '@/hooks/useFilters';
-import { useSettings } from '@/hooks/useSettings';
 import { Icon } from 'leaflet';
 import Image from 'next/image';
-import { convertPrice } from '@/utils/convertPrice';
-import { formatCurrency } from '@/lib/utils';
 import { useProperties } from '@/hooks/useProperties';
-import { useCurrencyRates } from '@/hooks/useCurrencyRates';
 
 const customIcon = new Icon({
   iconUrl: '/icons/square.png',
@@ -20,9 +16,7 @@ const customIcon = new Icon({
 
 const Map: React.FC = () => {
   const { filters } = useFilters();
-  const { selectedCurrency } = useSettings();
   const { data: properties } = useProperties();
-  const { rates: exchangeRates } = useCurrencyRates(selectedCurrency);
 
   return (
     <div className="pl-8 md:pl-0 w-svw h-svh">
@@ -45,33 +39,23 @@ const Map: React.FC = () => {
               icon={customIcon}
             >
               <Popup>
-                <div className="flex w-[250px] p-0 bg-white rounded-2xl overflow-hidden">
-                  <div className="relative w-1/2 h-[100px]">
+                <div className="flex gap-2 w-[300px] p-0 m-0 bg-white rounded-lg overflow-hidden">
+                  <div className="relative">
                     <Image
                       src={'/icons/img.png'}
                       alt={property.title}
-                      layout="fill"
-                      objectFit="cover"
-                      className="rounded-2xl"
+                      width={100}
+                      height={75}
+                      objectFit="contain"
+                      className="rounded-lg w-[100px] h-[75px]"
                     />
                   </div>
-
-                  <div className="w-1/2 flex flex-col justify-center px-4">
+                  <div className="flex flex-col items-start justify-center">
                     <h3 className="text-sm font-semibold !m-0">
                       {property.title}
                     </h3>
-                    <p className="text-sm text-gray-600 !m-0">
-                      {property.city}
-                    </p>
-                    <p className="text-md font-bold !m-0">
-                      {formatCurrency(
-                        convertPrice(
-                          property.price,
-                          selectedCurrency,
-                          exchangeRates
-                        )
-                      )}{' '}
-                      {selectedCurrency}
+                    <p className="text-xs text-gray-600 !m-0">
+                      {property.developer}
                     </p>
                   </div>
                 </div>

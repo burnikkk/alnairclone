@@ -14,7 +14,7 @@ export const CollapsibleButton: React.FC<CollapsibleButtonProps> = ({
     <div className="border-l border-r w-[32px] z-10 absolute top-0 right-0 bottom-0">
       <button
         onClick={() => setIsCollapsed(!isCollapsed)}
-        className="h-full w-full flex items-center justify-center cursor-pointer"
+        className="h-[calc(100svh-125px)] w-full flex items-center justify-center cursor-pointer"
       >
         {isCollapsed ? (
           <PanelLeftOpen className="h-4 w-4" />

@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { EBedroom, EDiscountType, IProperty } from '@/types/property';
 
-const mocks: IProperty[] = [
+export const mocks: IProperty[] = [
   {
     id: '1',
     isRecommended: true,
@@ -222,14 +222,6 @@ export async function GET(request: NextRequest) {
     searchParams.get('maxPrice') || '1000000000000',
     10
   );
-  console.log('title', title);
-  console.log('developer', developer);
-  console.log('salesType', salesType);
-  console.log('minPrice', minPrice);
-  console.log('maxPrice', maxPrice);
-  console.log('propertyType', propertyType);
-  console.log('bedrooms', bedrooms);
-  console.log('saleStatus', saleStatus);
 
   try {
     const filtered = mocks

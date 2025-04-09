@@ -8,7 +8,7 @@ export const PropertyHead = () => {
   const { found, total } = useProperties();
 
   return (
-    <div className="w-full pt-2 flex items-center justify-between">
+    <div className="w-full py-2 flex items-center justify-between">
       <div>
         <p className="text-xl font-semibold">
           {found} из {total} результатов

@@ -29,7 +29,7 @@ export const PopoverHeader: React.FC = () => {
           variant="outline"
           className={cn(
             'flex items-center gap-2 px-2 py-2 h-10',
-            'bg-gray-200 rounded-lg transition-colors duration-300 mr-4',
+            'bg-gray-200 rounded-xl transition-colors duration-300 mr-3',
             'hover:bg-gray-300 hover:text-black'
           )}
         >

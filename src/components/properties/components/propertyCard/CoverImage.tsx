@@ -34,7 +34,7 @@ export const CoverImage = ({
 
   return (
     <div className="relative w-full h-[220px] mb-30">
-      <div className="absolute top-3 left-3   grid items-start gap-2">
+      <div className="absolute top-3 left-3 grid items-start gap-2">
         {isRecommended && (
           <Badge className=" bg-[#edeef7] text-[#4f5fd9] rounded-full text-xs font-normal z-10 uppercase">
             {tr('recommended')}

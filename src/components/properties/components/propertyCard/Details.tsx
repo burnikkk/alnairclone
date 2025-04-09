@@ -11,30 +11,40 @@ import CompletionDate from '@/components/properties/components/propertyCard/Comp
 import { formatCurrency } from '@/utils/currency';
 import { convertPrice } from '@/utils/convertPrice';
 import { useCurrencyRates } from '@/hooks/useCurrencyRates';
+import { cn } from '@/lib/utils';
+import usePropertyImage from '@/hooks/usePropertyImages';
 
 interface DetailsProps {
   property: PropertyType;
+  type: string;
 }
 
-export const Details = ({ property }: DetailsProps) => {
+export const Details = ({ property, type }: DetailsProps) => {
   const { selectedCurrency } = useSettings();
   const { rates: exchangeRates } = useCurrencyRates(selectedCurrency);
+  const { imageUrl } = usePropertyImage(type);
   const t = useTranslations('details');
   const tPropertyTypes = useTranslations('propertyTypes');
 
   return (
-    <CardContent className="absolute bottom-0 left-0 w-full bg-white px-3 py-2 max-h-[120px] rounded-xl overflow-hidden group-hover:max-h-[272px] transition-[max-height] duration-300 ease-in-out">
+    <CardContent
+      className={cn(
+        'absolute bottom-0 left-0 w-full px-3 py-2 max-h-[120px]',
+        'bg-white rounded-xl overflow-hidden',
+        'group-hover:max-h-[272px] transition-[max-height] duration-300 ease-in-out'
+      )}
+    >
       <div className="grid grid-cols-[40px_1fr] items-center gap-3 pb-2 h-[56px]">
         <Image
-          src={'/icons/img.png'}
+          src={imageUrl || '/icons/img.png'}
           width={40}
           height={40}
           alt="Логотип"
-          className="rounded-md border"
+          className="rounded-md border object-cover w-[40px] h-[40px]"
         />
         <div className="w-full overflow-hidden">
           <h3 className="font-bold truncate">{property.title}</h3>
-          <p className="text-sm text-gray-500">{property.developer}</p>
+          <p className="text-xs text-gray-500">{property.developer}</p>
         </div>
       </div>
       <Separator />
@@ -63,12 +73,19 @@ export const Details = ({ property }: DetailsProps) => {
               {property.discount.type === EDiscountType.PERCENTAGE ? '%' : ''}
             </Badge>
           )}
-          <ChevronUp className="bg-[#f3f3f5] border-box rounded-full hover:rotate-180" />
+          <div className="bg-[#f3f3f5] rounded-full transition-transform p-2">
+            <ChevronUp className="w-3 h-3 transition-transform duration-300 group-hover:rotate-180" />
+          </div>
         </div>
       </div>
       <Separator />
 
-      <div className="flex flex-col gap-2 opacity-0 max-h-[110px] group-hover:opacity-100 transition-opacity duration-300 ease-in-out">
+      <div
+        className={cn(
+          'flex flex-col gap-2 opacity-0 max-h-[110px]',
+          'group-hover:opacity-100 transition-opacity duration-300 ease-in-out'
+        )}
+      >
         <div className="flex flex-col gap-1">
           {property.units.map((unit, index) => (
             <div key={index} className="flex justify-between text-sm">

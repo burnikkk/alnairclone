@@ -1,18 +1,25 @@
 'use client';
 
 import React from 'react';
-import { useFilters } from '@/hooks/useFilters';
 import { Button } from '@/components/ui/button';
 import { EBedroom } from '@/types/property';
 import { useTranslations } from 'next-intl';
 import { cn } from '@/lib/utils';
+import { useFormContext } from 'react-hook-form';
+import { IFilters } from '@/types/filters';
 
 export const Bedrooms = () => {
-  const { filters, setAll } = useFilters();
   const t = useTranslations('Bedrooms');
 
-  const handleClick = (value: string) => {
-    setAll({ bedrooms: value });
+  const form = useFormContext<IFilters>();
+  const selectedBedrooms = form.watch('bedrooms').split(',');
+
+  const handleSelect = (value: string) => {
+    const newValues = selectedBedrooms.includes(value)
+      ? selectedBedrooms.filter((i) => i !== value)
+      : [...selectedBedrooms, value];
+
+    form.setValue('bedrooms', newValues.join(','));
   };
 
   return (
@@ -21,14 +28,15 @@ export const Bedrooms = () => {
         <Button
           key={key}
           size="sm"
+          type="button"
           variant="outline"
           className={cn(
             'rounded-full border-none',
-            filters.bedrooms === value
+            selectedBedrooms.includes(value)
               ? 'bg-violet text-white'
               : 'bg-[#f3f3f5] text-[#1F1F1F] hover:bg-violet hover:text-white'
           )}
-          onClick={() => handleClick(value)}
+          onClick={() => handleSelect(value)}
         >
           {t(
             value === 'free_planing'

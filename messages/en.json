@@ -135,5 +135,11 @@
   },
   "CoverImage": {
     "recommended": "Recommended"
+  },
+  "Login": {
+    "sign": "Sign in for free and use all the features of the site",
+    "email": "Email",
+    "credit_card": "No credit card required",
+    "info": "By clicking \"Continue\" you agree with our terms of us"
   }
 }

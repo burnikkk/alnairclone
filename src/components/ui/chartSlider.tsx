@@ -28,7 +28,7 @@ const ChartSlider: React.FC<ChartSliderProps> = ({
   onRangeChange,
 }) => {
   const chartColumns = data.length - 1;
-  const step = roundStep(100 / chartColumns);
+  const step = roundStep(1000 / chartColumns);
 
   const normalizedData = normalizeToMax100(data);
 
