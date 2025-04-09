@@ -126,7 +126,9 @@
     "minArea": "Area from",
     "maxArea": "Area to"
   },
-  "results_count": "{} out of {} results",
+"ResultsCount": {
+  "results_count": "{found} out of {total} results"
+},
   "details": {
     "from": "From",
     "units_available": "units available",

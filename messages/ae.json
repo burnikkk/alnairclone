@@ -126,7 +126,9 @@
     "minArea": "المساحة من",
     "maxArea": "المساحة إلى"
   },
-  "results_count": "{} من أصل {} نتائج",
+  "ResultsCount": {
+    "results_count": "{found} من أصل {total} نتائج"
+  },
   "details": {
     "from": "من",
     "units_available": "وحدات متاحة",

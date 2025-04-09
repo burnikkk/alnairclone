@@ -126,7 +126,9 @@
     "minArea": "Площадь от",
     "maxArea": "Площадь до"
   },
-  "results_count": "{} из {} результатов",
+  "ResultsCount": {
+    "results_count": "{found} из {total} результатов"
+  },
   "details": {
     "from": "От",
     "units_available": "юнитов доступно",
