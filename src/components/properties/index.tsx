@@ -20,9 +20,9 @@ export const PropertyList = () => {
   return (
     <div
       className={cn(
-        'transition-all duration-300 ease-in-out absolute md:relative pr-8 h-svh z-10 bg-white',
+        'transition-all duration-300 ease-in-out absolute md:pr-8 md:relative h-svh z-10 bg-white',
         isCollapsed
-          ? 'w-8 overflow-hidden'
+          ? 'w-[1px] overflow-hidden'
           : 'min-w-[320px] w-svw md:w-[320px] xl:min-w-[688px]'
       )}
     >

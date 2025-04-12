@@ -4,7 +4,7 @@ import { DesktopHeader } from '@/components/header/components/desktopHeader';
 import { SidebarProvider, SidebarTrigger } from '@/components/ui/sidebar';
 import { AppSidebar } from '@/components/header/components/mobileHeader/appSidebar';
 import { AvatarHeader } from '@/components/header/components/Avatar';
-import { Search } from 'lucide-react';
+import { AlignJustify, Search } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import * as React from 'react';
 import { AllFilters } from '@/components/filters/allFilters';
@@ -12,15 +12,15 @@ import { AllFilters } from '@/components/filters/allFilters';
 export const Header = () => {
   return (
     <div className="h-14 z-0">
-      <div className="hidden md:block flex items-top justify-between relative p-2">
+      <div className="hidden md:block items-top justify-between relative p-2">
         <DesktopHeader />
       </div>
 
       <div className="md:hidden flex items-top justify-between relative p-3">
         <div className="flex-shrink-0">
           <AllFilters>
-            <Button className="rounded-full">
-              <Search size={20} />
+            <Button className="rounded-full bg-inherit shadow-none">
+              <Search />
             </Button>
           </AllFilters>
         </div>
@@ -32,7 +32,9 @@ export const Header = () => {
         <div>
           <SidebarProvider>
             <AppSidebar />
-            <SidebarTrigger />
+            <SidebarTrigger>
+              <AlignJustify />
+            </SidebarTrigger>
           </SidebarProvider>
         </div>
       </div>

@@ -6,8 +6,8 @@ export const RegistrationButton = () => {
   const t = useTranslations('RegistrationButton');
 
   return (
-    <Link href={`/login`}>
-      <Button className="h-10 rounded-xl bg-violet text-white hover:bg-violet-light">
+    <Link href={`/login`} className="w-full">
+      <Button className="w-full h-10 rounded-xl bg-violet text-white hover:bg-violet-light">
         {t('registration')}
       </Button>
     </Link>
