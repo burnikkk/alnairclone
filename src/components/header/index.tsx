@@ -11,7 +11,7 @@ import { AllFilters } from '@/components/filters/allFilters';
 
 export const Header = () => {
   return (
-    <div className="h-14">
+    <div className="h-14 z-0">
       <div className="hidden md:block flex items-top justify-between relative p-2">
         <DesktopHeader />
       </div>
@@ -29,7 +29,7 @@ export const Header = () => {
           <AvatarHeader />
         </div>
 
-        <div className="flex-shrink-0">
+        <div>
           <SidebarProvider>
             <AppSidebar />
             <SidebarTrigger />

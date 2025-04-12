@@ -16,7 +16,7 @@ const fetcher = (url: string) =>
     })
     .then((res) => res.data);
 
-export default function usePropertyImage(query: string = 'modern apartment') {
+export default function usePropertyImage(query: string) {
   const { data, error, isLoading } = useSWR<UnsplashImage>(
     `https://api.unsplash.com/photos/random?query=${query}`,
     fetcher

@@ -208,14 +208,14 @@ export const mocks: IProperty[] = [
 
 export async function GET(request: NextRequest) {
   const { searchParams } = new URL(request.url);
-
-  const propertyType = searchParams.get('propertyType');
-  const salesType = searchParams.get('salesType');
+  const propertyType = searchParams.get('propertyType')?.split(',');
+  const salesType = searchParams.get('salesType')?.split(',') ?? null;
   const exclusive = searchParams.get('exclusive');
-  const bedrooms = searchParams.get('bedrooms');
-  const saleStatus = searchParams.get('saleStatus');
-  const title = searchParams.get('title')?.toLowerCase();
-  const developer = searchParams.get('developer')?.toLowerCase();
+  const bedrooms = searchParams.get('bedrooms')?.split(',') ?? null;
+  const saleStatus = searchParams.get('saleStatus')?.split(',') ?? null;
+  const title = searchParams.get('title')?.toLowerCase().split(',') ?? null;
+  const developer =
+    searchParams.get('developer')?.toLowerCase().split(',') ?? null;
   const searchQuery = searchParams.get('searchQuery')?.toLowerCase();
   const minPrice = parseInt(searchParams.get('minPrice') || '0', 10);
   const maxPrice = parseInt(
@@ -226,21 +226,27 @@ export async function GET(request: NextRequest) {
   try {
     const filtered = mocks
       .filter((item) =>
-        propertyType ? item.propertyType === propertyType : true
+        propertyType ? propertyType.includes(item.propertyType) : true
       )
       .filter((item) =>
-        bedrooms ? item.units.some((unit) => unit.type === bedrooms) : true
+        bedrooms ? bedrooms.includes(item.units[0].type) : true
       )
-      .filter((item) => (saleStatus ? saleStatus === item.salesStatus : true))
+      .filter((item) =>
+        saleStatus ? saleStatus.includes(item.salesStatus ?? '') : true
+      )
       .filter((item) => item.availableUnits > 0)
       .filter((item) => (exclusive === 'true' ? item.exclusive : true))
-      .filter((item) => (salesType ? salesType === item.salesType : true))
+      .filter((item) =>
+        salesType ? salesType.includes(item.salesType ?? '') : true
+      )
       .filter((item) => item.price >= minPrice && item.price <= maxPrice)
       .filter((item) =>
-        title ? item.title.toLowerCase().includes(title) : true
+        title ? title.some((t) => item.title.toLowerCase().includes(t)) : true
       )
       .filter((item) =>
-        developer ? item.developer.toLowerCase().includes(developer) : true
+        developer
+          ? developer.some((d) => item.developer.toLowerCase().includes(d))
+          : true
       )
       .filter((item) =>
         searchQuery

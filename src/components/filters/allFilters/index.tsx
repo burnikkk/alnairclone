@@ -46,9 +46,9 @@ export const AllFilters: FC<PropsWithChildren> = ({ children }) => {
     <Dialog>
       <DialogTrigger asChild>{children}</DialogTrigger>
 
-      <DialogContent className="sm:max-w-svw md:max-w-[900px] max-h-[650px] border-none">
+      <DialogContent className="sm:max-w-svw md:max-w-[900px] sm:max-h-svh max-h-[650px] border-none">
         <Form context={form} onSubmit={setAll}>
-          <DialogHeader className="bg-gray-200 rounded-t-lg p-15">
+          <DialogHeader className="bg-gray-200 rounded-t-lg p-5 md:p-15">
             <DialogTitle className="font-semibold text-2xl pb-4">
               <p>
                 {t('search_in_projects', {
@@ -59,7 +59,7 @@ export const AllFilters: FC<PropsWithChildren> = ({ children }) => {
             </DialogTitle>
             <SearchBar />
           </DialogHeader>
-          <div className="px-15 py-8 flex flex-col gap-6">
+          <div className="p-5 md:px-15 md:py-8 flex flex-col gap-6">
             <Price properties={data ?? []} />
 
             <Block title={t('type')}>

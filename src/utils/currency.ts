@@ -8,14 +8,16 @@ export const formatCurrency = (
     thousandsSeparator?: string;
     round?: boolean;
     short?: boolean;
+    long?: boolean;
   } = {}
 ) => {
   const {
-    currency = 'AED',
+    currency,
     locale = 'en-AE',
-    thousandsSeparator,
+    thousandsSeparator = ' ',
     round,
     short,
+    long,
   } = options;
 
   const getAmount = () => {
@@ -25,31 +27,43 @@ export const formatCurrency = (
     return amount;
   };
 
-  const shortFormatter = new Intl.NumberFormat(locale, {
-    notation: 'compact',
-    compactDisplay: 'short',
-    maximumFractionDigits: 1,
-    minimumFractionDigits: 0,
-  });
+  const value = getAmount();
 
-  const fullFormatter = new Intl.NumberFormat(locale, {
-    style: 'currency',
-    currency,
-    minimumFractionDigits: 0,
-    maximumFractionDigits: 0,
-  });
+  let formatter: Intl.NumberFormat;
 
-  let formattedValue = '';
   try {
-    formattedValue = (short ? shortFormatter : fullFormatter).format(
-      getAmount()
-    );
+    if (short) {
+      formatter = new Intl.NumberFormat(locale, {
+        notation: 'compact',
+        compactDisplay: 'short',
+        maximumFractionDigits: 1,
+        minimumFractionDigits: 0,
+      });
+    } else if (long) {
+      formatter = new Intl.NumberFormat(locale, {
+        notation: 'standard',
+        compactDisplay: 'long',
+        maximumFractionDigits: 1,
+        minimumFractionDigits: 0,
+      });
+    } else {
+      formatter = new Intl.NumberFormat(locale, {
+        style: currency ? 'currency' : 'decimal',
+        currency: currency || undefined,
+        minimumFractionDigits: 0,
+        maximumFractionDigits: 0,
+      });
+    }
+
+    let formattedValue = formatter.format(value);
+
+    if (thousandsSeparator) {
+      formattedValue = formattedValue.replace(/,/g, thousandsSeparator);
+    }
+
+    return formattedValue;
   } catch (e) {
     console.error('Currency formatting error:', e);
-    formattedValue = getAmount().toFixed(0);
+    return value.toFixed(0).replace(/,/g, thousandsSeparator);
   }
-
-  return thousandsSeparator
-    ? formattedValue.replace(/,/g, thousandsSeparator)
-    : formattedValue;
 };

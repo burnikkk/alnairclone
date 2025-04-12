@@ -14,7 +14,7 @@ import { ExclusiveFilterButton } from '@/components/filters/Exclusive';
 export const Menubar = () => {
   const t = useTranslations('Menubar');
   return (
-    <menu className="p-4 flex gap-2 overflow-x-auto">
+    <menu className="p-4 flex gap-2 overflow-x-auto z-10 relative">
       <Location />
       <AllFilters>
         <Button className="rounded-full">

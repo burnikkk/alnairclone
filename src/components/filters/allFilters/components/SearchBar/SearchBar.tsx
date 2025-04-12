@@ -22,8 +22,8 @@ export const SearchBar = () => {
       .map((opt) => opt.value!.replace('developer:', ''));
 
     setAll({
-      title: titles.length > 0 ? titles.join(', ') : '',
-      developer: developers.length > 0 ? developers.join(', ') : '',
+      title: titles.length > 0 ? titles.join(',') : '',
+      developer: developers.length > 0 ? developers.join(',') : '',
     });
   };
 
