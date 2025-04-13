@@ -6,6 +6,9 @@ module.exports = {
   ],
   theme: {
     extend: {
+      screens: {
+        'custom-md': '960px',
+      },
       colors: {
         violet: 'var(--color-violet)',
         'violet-light': 'var(--color-violet-light)',

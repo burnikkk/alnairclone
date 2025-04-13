@@ -1,14 +1,12 @@
 import * as React from 'react';
 import { Button } from '@/components/ui/button';
-import { IProperty } from '@/types/property';
 import Image from 'next/image';
 import { Link } from '@/i18n/navigation';
+import { useProperty } from '@/hooks/useProperty';
 
-interface SimpleProps {
-  property: IProperty;
-}
+export const SimpleInfo = () => {
+  const { property, setProperty } = useProperty();
 
-export const SimpleInfo = ({ property }: SimpleProps) => {
   return (
     <div className="h-fit p-6 rounded-lg border sticky top-0">
       <div className="grid grid-cols-2 p-3">

@@ -222,6 +222,8 @@ export async function GET(request: NextRequest) {
     searchParams.get('maxPrice') || '1000000000000',
     10
   );
+  const minArea = parseInt(searchParams.get('minArea') || '0', 10);
+  const maxArea = parseInt(searchParams.get('maxArea') || '1000000000000', 10);
 
   try {
     const filtered = mocks
@@ -230,6 +232,9 @@ export async function GET(request: NextRequest) {
       )
       .filter((item) =>
         bedrooms ? bedrooms.includes(item.units[0].type) : true
+      )
+      .filter(
+        (item) => item.units[0].size >= minArea && item.units[0].size <= maxArea
       )
       .filter((item) =>
         saleStatus ? saleStatus.includes(item.salesStatus ?? '') : true

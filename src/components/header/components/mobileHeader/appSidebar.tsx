@@ -26,7 +26,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
 
         <Location />
         <SidebarTrigger>
-          <X className="size-6 cursor-pointer p-0" aria-hidden="true" />
+          <X className="size-6 cursor-pointer" aria-hidden="true" />
         </SidebarTrigger>
       </SidebarHeader>
 

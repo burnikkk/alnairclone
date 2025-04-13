@@ -29,7 +29,7 @@ export const PopoverHeader: React.FC = () => {
           variant="outline"
           className={cn(
             'flex items-center gap-2 px-2 py-2 h-10',
-            'bg-gray-200 rounded-xl transition-colors duration-300 mr-3',
+            'bg-gray-200 rounded-xl transition-colors duration-300 shadow-none',
             'hover:bg-gray-300 hover:text-black'
           )}
         >
@@ -40,7 +40,7 @@ export const PopoverHeader: React.FC = () => {
           <span>{getMeasureLabel(selectedMeasure)}</span>
         </Button>
       </PopoverTrigger>
-      <PopoverContent className="w-[400px] p-4 rounded-xl shadow-md bg-white">
+      <PopoverContent className="w-screen sm:w-[400px] p-4 rounded-xl bg-white">
         <div>
           <h4 className="text-sm font-medium pb-2">{t('language')}</h4>
           <LocaleSwitcher />

@@ -1,14 +1,12 @@
 import Image from 'next/image';
-import { IProperty } from '@/types/property';
 import { Badge } from '@/components/ui/badge';
+import { useProperty } from '@/hooks/useProperty';
 
-interface FullProps {
-  property: IProperty;
-}
+export const EventCard = () => {
+  const { property, setProperty } = useProperty();
 
-export const EventCard = ({ property }: FullProps) => {
   return (
-    <div className="flex w-full max-w-[800px] h-[150px] bg-gray-100 rounded-xl">
+    <div className="flex w-full h-[150px] bg-gray-100 rounded-xl">
       <div className="relative w-[180px] h-auto min-w-[180px] rounded-lg overflow-hidden">
         <Image
           src={'/icons/img.png'}

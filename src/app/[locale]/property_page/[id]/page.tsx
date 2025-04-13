@@ -11,7 +11,10 @@ interface IPage {
 }
 
 const PropertyPage = async ({ params }: IPage) => {
-  const res = await fetch(`http://localhost:3000/api/properties/${params.id}`);
+  const res = await fetch(
+    `http://localhost:3000/api/properties/${params.id}`,
+    {}
+  );
 
   if (!res.ok) return notFound();
 
@@ -21,7 +24,7 @@ const PropertyPage = async ({ params }: IPage) => {
     <div className="h-full">
       <Header />
       <Separator />
-      <Body property={property} />
+      <Body />
     </div>
   );
 };

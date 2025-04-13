@@ -26,7 +26,7 @@ export const SortHead = () => {
 
   return (
     <Select value={filters.sortOption} onValueChange={handleChange}>
-      <SelectTrigger className="w-[180px] border-none shadow-none">
+      <SelectTrigger className="w-full border-none shadow-none pl-1 text-violet">
         <SelectValue placeholder={t('all')} />
       </SelectTrigger>
       <SelectContent className="align-middle">

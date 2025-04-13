@@ -20,9 +20,8 @@ export default function LocaleSwitcherSelect({
   const locales = Object.keys(flagCodes);
 
   const changeLocale = (nextLocale: string) => {
-    router.push(pathname, { locale: nextLocale });
+    router.replace(pathname, { locale: nextLocale });
   };
-
   return (
     <div>
       <p className="sr-only">{label}</p>

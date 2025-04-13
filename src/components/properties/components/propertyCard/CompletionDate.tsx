@@ -18,6 +18,14 @@ const CompletionDate: FC<CompletionDateProps> = ({ date }) => {
     const parsedDate = new Date(date);
     const localeFormat = locales[locale] || 'en-US';
 
+    if (isNaN(parsedDate.getTime())) {
+      return locale === 'ru'
+        ? 'Не указано'
+        : locale === 'ae'
+          ? 'غير محدد'
+          : 'Not specified';
+    }
+
     return new Intl.DateTimeFormat(localeFormat, {
       year: 'numeric',
       month: 'short',

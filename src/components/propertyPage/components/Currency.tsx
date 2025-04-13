@@ -4,21 +4,18 @@ import React from 'react';
 import { useSettings } from '@/hooks/useSettings';
 import { useCurrencyRates } from '@/hooks/useCurrencyRates';
 import { useTranslations } from 'next-intl';
-import { IProperty } from '@/types/property';
+import { useProperty } from '@/hooks/useProperty';
 
-interface FullProps {
-  property: IProperty;
-}
-
-export const Currency = ({ property }: FullProps) => {
+export const Currency = () => {
+  const { property } = useProperty();
   const { selectedCurrency } = useSettings();
   const { rates: exchangeRates } = useCurrencyRates(selectedCurrency);
   const t = useTranslations('details');
 
   return (
     <div className="text-sm">
-      <span>
-        {t('from')}&nbsp;
+      <span className="flex flex-wrap gap-x-1 gap-y-1 items-center">
+        {t('from')}
         <span className="font-semibold">
           {formatCurrency(
             convertPrice(
@@ -32,7 +29,7 @@ export const Currency = ({ property }: FullProps) => {
             }
           )}
         </span>
-        &nbsp;до&nbsp;
+        до
         <span className="font-semibold">
           {formatCurrency(
             convertPrice(

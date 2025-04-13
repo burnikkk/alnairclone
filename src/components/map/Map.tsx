@@ -3,10 +3,14 @@
 import React from 'react';
 import { MapContainer, Marker, Popup, TileLayer } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
-import { useFilters } from '@/hooks/useFilters';
+import 'leaflet.markercluster/dist/MarkerCluster.css';
+import 'leaflet.markercluster/dist/MarkerCluster.Default.css';
 import { Icon } from 'leaflet';
 import Image from 'next/image';
 import { useProperties } from '@/hooks/useProperties';
+import { Link } from '@/i18n/navigation';
+import MarkerClusterGroup from 'react-leaflet-markercluster';
+import { useFilters } from '@/hooks/useFilters';
 
 const customIcon = new Icon({
   iconUrl: '/icons/square.png',
@@ -19,7 +23,7 @@ const Map: React.FC = () => {
   const { data: properties } = useProperties();
 
   return (
-    <div className="md:pl-0 w-svw h-svh">
+    <div className="w-svw h-svh">
       <MapContainer
         key={`${filters.latitude}-${filters.longitude}`}
         center={[Number(filters.latitude), Number(filters.longitude)]}
@@ -31,38 +35,42 @@ const Map: React.FC = () => {
           attribution='&copy; <a href="https://carto.com/">CARTO</a>'
         />
 
-        {properties?.map((property) => {
-          return (
-            <Marker
-              key={property.id}
-              position={[property.latitude, property.longitude]}
-              icon={customIcon}
-            >
-              <Popup>
-                <div className="flex gap-2 w-[300px] p-0 m-0 bg-white rounded-lg overflow-hidden">
-                  <div className="relative">
-                    <Image
-                      src={'/icons/img.png'}
-                      alt={property.title}
-                      width={100}
-                      height={75}
-                      objectFit="contain"
-                      className="rounded-lg w-[100px] h-[75px]"
-                    />
-                  </div>
-                  <div className="flex flex-col items-start justify-center">
-                    <h3 className="text-sm font-semibold !m-0">
-                      {property.title}
-                    </h3>
-                    <p className="text-xs text-gray-600 !m-0">
-                      {property.developer}
-                    </p>
-                  </div>
-                </div>
-              </Popup>
-            </Marker>
-          );
-        })}
+        <MarkerClusterGroup chunkedLoading>
+          {properties?.map((property) => {
+            return (
+              <Marker
+                key={property.id}
+                position={[property.latitude, property.longitude]}
+                icon={customIcon}
+              >
+                <Popup>
+                  <Link href={`/property_page/${property.id}`}>
+                    <div className="flex gap-2 w-[300px] bg-white rounded-lg overflow-hidden">
+                      <div className="relative">
+                        <Image
+                          src={'/icons/img.png'}
+                          alt={property.title}
+                          width={100}
+                          height={75}
+                          objectFit="contain"
+                          className="rounded-lg w-[100px] h-[75px]"
+                        />
+                      </div>
+                      <div className="flex flex-col items-start justify-center">
+                        <h3 className="text-sm font-semibold">
+                          {property.title}
+                        </h3>
+                        <p className="text-xs text-gray-600">
+                          {property.developer}
+                        </p>
+                      </div>
+                    </div>
+                  </Link>
+                </Popup>
+              </Marker>
+            );
+          })}
+        </MarkerClusterGroup>
       </MapContainer>
     </div>
   );

@@ -113,7 +113,7 @@
   },
   "Price": {
     "per_object": "لكل كائن",
-    "per_sqm": "لكل متر مربع",
+    "per": "مربع",
     "show": "عرض",
     "button_placeholder": "السعر",
     "currency_label": "العملة"

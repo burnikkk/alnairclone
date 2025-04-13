@@ -51,7 +51,7 @@ interface MultiSelectProps
   }[];
   onValueChange: (value: string[]) => void;
   defaultValue?: string[];
-  value?: string[]; // <-- добавлено
+  value?: string[];
   placeholder?: string;
   animation?: number;
   maxCount?: number;

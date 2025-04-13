@@ -4,7 +4,7 @@ import React from 'react';
 import { MapContainer, Marker, Popup, TileLayer } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import { Icon } from 'leaflet';
-import { IProperty } from '@/types/property';
+import { useProperty } from '@/hooks/useProperty';
 
 const customIcon = new Icon({
   iconUrl: '/icons/square.png',
@@ -12,20 +12,16 @@ const customIcon = new Icon({
   className: 'border-1 border-white rounded-lg',
 });
 
-interface MapCardProps {
-  property: IProperty;
-}
+const MapCard = () => {
+  const { property, setProperty } = useProperty();
 
-const MapCard: React.FC<MapCardProps> = ({ property }) => {
-  const { latitude, longitude, title, city } = property;
-
-  const position: [number, number] = [latitude, longitude];
+  const position: [number, number] = [property.longitude, property.latitude];
 
   return (
-    <div className="rounded-xl overflow-hidden shadow border w-full max-w-[700px]">
+    <div className="rounded-xl overflow-hidden shadow border w-full">
       <div className="relative h-[300px]">
         <MapContainer
-          key={`${latitude}-${longitude}`}
+          key={`${property.latitude}-${property.longitude}`}
           center={position}
           zoom={15}
           scrollWheelZoom={false}
@@ -37,9 +33,8 @@ const MapCard: React.FC<MapCardProps> = ({ property }) => {
           />
           <Marker position={position} icon={customIcon}>
             <Popup>
-              <strong>{title}</strong>
-              <br />
-              {city}
+              <h2>{property.title}</h2>
+              {property.city}
             </Popup>
           </Marker>
         </MapContainer>
@@ -47,7 +42,7 @@ const MapCard: React.FC<MapCardProps> = ({ property }) => {
 
       <div className="bg-gradient-to-t from-white via-white/80 to-transparent p-4">
         <p className="text-sm text-gray-500">Расположение</p>
-        <p className="font-semibold">{`${city}`}</p>
+        <p className="font-semibold">{`${property.city}`}</p>
       </div>
     </div>
   );

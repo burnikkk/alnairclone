@@ -113,7 +113,7 @@
   },
   "Price": {
     "per_object": "per object",
-    "per_sqm": "per sqm",
+    "per": "per",
     "show": "Show",
     "button_placeholder": "Price",
     "currency_label": "Currency"

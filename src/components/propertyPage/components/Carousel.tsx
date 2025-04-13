@@ -32,10 +32,10 @@ export function CarouselApi({ query }: { query: string }) {
 
   return (
     <div className="group w-full max-w-[700px]">
-      <Carousel setApi={setApi}>
+      <Carousel setApi={setApi} opts={{ loop: true }}>
         <CarouselContent>
           {images.map((url, index) => (
-            <CarouselItem key={index}>
+            <CarouselItem key={index} className="basis-5/6 md:basis-1/1">
               <Card>
                 <CardContent className="flex items-center justify-center">
                   <Image

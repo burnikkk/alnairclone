@@ -1,9 +1,4 @@
-import { Currency, EMeasure } from '@/types/property';
-
-const measureRates: { [key in EMeasure]: number } = {
-  [EMeasure.SQM]: 1,
-  [EMeasure.SQFT]: 0.10764,
-};
+import { Currency } from '@/types/property';
 
 export const convertPrice = (
   priceInAED: number,

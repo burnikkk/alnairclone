@@ -11,7 +11,7 @@ export const CurrencyForm = () => {
       <div>
         <FormInput
           name="minPrice"
-          placeholder={`${t('minPrice')} (${selectedCurrency})`}
+          placeholder={`${t('minPrice')}`}
           inputMode="numeric"
           className="text-lg font-semibold  text-center border-none shadow-none"
           IMask={{
@@ -23,7 +23,7 @@ export const CurrencyForm = () => {
       <div>
         <FormInput
           name="maxPrice"
-          placeholder={`${t('maxPrice')} (${selectedCurrency})`}
+          placeholder={`${t('maxPrice')}`}
           inputMode="numeric"
           className="text-lg font-semibold  text-center border-none shadow-none"
           IMask={{

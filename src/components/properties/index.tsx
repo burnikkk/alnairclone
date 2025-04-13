@@ -20,10 +20,10 @@ export const PropertyList = () => {
   return (
     <div
       className={cn(
-        'transition-all duration-300 ease-in-out absolute md:pr-8 md:relative h-svh z-10 bg-white',
+        'transition-all duration-300 ease-in-out absolute lg:pr-8 lg:relative h-svh z-10 bg-white',
         isCollapsed
           ? 'w-[1px] overflow-hidden'
-          : 'min-w-[320px] w-svw md:w-[320px] xl:min-w-[688px]'
+          : 'min-w-[320px] w-svw lg:min-w-[488px]'
       )}
     >
       <div
@@ -35,7 +35,7 @@ export const PropertyList = () => {
           <div className="w-full">
             <PropertyHead />
           </div>
-          <div className="grid xs:grid-cols-1 xl:grid-cols-2 gap-3 w-full">
+          <div className="grid sm:grid-cols-2 custom-md:grid-cols-3 lg:grid-cols-2 gap-3 w-full">
             {sortedProperties?.length ? (
               sortedProperties.map((property: PropertyType) => (
                 <PropertyCard key={property.id} property={property} />

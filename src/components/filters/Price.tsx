@@ -16,7 +16,6 @@ import { useFilters } from '@/hooks/useFilters';
 import { IPriceFilter } from '@/types/filters';
 import { PriceList } from '@/components/filters/shared/PriceList';
 import { CurrencyForm } from '@/components/filters/shared/FormParts/CurrencyForm';
-import { MeasureForm } from '@/components/filters/shared/FormParts/MeasureForm';
 import { useTranslations } from 'next-intl';
 import { cn } from '@/lib/utils';
 
@@ -51,7 +50,7 @@ export const Price = () => {
   );
 
   const priceListSuffix = isPerSqm
-    ? `${getMeasureLabel(selectedMeasure)}/${selectedCurrency}`
+    ? `${selectedCurrency}/${getMeasureLabel(selectedMeasure)}`
     : selectedCurrency;
 
   return (
@@ -74,13 +73,16 @@ export const Price = () => {
             name="pricePer"
             options={[
               { value: 'object', label: t('per_object') },
-              { value: 'sqm', label: t('per_sqm') },
+              {
+                value: 'sqm',
+                label: `${t('per')} ${getMeasureLabel(selectedMeasure)}`,
+              },
             ]}
           />
 
           <Card>
             <CardContent className="py-4">
-              {isPerSqm ? <MeasureForm /> : <CurrencyForm />}
+              <CurrencyForm />
               <div className="grid grid-cols-2 gap-2 mt-4">
                 <PriceList
                   value={form.watch('minPrice')}
@@ -97,7 +99,10 @@ export const Price = () => {
               </div>
             </CardContent>
             <CardFooter className="pt-2">
-              <Button type="submit" className="w-full text-white bg-violet">
+              <Button
+                type="submit"
+                className="w-full text-white bg-violet hover:bg-violet/90 cursor-pointer"
+              >
                 {t('show')}
               </Button>
             </CardFooter>

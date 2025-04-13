@@ -8,7 +8,7 @@ export async function GET(
   const property = mocks.find((item) => item.id === params.id);
 
   if (!property) {
-    return NextResponse.json({ message: 'Not found' }, { status: 404 });
+    return new NextResponse(null, { status: 404 });
   }
 
   return NextResponse.json(property);

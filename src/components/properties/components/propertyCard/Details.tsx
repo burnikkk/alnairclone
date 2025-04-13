@@ -13,6 +13,7 @@ import { convertPrice } from '@/utils/convertPrice';
 import { useCurrencyRates } from '@/hooks/useCurrencyRates';
 import { cn } from '@/lib/utils';
 import usePropertyImage from '@/hooks/usePropertyImages';
+import { getMeasureLabel } from '@/utils/label';
 
 interface DetailsProps {
   property: PropertyType;
@@ -20,7 +21,7 @@ interface DetailsProps {
 }
 
 export const Details = ({ property, type }: DetailsProps) => {
-  const { selectedCurrency } = useSettings();
+  const { selectedCurrency, selectedMeasure } = useSettings();
   const { rates: exchangeRates } = useCurrencyRates(selectedCurrency);
   const { imageUrl } = usePropertyImage(type);
   const t = useTranslations('details');
@@ -90,9 +91,9 @@ export const Details = ({ property, type }: DetailsProps) => {
           {property.units.map((unit, index) => (
             <div key={index} className="flex justify-between text-sm">
               <div>
-                <span className="font-semibold mr-1">{unit.type}</span>
+                <span className="font-semibold pr-1">{unit.type}</span>
                 <span className="font-normal text-gray-500">
-                  {t('from')} {unit.size}
+                  {t('from')} {unit.size} {getMeasureLabel(selectedMeasure)}
                 </span>
               </div>
               <span>

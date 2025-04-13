@@ -8,13 +8,16 @@ export const PropertyHead = () => {
   const { found, total } = useProperties();
 
   return (
-    <div className="w-full py-2 flex items-center justify-between">
+    <div className="w-full py-2 flex flex-row items-center justify-between">
       <div>
         <p className="text-xl font-semibold">
           {t('results_count', { found: found ?? 0, total: total ?? 0 })}
         </p>
       </div>
-      <SortHead />
+      <div className="flex flex-row items-center justify-end">
+        <p className="text-sm font-semibold">Сортировать</p>
+        <SortHead />
+      </div>
     </div>
   );
 };

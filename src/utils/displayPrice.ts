@@ -18,7 +18,7 @@ export const getDisplayPrice = (
   if (minPrice && maxPrice) {
     return `${minPrice} - ${maxPrice} ${
       data.pricePer === 'sqm'
-        ? `${getMeasureLabel(selectedMeasure)}/${selectedCurrency}`
+        ? `${selectedCurrency}/${getMeasureLabel(selectedMeasure)}`
         : selectedCurrency
     }`;
   }
