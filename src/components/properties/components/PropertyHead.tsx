@@ -15,7 +15,7 @@ export const PropertyHead = () => {
         </p>
       </div>
       <div className="flex flex-row items-center justify-end">
-        <p className="text-sm font-semibold">Сортировать</p>
+        <p className="text-sm font-semibold whitespace-nowrap">{t('sort')}</p>
         <SortHead />
       </div>
     </div>

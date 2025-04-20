@@ -127,7 +127,8 @@
     "maxArea": "المساحة إلى"
   },
   "ResultsCount": {
-    "results_count": "{found} من أصل {total} نتائج"
+    "results_count": "{found} من أصل {total} نتائج",
+    "sort": "الترتيب حسب"
   },
   "details": {
     "from": "من",

@@ -77,11 +77,11 @@ export const Location = () => {
         </DialogHeader>
 
         <NavigationMenu>
-          <NavigationMenuList className="grid grid-cols-3 gap-6 p-4 items-start">
+          <NavigationMenuList className="grid grid-cols-3 gap-6 p-4 items-start font-semibold p-">
             <NavigationMenuItem>
               <h3 className="font-bold text-lg flex items-center gap-2">
-                <Flag code="AE" className="w-5 h-5" />
                 United Arab Emirates
+                <Flag code="AE" className="w-5 h-5" />
               </h3>
               {[
                 'Dubai',
@@ -94,7 +94,7 @@ export const Location = () => {
                 <NavigationMenuLink asChild key={city}>
                   <button
                     onClick={() => handleCitySelect(city)}
-                    className={`px-2 py-1 rounded hover:text-violet-light transition ${
+                    className={`py-1 rounded hover:text-violet-light transition ${
                       selectedCity === city ? ' text-violet font-semibold' : ''
                     }`}
                   >
@@ -106,8 +106,8 @@ export const Location = () => {
 
             <NavigationMenuItem>
               <h3 className="font-bold text-lg flex items-center gap-2">
-                <Flag code="TH" className="w-5 h-5" />
                 Thailand
+                <Flag code="TH" className="w-5 h-5" />
               </h3>
               {[
                 'Phuket',
@@ -120,7 +120,7 @@ export const Location = () => {
                 <NavigationMenuLink asChild key={city}>
                   <button
                     onClick={() => handleCitySelect(city)}
-                    className={`px-2 py-1 rounded hover:text-gray-700 bg-none transition ${
+                    className={`py-1 rounded hover:text-gray-700 bg-none transition ${
                       selectedCity === city ? ' text-violet font-semibold' : ''
                     }`}
                   >
@@ -132,14 +132,14 @@ export const Location = () => {
 
             <NavigationMenuItem>
               <h3 className="font-bold text-lg flex items-center gap-2">
-                <Flag code="OM" className="w-5 h-5" />
                 Oman
+                <Flag code="OM" className="w-5 h-5" />
               </h3>
               {['Muscat', 'Salalah', 'Duqm'].map((city) => (
                 <NavigationMenuLink asChild key={city}>
                   <button
                     onClick={() => handleCitySelect(city)}
-                    className={`px-2 py-1 rounded hover:text-gray-700 bg-none transition ${
+                    className={`py-1 rounded hover:text-gray-700 bg-none transition ${
                       selectedCity === city ? ' text-violet font-semibold' : ''
                     }`}
                   >
@@ -151,13 +151,13 @@ export const Location = () => {
 
             <NavigationMenuItem className="col-span-3">
               <h3 className="font-bold text-lg flex items-center gap-2">
-                <Flag code="ID" className="w-5 h-5" />
                 Indonesia
+                <Flag code="ID" className="w-5 h-5" />
               </h3>
               <NavigationMenuLink asChild>
                 <button
                   onClick={() => handleCitySelect('Bali')}
-                  className={`px-2 py-1 rounded hover:text-gray-700 bg-none transition ${
+                  className={`py-1 rounded hover:text-gray-700 bg-none transition ${
                     selectedCity === 'Bali' ? ' text-violet font-semibold' : ''
                   }`}
                 >

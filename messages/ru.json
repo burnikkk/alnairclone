@@ -127,7 +127,8 @@
     "maxArea": "Площадь до"
   },
   "ResultsCount": {
-    "results_count": "{found} из {total} результатов"
+    "results_count": "{found} из {total} результатов",
+    "sort": "Сортировать"
   },
   "details": {
     "from": "От",

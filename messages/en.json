@@ -127,7 +127,8 @@
     "maxArea": "Area to"
   },
 "ResultsCount": {
-  "results_count": "{found} out of {total} results"
+  "results_count": "{found} out of {total} results",
+  "sort": "Sort by"
 },
   "details": {
     "from": "From",
