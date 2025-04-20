@@ -7,13 +7,14 @@ export const useCurrencyRates = (base: Currency = 'AED') => {
   const [rates, setRates] = useState<Rates>();
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const apiKey = process.env.NEXT_PUBLIC_EXCHANGE_RATE_API_KEY;
 
   useEffect(() => {
     const fetchRates = async () => {
       try {
         setLoading(true);
         const res = await fetch(
-          `http://api.exchangerate.host/live?access_key=99325b1d6faea95ae270bc8089c3e5ba`
+          `http://api.exchangerate.host/live?access_key=${apiKey}`
         );
         const data = await res.json();
 
