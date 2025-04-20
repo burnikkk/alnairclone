@@ -23,7 +23,7 @@ export const PropertyList = () => {
         'transition-all duration-300 ease-in-out absolute lg:pr-8 lg:relative h-svh z-10 bg-white',
         isCollapsed
           ? 'w-[1px] overflow-hidden'
-          : 'min-w-[320px] w-svw lg:min-w-[488px]'
+          : 'min-w-[320px] w-svw lg:max-w-[688px]'
       )}
     >
       <div

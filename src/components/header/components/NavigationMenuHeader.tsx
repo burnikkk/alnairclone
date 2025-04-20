@@ -21,7 +21,7 @@ export const NavigationMenuHeader = () => {
         <NavigationMenuItem>
           <NavigationMenuTrigger>{t('about_us')}</NavigationMenuTrigger>
           <NavigationMenuContent>
-            <ul className="grid gap-2 p-4 pl-8 box-border w-screen grid-cols-[auto_auto_auto] justify-start font-semibold">
+            <ul className="w-screen grid grid-cols-[auto_auto_auto] gap-4 justify-start p-4 pl-12 box-border font-semibold">
               <li className="text-left">
                 <h3 className="pb-2">{t('knowledge_base')}</h3>
                 <ul>
@@ -79,16 +79,11 @@ const ListItem = React.forwardRef<
       <NavigationMenuLink asChild>
         <a
           ref={ref as React.Ref<HTMLAnchorElement>}
-          className={cn(
-            'block select-none rounded-md hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground',
-            className
-          )}
+          className={cn('block select-none hover:text-gray-700', className)}
           {...props}
         >
-          <div className="text-sm font-semibold leading-none">{title}</div>
-          <p className="text-sm leading-snug text-muted-foreground">
-            {children}
-          </p>
+          <div className="text-sm font-semibold">{title}</div>
+          <p className="text-sm text-muted-foreground">{children}</p>
         </a>
       </NavigationMenuLink>
     </li>

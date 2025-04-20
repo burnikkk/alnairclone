@@ -50,7 +50,6 @@ export const Location = () => {
     const coords = cityCoordinates[city];
     if (coords) {
       setAll({ latitude: String(coords.lat), longitude: String(coords.lng) });
-      console.log(`Changing coordinates to: ${coords.lat}, ${coords.lng}`);
     }
     setOpen(false);
   };
@@ -58,7 +57,7 @@ export const Location = () => {
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
         <Button
-          className="rounded-full bg-[#4f5fd9] text-white hover:bg-[#6e7df0]"
+          className="rounded-full bg-violet text-white hover:bg-violet-light cursor-pointer"
           aria-label="Choose City"
         >
           <Navigation size={20} />
@@ -79,7 +78,6 @@ export const Location = () => {
 
         <NavigationMenu>
           <NavigationMenuList className="grid grid-cols-3 gap-6 p-4 items-start">
-            {/* ОАЭ */}
             <NavigationMenuItem>
               <h3 className="font-bold text-lg flex items-center gap-2">
                 <Flag code="AE" className="w-5 h-5" />
@@ -94,12 +92,18 @@ export const Location = () => {
                 'Umm Al Quwain',
               ].map((city) => (
                 <NavigationMenuLink asChild key={city}>
-                  <button onClick={() => handleCitySelect(city)}>{city}</button>
+                  <button
+                    onClick={() => handleCitySelect(city)}
+                    className={`px-2 py-1 rounded hover:text-violet-light transition ${
+                      selectedCity === city ? ' text-violet font-semibold' : ''
+                    }`}
+                  >
+                    {city}
+                  </button>
                 </NavigationMenuLink>
               ))}
             </NavigationMenuItem>
 
-            {/* Таиланд */}
             <NavigationMenuItem>
               <h3 className="font-bold text-lg flex items-center gap-2">
                 <Flag code="TH" className="w-5 h-5" />
@@ -114,12 +118,18 @@ export const Location = () => {
                 'Hua Hin',
               ].map((city) => (
                 <NavigationMenuLink asChild key={city}>
-                  <button onClick={() => handleCitySelect(city)}>{city}</button>
+                  <button
+                    onClick={() => handleCitySelect(city)}
+                    className={`px-2 py-1 rounded hover:text-gray-700 bg-none transition ${
+                      selectedCity === city ? ' text-violet font-semibold' : ''
+                    }`}
+                  >
+                    {city}
+                  </button>
                 </NavigationMenuLink>
               ))}
             </NavigationMenuItem>
 
-            {/* Оман */}
             <NavigationMenuItem>
               <h3 className="font-bold text-lg flex items-center gap-2">
                 <Flag code="OM" className="w-5 h-5" />
@@ -127,19 +137,32 @@ export const Location = () => {
               </h3>
               {['Muscat', 'Salalah', 'Duqm'].map((city) => (
                 <NavigationMenuLink asChild key={city}>
-                  <button onClick={() => handleCitySelect(city)}>{city}</button>
+                  <button
+                    onClick={() => handleCitySelect(city)}
+                    className={`px-2 py-1 rounded hover:text-gray-700 bg-none transition ${
+                      selectedCity === city ? ' text-violet font-semibold' : ''
+                    }`}
+                  >
+                    {city}
+                  </button>
                 </NavigationMenuLink>
               ))}
             </NavigationMenuItem>
 
-            {/* Индонезия */}
             <NavigationMenuItem className="col-span-3">
               <h3 className="font-bold text-lg flex items-center gap-2">
                 <Flag code="ID" className="w-5 h-5" />
                 Indonesia
               </h3>
               <NavigationMenuLink asChild>
-                <button onClick={() => handleCitySelect('Bali')}>Bali</button>
+                <button
+                  onClick={() => handleCitySelect('Bali')}
+                  className={`px-2 py-1 rounded hover:text-gray-700 bg-none transition ${
+                    selectedCity === 'Bali' ? ' text-violet font-semibold' : ''
+                  }`}
+                >
+                  Bali
+                </button>
               </NavigationMenuLink>
             </NavigationMenuItem>
           </NavigationMenuList>
