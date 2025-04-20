@@ -1,3 +1,5 @@
+'use client';
+
 import { CarouselApi } from '@/components/propertyPage/components/Carousel';
 import { TextLorem } from '@/components/propertyPage/components/textlorem';
 import Image from 'next/image';
@@ -7,14 +9,16 @@ import { Separator } from '@/components/ui/separator';
 import CompletionDate from '@/components/properties/components/propertyCard/CompletionDate';
 import { EventCard } from '@/components/propertyPage/components/Events';
 import dynamic from 'next/dynamic';
-import { useProperty } from '@/hooks/useProperty';
+import { usePropertyContext } from '@/hooks/usePropertyContext';
+import { useTranslations } from 'next-intl';
 
 const MapCard = dynamic(() => import('./Map'), {
   ssr: false,
 });
 
 export const FullInfo = () => {
-  const { property, setProperty } = useProperty();
+  const { property } = usePropertyContext();
+  const t = useTranslations('PropertyPage');
 
   return (
     <div>
@@ -42,7 +46,7 @@ export const FullInfo = () => {
             <Currency />
           </div>
           <div className="col-span-2 flex items-center justify-between gap-4 w-full">
-            <p className="whitespace-nowrap">Завершение:</p>
+            <p className="whitespace-nowrap">{t('completion')}:</p>
             <Separator className="bg-gray-300 !h-[2px] flex-1" />
             <div className="text-violet font-semibold">
               <CompletionDate date={property.completionDate} />
@@ -50,10 +54,12 @@ export const FullInfo = () => {
           </div>
         </div>
         <TextLorem />
-        <h2 className="text-3xl font-bold text-left pt-3">News and Events</h2>
+        <h2 className="text-3xl font-bold text-left pt-3">
+          {t('news_events')}
+        </h2>
         <EventCard />
         <EventCard />
-        <h2 className="text-3xl font-bold text-left pt-3">Map</h2>
+        <h2 className="text-3xl font-bold text-left pt-3">{t('map')}</h2>
         <MapCard />
       </div>
     </div>

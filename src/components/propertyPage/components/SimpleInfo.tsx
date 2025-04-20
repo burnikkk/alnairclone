@@ -2,10 +2,12 @@ import * as React from 'react';
 import { Button } from '@/components/ui/button';
 import Image from 'next/image';
 import { Link } from '@/i18n/navigation';
-import { useProperty } from '@/hooks/useProperty';
+import { usePropertyContext } from '@/hooks/usePropertyContext';
+import { useTranslations } from 'next-intl';
 
 export const SimpleInfo = () => {
-  const { property, setProperty } = useProperty();
+  const { property } = usePropertyContext();
+  const t = useTranslations('PropertyPage');
 
   return (
     <div className="h-fit p-6 rounded-lg border sticky top-0">
@@ -31,12 +33,12 @@ export const SimpleInfo = () => {
             variant="outline"
             className="w-full h-15 bg-violet text-white rounded-xl text-md lg:text-lg"
           >
-            Наличие
+            {t('availability')}
           </Button>
         </Link>
         <Link href="/login">
           <Button variant="default" className="w-1/2 h-12 rounded-xl">
-            Презентация
+            {t('presentation')}
           </Button>
         </Link>
       </div>

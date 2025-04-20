@@ -3,6 +3,7 @@ import { Separator } from '@/components/ui/separator';
 import { Body } from '@/components/propertyPage/Body';
 import { notFound } from 'next/navigation';
 import { IProperty } from '@/types/property';
+import { PropertyContextProvider } from '@/hooks/usePropertyContext';
 
 interface IPage {
   params: {
@@ -11,10 +12,7 @@ interface IPage {
 }
 
 const PropertyPage = async ({ params }: IPage) => {
-  const res = await fetch(
-    `http://localhost:3000/api/properties/${params.id}`,
-    {}
-  );
+  const res = await fetch(`http://localhost:3000/api/properties/${params.id}`);
 
   if (!res.ok) return notFound();
 
@@ -24,7 +22,9 @@ const PropertyPage = async ({ params }: IPage) => {
     <div className="h-full">
       <Header />
       <Separator />
-      <Body />
+      <PropertyContextProvider property={property}>
+        <Body />
+      </PropertyContextProvider>
     </div>
   );
 };

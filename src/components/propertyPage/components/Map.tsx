@@ -1,10 +1,11 @@
 'use client';
 
 import React from 'react';
-import { MapContainer, Marker, Popup, TileLayer } from 'react-leaflet';
+import { MapContainer, Marker, TileLayer } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import { Icon } from 'leaflet';
-import { useProperty } from '@/hooks/useProperty';
+import { usePropertyContext } from '@/hooks/usePropertyContext';
+import { useTranslations } from 'next-intl';
 
 const customIcon = new Icon({
   iconUrl: '/icons/square.png',
@@ -13,9 +14,10 @@ const customIcon = new Icon({
 });
 
 const MapCard = () => {
-  const { property, setProperty } = useProperty();
+  const { property } = usePropertyContext();
+  const t = useTranslations('PropertyPage');
 
-  const position: [number, number] = [property.longitude, property.latitude];
+  const position: [number, number] = [property.latitude, property.longitude];
 
   return (
     <div className="rounded-xl overflow-hidden shadow border w-full">
@@ -31,17 +33,12 @@ const MapCard = () => {
             url="https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png"
             attribution='&copy; <a href="https://carto.com/">CARTO</a>'
           />
-          <Marker position={position} icon={customIcon}>
-            <Popup>
-              <h2>{property.title}</h2>
-              {property.city}
-            </Popup>
-          </Marker>
+          <Marker position={position} icon={customIcon}></Marker>
         </MapContainer>
       </div>
 
       <div className="bg-gradient-to-t from-white via-white/80 to-transparent p-4">
-        <p className="text-sm text-gray-500">Расположение</p>
+        <p className="text-sm text-gray-500">{t('location_label')}</p>
         <p className="font-semibold">{`${property.city}`}</p>
       </div>
     </div>

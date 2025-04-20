@@ -1,9 +1,11 @@
 import Image from 'next/image';
 import { Badge } from '@/components/ui/badge';
-import { useProperty } from '@/hooks/useProperty';
+import { usePropertyContext } from '@/hooks/usePropertyContext';
+import { useTranslations } from 'next-intl';
 
 export const EventCard = () => {
-  const { property, setProperty } = useProperty();
+  const { property } = usePropertyContext();
+  const t = useTranslations('PropertyPage');
 
   return (
     <div className="flex w-full h-[150px] bg-gray-100 rounded-xl">
@@ -15,19 +17,25 @@ export const EventCard = () => {
           className="object-cover"
         />
         <Badge className="absolute top-2 right-2 bg-white text-xs font-semibold text-black rounded-full">
-          Запуск
+          {t('launch')}
         </Badge>
       </div>
 
       <div className="flex flex-col justify-between p-4 w-full">
         <div>
           <h3 className="font-semibold text-lg">
-            СТАРТ ПРОДАЖ: {property.title}
+            {t('sale_start')}: {property.title}
           </h3>
           <div className="grid grid-col text-sm text-gray-700 hidden md:grid">
-            <p>Застройщик: {property.developer}</p>
-            <p>Расположение: {property.city}</p>
-            <p>Завершение строительства: {property.completionDate}</p>
+            <p>
+              {t('developer')}: {property.developer}
+            </p>
+            <p>
+              {t('location')}: {property.city}
+            </p>
+            <p>
+              {t('completion')}: {property.completionDate}
+            </p>
           </div>
         </div>
 

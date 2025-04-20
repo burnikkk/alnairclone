@@ -143,5 +143,20 @@
     "email": "Email",
     "credit_card": "No credit card required",
     "info": "By clicking \"Continue\" you agree with our terms of us"
+  },
+  "PropertyPage": {
+  "sale_start": "SALE START",
+  "developer": "Developer",
+  "location": "Location",
+  "completion": "Completion",
+  "map": "Map",
+  "news_events": "News and Events",
+  "launch": "Launch",
+  "location_label": "Location",
+  "completion_date": "Construction Completion",
+  "developer_role": "Developer",
+    "presentation": "Presentation",
+    "availability": "Availability"
   }
 }
+

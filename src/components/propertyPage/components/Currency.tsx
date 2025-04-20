@@ -4,10 +4,10 @@ import React from 'react';
 import { useSettings } from '@/hooks/useSettings';
 import { useCurrencyRates } from '@/hooks/useCurrencyRates';
 import { useTranslations } from 'next-intl';
-import { useProperty } from '@/hooks/useProperty';
+import { usePropertyContext } from '@/hooks/usePropertyContext';
 
 export const Currency = () => {
-  const { property } = useProperty();
+  const { property } = usePropertyContext();
   const { selectedCurrency } = useSettings();
   const { rates: exchangeRates } = useCurrencyRates(selectedCurrency);
   const t = useTranslations('details');

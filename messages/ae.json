@@ -143,5 +143,19 @@
     "email": "Email",
     "credit_card": "لا حاجة لبطاقة ائتمان",
     "info": "بالضغط على \"متابعة\" فإنك توافق على شروط الاستخدام"
+  },
+  "PropertyPage": {
+    "sale_start": "بداية البيع",
+    "developer": "المطور",
+    "location": "الموقع",
+    "completion": "الإنجاز",
+    "map": "الخريطة",
+    "news_events": "الأخبار والفعاليات",
+    "launch": "إطلاق",
+    "location_label": "الموقع",
+    "completion_date": "تاريخ الانتهاء من البناء",
+    "developer_role": "المطور",
+    "presentation": "العرض التقديمي",
+    "availability": "التوفّر"
   }
-}
+  }
