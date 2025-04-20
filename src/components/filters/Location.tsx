@@ -19,6 +19,7 @@ import Flag from 'react-world-flags';
 import { useFilters } from '@/hooks/useFilters';
 import { useLocation } from '@/hooks/useLocation';
 import { useTranslations } from 'next-intl';
+import { cn } from '@/lib/utils';
 
 const cityCoordinates: Record<string, { lat: number; lng: number }> = {
   Dubai: { lat: 25.116987, lng: 55.496249 },
@@ -67,7 +68,7 @@ export const Location = () => {
 
       <DialogContent
         aria-describedby={undefined}
-        className="md:max-w-[768px] p-6"
+        className="h-svh w-svw p-10 md:max-w-[768px] md:h-auto md:p-12"
       >
         <DialogHeader>
           <DialogTitle className="font-bold text-2xl">
@@ -77,11 +78,15 @@ export const Location = () => {
         </DialogHeader>
 
         <NavigationMenu>
-          <NavigationMenuList className="grid grid-cols-3 gap-6 p-4 items-start font-semibold p-">
-            <NavigationMenuItem>
+          <NavigationMenuList
+            className={cn(
+              'grid grid-cols-1 md:grid-cols-[1fr_1fr_1fr] gap-x-8 gap-y-12 p-4 items-start font-semibold'
+            )}
+          >
+            <NavigationMenuItem className="flex flex-col gap-2 items-start justify-center">
               <h3 className="font-bold text-lg flex items-center gap-2">
                 United Arab Emirates
-                <Flag code="AE" className="w-5 h-5" />
+                <Flag code="AE" className="w-4 h-4" />
               </h3>
               {[
                 'Dubai',
@@ -94,7 +99,7 @@ export const Location = () => {
                 <NavigationMenuLink asChild key={city}>
                   <button
                     onClick={() => handleCitySelect(city)}
-                    className={`py-1 rounded hover:text-violet-light transition ${
+                    className={`rounded hover:text-violet-light transition ${
                       selectedCity === city ? ' text-violet font-semibold' : ''
                     }`}
                   >
@@ -104,10 +109,10 @@ export const Location = () => {
               ))}
             </NavigationMenuItem>
 
-            <NavigationMenuItem>
+            <NavigationMenuItem className="flex flex-col gap-2 items-start justify-center">
               <h3 className="font-bold text-lg flex items-center gap-2">
                 Thailand
-                <Flag code="TH" className="w-5 h-5" />
+                <Flag code="TH" className="w-4 h-4" />
               </h3>
               {[
                 'Phuket',
@@ -130,10 +135,10 @@ export const Location = () => {
               ))}
             </NavigationMenuItem>
 
-            <NavigationMenuItem>
+            <NavigationMenuItem className="flex flex-col gap-2 items-start justify-center">
               <h3 className="font-bold text-lg flex items-center gap-2">
                 Oman
-                <Flag code="OM" className="w-5 h-5" />
+                <Flag code="OM" className="w-4 h-4" />
               </h3>
               {['Muscat', 'Salalah', 'Duqm'].map((city) => (
                 <NavigationMenuLink asChild key={city}>
@@ -149,10 +154,10 @@ export const Location = () => {
               ))}
             </NavigationMenuItem>
 
-            <NavigationMenuItem className="col-span-3">
+            <NavigationMenuItem className="flex flex-col gap-2 items-start justify-center">
               <h3 className="font-bold text-lg flex items-center gap-2">
                 Indonesia
-                <Flag code="ID" className="w-5 h-5" />
+                <Flag code="ID" className="w-4 h-4" />
               </h3>
               <NavigationMenuLink asChild>
                 <button

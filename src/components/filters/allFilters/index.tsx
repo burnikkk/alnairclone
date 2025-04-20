@@ -81,7 +81,7 @@ export const AllFilters: FC<PropsWithChildren> = ({ children }) => {
             <Button
               type="button"
               variant="secondary"
-              className="p-7 text-center text-lg bg-white hover:bg-gray-100 cursor-pointer"
+              className="p-7 text-center text-sm md:text-lg bg-white hover:bg-gray-100 cursor-pointer"
               onClick={resetAll}
             >
               {t('clear_filters')}
@@ -90,7 +90,7 @@ export const AllFilters: FC<PropsWithChildren> = ({ children }) => {
               <Button
                 type="submit"
                 variant="secondary"
-                className="p-7 text-center text-lg bg-violet text-white hover:bg-violet-light cursor-pointer"
+                className="p-7 text-center text-sm md:text-lg bg-violet text-white hover:bg-violet-light cursor-pointer"
               >
                 {t('full_price', {
                   founded: found ?? 0,
