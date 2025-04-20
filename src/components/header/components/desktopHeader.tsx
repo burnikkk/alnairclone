@@ -14,7 +14,7 @@ export const DesktopHeader = () => {
         <AvatarHeader />
       </div>
 
-      <div className="flex items-center gap-4">
+      <div className="flex items-center gap-4 pr-4">
         <PopoverHeader />
         <RegistrationButton />
       </div>

@@ -5,7 +5,15 @@ module.exports = {
     '.src/app/components/*.{js,ts,jsx,tsx,mdx}',
   ],
   theme: {
-    extend: {},
+    extend: {
+      screens: {
+        'custom-md': '960px',
+      },
+      colors: {
+        violet: 'var(--color-violet)',
+        'violet-light': 'var(--color-violet-light)',
+      },
+    },
   },
   plugins: [],
 };

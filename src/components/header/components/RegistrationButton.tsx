@@ -1,13 +1,14 @@
-'use client';
-
+import { useTranslations } from 'next-intl';
 import { Button } from '@/components/ui/button';
-import Link from 'next/link';
+import { Link } from '@/i18n/navigation';
 
 export const RegistrationButton = () => {
+  const t = useTranslations('RegistrationButton');
+
   return (
-    <Link href="https://alnair.ae/app/login/email">
-      <Button className="bg-[#4f5fd9] text-white hover:bg-[#6e7df0]">
-        Вход и регистрация
+    <Link href={`/login`} className="w-full">
+      <Button className="w-full h-10 rounded-xl bg-violet text-white hover:bg-violet-light">
+        {t('registration')}
       </Button>
     </Link>
   );

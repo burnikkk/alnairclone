@@ -1,0 +1,162 @@
+{"NavigationMenuHeader": {
+  "about_us": "О нас",
+  "knowledge_base": "База знаний",
+  "search": "Поиск",
+  "commercial_offer": "Коммерческое предложение",
+  "feeds_integration": "Фиды и интеграция",
+  "booking": "Бронирование",
+  "agency_management": "Создание агентства и управление пользователями",
+  "services": "Сервисы",
+  "about_us_full": "Все о нас",
+  "for_agencies": "Для агентств",
+  "terms_of_use": "Условия использования",
+  "operating_terms": "Условия эксплуатации",
+  "privacy_policy": "Политика конфиденциальности",
+  "cookie_policy": "Политика cookie",
+  "contacts": "Контакты",
+  "developers": "Застройщики",
+  "districts": "Районы"
+},
+  "PopoverHeader": {
+    "language": "Язык",
+    "currency": "Валюта",
+    "measure": "Единицы измерения",
+    "ae": "Арабский",
+    "en": "Английский",
+    "ru": "Русский",
+    "flagCode": {
+      "ae": "AE",
+      "en": "GB",
+      "ru": "RU"
+    }},
+"RegistrationButton": {
+  "registration": "Вход или регистрация"
+},
+
+  "LocaleSwitcher": {
+    "label": "Сменить язык",
+    "locale": "{locale, select, en {English} ae {Arabic} ru {Russian} other {Unknown}}"
+  },
+
+  "Location": {
+    "select_city": "Выберите город",
+    "select_description": "Alnair работает в 19 городах в 9 странах"
+  },
+  "Bedrooms": {
+    "all": "Количество комнат",
+    "free_planing": "Свободная планировка",
+    "bedroom_1": "1 спальня",
+    "bedroom_2": "2 спальни",
+    "bedroom_3": "3 спальни",
+    "bedroom_4": "4 спальни",
+    "bedroom_5": "5 спален",
+    "bedroom_6": "6 спален",
+    "bedroom_7": "7 спален",
+    "bedroom_8": "8 спален",
+    "bedroom_9": "9 спален",
+    "bedroom_10": "10 спален"
+  },
+  "propertyTypes": {
+    "all": "Тип жилья",
+    "villa": "Вилла",
+    "penthouse": "Пентхаус",
+    "townhouse": "Таунхаус",
+    "apparts": "Апартаменты",
+    "studio": "Студия",
+    "house": "Дом"
+  },
+  "SalesStatus": {
+    "all": "Статус продаж",
+    "anons": "Анонс продаж",
+    "reg": "Регистрация интереса (EOI)",
+    "startsales": "Старт продаж",
+    "insales": "В продаже",
+    "stopped": "Приостановлен"
+  },
+  "SortStatuses": {
+    "all": "По умолчанию",
+    "new": "Сначала новые",
+    "old": "Сначала старые",
+    "price-desc": "Цена по убыванию",
+    "price-asc": "Цена по возрастанию",
+    "sqm-desc": "Цена за м² по убыванию",
+    "sqm-asc": "Цена за м² по возрастанию",
+    "date-desc": "Дата завершения по убыванию",
+    "date-asc": "Дата завершения по возрастанию"
+  },
+  "resetAll": {
+    "resetAll": "Очистить фильтры"
+  },
+  "Menubar": {
+    "search": "Поиск",
+    "moreFilters": "Еще фильтры"
+  },
+  "AllFilters": {
+    "search_in_projects": "Найти среди {totalObj} объектов в {city}",
+    "type": "Тип",
+    "property_type": "Тип жилья",
+    "sales_status": "Статус продаж",
+    "bedrooms": "Количество комнат",
+    "close": "Закрыть",
+    "clear_filters": "Очистить фильтры",
+    "full_price": "Показать {founded} объектов"
+  },
+  "salesTypes": {
+    "primary": "Первичная продажа",
+    "secondary": "Вторичная продажа"
+  },
+  "Exclusive":{
+    "exclusive": "Эксклюзивно на Alnair"
+  },
+  "ResetFilters": {
+    "reset": "Очистить фильтры"
+  },
+  "Price": {
+    "per_object": "за объект",
+    "per": "за",
+    "show": "Показать",
+    "button_placeholder": "Стоимость",
+    "currency_label": "Валюта"
+  },
+  "CurrencyForm": {
+    "minPrice": "Мин. цена",
+    "maxPrice": "Макс. цена"
+  },
+  "MeasureForm": {
+    "minArea": "Площадь от",
+    "maxArea": "Площадь до"
+  },
+  "ResultsCount": {
+    "results_count": "{found} из {total} результатов",
+    "sort": "Сортировать"
+  },
+  "details": {
+    "from": "От",
+    "units_available": "юнитов доступно",
+    "mln": "млн",
+    "k": "тыс"
+  },
+  "CoverImage": {
+    "recommended": "Рекомендовано"
+  },
+  "Login": {
+    "sign": "Войдите бесплатно и пользуйтесь всеми возможностями сайта",
+    "email": "Электронная почта",
+    "credit_card": "Кредитная карта не требуется",
+    "info": "Нажимая кнопку «Продолжить», вы принимаете наши условия эксплуатации"
+  },
+  "PropertyPage": {
+  "sale_start": "СТАРТ ПРОДАЖ",
+  "developer": "Застройщик",
+  "location": "Расположение",
+  "completion": "Завершение",
+  "map": "Карта",
+  "news_events": "Новости и события",
+  "launch": "Запуск",
+  "location_label": "Расположение",
+  "completion_date": "Завершение строительства",
+  "developer_role": "Застройщик",
+    "presentation": "Презентация",
+    "availability": "Наличие"
+}
+}

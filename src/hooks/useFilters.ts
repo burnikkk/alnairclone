@@ -1,28 +1,24 @@
 import { useMemo, useReducer } from 'react';
 import { createContextHook } from '@/hooks/createContextHook';
-
-type Value = string;
-
-type IFilters = {
-  bedrooms: Value;
-  saleStatus: Value;
-  propertyType: Value;
-  latitude: Value;
-  longitude: Value;
-  sortOption: Value;
-  minPrice: Value;
-  maxPrice: Value;
-};
+import { IFilters } from '@/types/filters';
 
 const initFilters: IFilters = {
   bedrooms: '',
   saleStatus: '',
   propertyType: '',
+  pricePer: 'object',
   latitude: '25.116987',
   longitude: '55.496249',
+  title: '',
+  developer: '',
   sortOption: '',
   minPrice: '',
   maxPrice: '',
+  minArea: '',
+  maxArea: '',
+  salesType: '',
+  searchQuery: '',
+  exclusive: 'false',
 };
 
 type FiltersAction =

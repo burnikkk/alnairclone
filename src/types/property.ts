@@ -28,6 +28,11 @@ export interface IUnit {
   price: number;
 }
 
+export interface ILocation {
+  selectedCity: string;
+  setSelectedCity: (city: string) => void;
+}
+
 export enum EMeasure {
   SQM = 'SQM',
   SQFT = 'SQFT',
@@ -35,15 +40,26 @@ export enum EMeasure {
 
 export type Currency =
   | 'AED'
-  | '$'
-  | '€'
-  | '฿'
-  | '₽'
+  | 'USD'
+  | 'EUR'
+  | 'THB'
+  | 'RUB'
   | 'OMR'
-  | '¥'
+  | 'JPY'
   | 'IDR'
-  | '£';
+  | 'GBP';
 
+export const currencySymbols: Record<Currency, string> = {
+  AED: 'AED',
+  USD: '$',
+  EUR: '€',
+  THB: '฿',
+  RUB: '₽',
+  OMR: 'OMR',
+  JPY: '¥',
+  IDR: 'IDR',
+  GBP: '£',
+};
 export interface IProperty {
   id: string;
   isRecommended: boolean;
@@ -60,4 +76,6 @@ export interface IProperty {
   longitude: number;
   latitude: number;
   city: string;
+  salesType?: string;
+  exclusive?: boolean;
 }

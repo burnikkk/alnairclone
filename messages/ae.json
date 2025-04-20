@@ -1,0 +1,162 @@
+{"NavigationMenuHeader": {
+  "about_us": "معلومات عنا",
+  "knowledge_base": "قاعدة المعرفة",
+  "search": "بحث",
+  "commercial_offer": "عرض تجاري",
+  "feeds_integration": "التغذية والتكامل",
+  "booking": "الحجز",
+  "agency_management": "إنشاء الوكالة وإدارة المستخدمين",
+  "services": "الخدمات",
+  "about_us_full": "كل شيء عنا",
+  "for_agencies": "للوكالات",
+  "terms_of_use": "شروط الاستخدام",
+  "operating_terms": "شروط التشغيل",
+  "privacy_policy": "سياسة الخصوصية",
+  "cookie_policy": "سياسة الكوكيز",
+  "contacts": "جهات الاتصال",
+  "developers": "المطورون",
+  "districts": "المناطق"
+},
+"PopoverHeader": {
+  "language": "اللغة",
+  "currency": "العملة",
+  "measure": "وحدات القياس",
+  "ae": "العربية",
+  "en": "الإنجليزية",
+  "ru": "الروسية",
+  "flagCode": {
+    "ae": "AE",
+    "en": "GB",
+    "ru": "RU"
+  }},
+  "RegistrationButton": {
+    "registration": "سجل مجانا واستخدم جميع ميزات"
+  },
+
+  "LocaleSwitcher": {
+    "label": "Change Language Arab",
+    "locale": "{locale, select, en {English} ae {Arabic} ru {Russian} other {Unknown}}"
+  },
+
+  "Location": {
+    "select_city": "اختر المدينة",
+    "select_description": "يعمل Alnair في 19 مدن في 9 دول"
+},
+  "Bedrooms": {
+    "all": "الكل",
+    "free_planing": "تخطيط حر",
+    "bedroom_1": "غرفة نوم واحدة",
+    "bedroom_2": "غرفتا نوم",
+    "bedroom_3": "3 غرف نوم",
+    "bedroom_4": "4 غرف نوم",
+    "bedroom_5": "5 غرف نوم",
+    "bedroom_6": "6 غرف نوم",
+    "bedroom_7": "7 غرف نوم",
+    "bedroom_8": "8 غرف نوم",
+    "bedroom_9": "9 غرف نوم",
+    "bedroom_10": "10 غرف نوم"
+  },
+  "propertyTypes": {
+    "all": "الكل",
+    "villa": "فيلا",
+    "penthouse": "بنتهاوس",
+    "townhouse": "تاون هاوس",
+    "apparts": "شقق",
+    "studio": "استوديو",
+    "house": "منزل"
+  },
+  "SalesStatus": {
+    "all": "الكل",
+    "anons": "إعلان البيع",
+    "reg": "(EOI)تسجيل الاهتمام",
+    "startsales": "بدء البيع",
+    "insales": "متاح للبيع",
+    "stopped": "متوقف"
+  },
+  "SortStatuses": {
+    "all": "الكل",
+    "new": "الأحدث أولاً",
+    "old": "الأقدم أولاً",
+    "price-desc": "السعر تنازلي",
+    "price-asc": "السعر تصاعدي",
+    "sqm-desc": "السعر لكل متر مربع تنازلي",
+    "sqm-asc": "السعر لكل متر مربع تصاعدي",
+    "date-desc": "تاريخ الانتهاء تنازلي",
+    "date-asc": "تاريخ الانتهاء تصاعدي"
+  },
+  "resetAll": {
+    "resetAll": "إعادة تعيين الفلاتر"
+  },
+  "Menubar": {
+    "search": "بحث",
+    "moreFilters": "المزيد من الفلاتر"
+  },
+  "AllFilters": {
+    "search_in_projects": "ابحث بين {totalObj} مشروعًا في {city}",
+    "type": "نوع",
+    "property_type": "نوع العقار",
+    "sales_status": "حالة المبيعات",
+    "bedrooms": "غرف النوم",
+    "close": "إغلاق",
+    "clear_filters": "مسح الفلاتر",
+    "full_price": "Show {founded} objects"
+  },
+  "salesTypes": {
+    "primary": "بيع أولي",
+    "secondary": "بيع ثانوي"
+  },
+  "Exclusive":{
+    "exclusive": "حصري لدى Alnair"
+  },
+  "ResetFilters": {
+    "reset": "إعادة تعيين الفلاتر"
+  },
+  "Price": {
+    "per_object": "لكل كائن",
+    "per": "مربع",
+    "show": "عرض",
+    "button_placeholder": "السعر",
+    "currency_label": "العملة"
+  },
+  "CurrencyForm": {
+    "minPrice": "السعر الأدنى",
+    "maxPrice": "السعر الأقصى"
+  },
+  "MeasureForm": {
+    "minArea": "المساحة من",
+    "maxArea": "المساحة إلى"
+  },
+  "ResultsCount": {
+    "results_count": "{found} من أصل {total} نتائج",
+    "sort": "الترتيب حسب"
+  },
+  "details": {
+    "from": "من",
+    "units_available": "وحدات متاحة",
+    "mln": "مليون",
+    "k": "тыс"
+  },
+  "CoverImage": {
+    "recommended": "موصى به"
+  },
+  "Login": {
+    "sign": "سجل مجانا واستخدم جميع ميزات Alnair",
+    "email": "Email",
+    "credit_card": "لا حاجة لبطاقة ائتمان",
+    "info": "بالضغط على \"متابعة\" فإنك توافق على شروط الاستخدام"
+  },
+  "PropertyPage": {
+    "sale_start": "بداية البيع",
+    "developer": "المطور",
+    "location": "الموقع",
+    "completion": "الإنجاز",
+    "map": "الخريطة",
+    "news_events": "الأخبار والفعاليات",
+    "launch": "إطلاق",
+    "location_label": "الموقع",
+    "completion_date": "تاريخ الانتهاء من البناء",
+    "developer_role": "المطور",
+    "presentation": "العرض التقديمي",
+    "availability": "التوفّر"
+  }
+  }

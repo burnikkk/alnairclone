@@ -1,40 +1,29 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { MapContainer, Marker, Popup, TileLayer } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
-import { useFilters } from '@/hooks/useFilters';
-import { formatCurrency } from '@/lib/utils';
-import { convertPrice } from '@/utils/price';
-import { useSettings } from '@/hooks/useSettings';
+import 'leaflet.markercluster/dist/MarkerCluster.css';
+import 'leaflet.markercluster/dist/MarkerCluster.Default.css';
 import { Icon } from 'leaflet';
-import { IProperty } from '@/types/property';
 import Image from 'next/image';
+import { useProperties } from '@/hooks/useProperties';
+import { Link } from '@/i18n/navigation';
+import MarkerClusterGroup from 'react-leaflet-markercluster';
+import { useFilters } from '@/hooks/useFilters';
 
 const customIcon = new Icon({
   iconUrl: '/icons/square.png',
-  iconSize: [38, 38],
+  iconSize: [18, 18],
+  className: 'border-1 border-white rounded-lg',
 });
 
 const Map: React.FC = () => {
   const { filters } = useFilters();
-  const { selectedCurrency } = useSettings();
-  const [properties, setProperties] = useState<IProperty[]>([]);
-
-  useEffect(() => {
-    const query = new URLSearchParams({
-      minPrice: filters.minPrice,
-      maxPrice: filters.maxPrice,
-    }).toString();
-
-    fetch(`/api/properties?${query}`)
-      .then((res) => res.json())
-      .then((data) => setProperties(data))
-      .catch((error) => console.error('Ошибка загрузки данных:', error));
-  }, [filters.minPrice, filters.maxPrice]);
+  const { data: properties } = useProperties();
 
   return (
-    <div className="pl-8 md:pl-0 w-svw h-svh">
+    <div className="w-svw h-svh">
       <MapContainer
         key={`${filters.latitude}-${filters.longitude}`}
         center={[Number(filters.latitude), Number(filters.longitude)]}
@@ -46,36 +35,42 @@ const Map: React.FC = () => {
           attribution='&copy; <a href="https://carto.com/">CARTO</a>'
         />
 
-        {properties.map((property) => {
-          console.log('property.imageUrl', property.imageUrl);
-          return (
-            <Marker
-              key={property.id}
-              position={[property.latitude, property.longitude]}
-              icon={customIcon}
-            >
-              <Popup>
-                <div className="text-center">
-                  <Image
-                    width={100}
-                    height={100}
-                    src={'/icons/img.png'}
-                    alt={property.title}
-                    className="w-full h-[100px] rounded-lg"
-                  />
-                  <h3 className="text-lg font-semibold">{property.title}</h3>
-                  <p className="text-sm text-gray-600">{property.city}</p>
-                  <p className="text-md font-bold">
-                    {formatCurrency(
-                      convertPrice(property.price, selectedCurrency)
-                    )}{' '}
-                    {selectedCurrency}
-                  </p>
-                </div>
-              </Popup>
-            </Marker>
-          );
-        })}
+        <MarkerClusterGroup chunkedLoading>
+          {properties?.map((property) => {
+            return (
+              <Marker
+                key={property.id}
+                position={[property.latitude, property.longitude]}
+                icon={customIcon}
+              >
+                <Popup>
+                  <Link href={`/property_page/${property.id}`}>
+                    <div className="flex gap-2 w-[300px] bg-white rounded-lg overflow-hidden">
+                      <div className="relative">
+                        <Image
+                          src={'/icons/img.png'}
+                          alt={property.title}
+                          width={100}
+                          height={75}
+                          objectFit="contain"
+                          className="rounded-lg w-[100px] h-[75px]"
+                        />
+                      </div>
+                      <div className="flex flex-col items-start justify-center">
+                        <h3 className="text-sm font-semibold">
+                          {property.title}
+                        </h3>
+                        <p className="text-xs text-gray-600">
+                          {property.developer}
+                        </p>
+                      </div>
+                    </div>
+                  </Link>
+                </Popup>
+              </Marker>
+            );
+          })}
+        </MarkerClusterGroup>
       </MapContainer>
     </div>
   );

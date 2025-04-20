@@ -5,50 +5,64 @@ import { Badge } from '@/components/ui/badge';
 import Image from 'next/image';
 import { Separator } from '@/components/ui/separator';
 import { ChevronUp } from 'lucide-react';
-import { convertPrice } from '@/utils/price';
 import { useSettings } from '@/hooks/useSettings';
+import { useTranslations } from 'next-intl';
+import CompletionDate from '@/components/properties/components/propertyCard/CompletionDate';
+import { formatCurrency } from '@/utils/currency';
+import { convertPrice } from '@/utils/convertPrice';
+import { useCurrencyRates } from '@/hooks/useCurrencyRates';
+import { cn } from '@/lib/utils';
+import usePropertyImage from '@/hooks/usePropertyImages';
+import { getMeasureLabel } from '@/utils/label';
 
 interface DetailsProps {
   property: PropertyType;
+  type: string;
 }
 
-const formatToMillion = (value: number): string => {
-  if (value >= 1_000_000) {
-    return `${(value / 1_000_000).toFixed(1)} млн`;
-  }
-  if (value >= 1_000) {
-    return `${(value / 1_000).toFixed(1)} тыс`;
-  }
-  return value.toString();
-};
-
-export const Details = ({ property }: DetailsProps) => {
-  const { selectedCurrency } = useSettings();
+export const Details = ({ property, type }: DetailsProps) => {
+  const { selectedCurrency, selectedMeasure } = useSettings();
+  const { rates: exchangeRates } = useCurrencyRates(selectedCurrency);
+  const { imageUrl } = usePropertyImage(type);
+  const t = useTranslations('details');
+  const tPropertyTypes = useTranslations('propertyTypes');
 
   return (
-    <CardContent className="absolute bottom-0 left-0 w-full bg-white px-3 py-2 max-h-[120px] rounded-xl overflow-hidden group-hover:max-h-[272px] transition-[max-height] duration-300 ease-in-out">
+    <CardContent
+      className={cn(
+        'absolute bottom-0 left-0 w-full px-3 py-2 max-h-[120px]',
+        'bg-white rounded-xl overflow-hidden',
+        'group-hover:max-h-[272px] transition-[max-height] duration-300 ease-in-out'
+      )}
+    >
       <div className="grid grid-cols-[40px_1fr] items-center gap-3 pb-2 h-[56px]">
         <Image
-          src={'/icons/img.png'}
+          src={imageUrl || '/icons/img.png'}
           width={40}
           height={40}
           alt="Логотип"
-          className="rounded-md border"
+          className="rounded-md border object-cover w-[40px] h-[40px]"
         />
         <div className="w-full overflow-hidden">
           <h3 className="font-bold truncate">{property.title}</h3>
-          <p className="text-sm text-gray-500">{property.developer}</p>
+          <p className="text-xs text-gray-500">{property.developer}</p>
         </div>
       </div>
       <Separator />
 
       <div className="flex flex-row items-center justify-between pb-2 h-[60px]">
         <div>
-          <p className="text-xs pt-2">{property.propertyType}</p>
+          <p className="text-xs pt-2">
+            {tPropertyTypes(property.propertyType)}
+          </p>
           <p className="text-lg font-semibold">
-            От{' '}
-            {formatToMillion(
-              Number(convertPrice(property.price, selectedCurrency))
+            {t('from')}{' '}
+            {formatCurrency(
+              convertPrice(property.price, selectedCurrency, exchangeRates),
+              {
+                currency: selectedCurrency,
+                short: true,
+              }
             )}{' '}
             {selectedCurrency}
           </p>
@@ -60,25 +74,36 @@ export const Details = ({ property }: DetailsProps) => {
               {property.discount.type === EDiscountType.PERCENTAGE ? '%' : ''}
             </Badge>
           )}
-          <ChevronUp className="bg-[#f3f3f5] border-box rounded-full hover: rotate-180" />
+          <div className="bg-[#f3f3f5] rounded-full transition-transform p-2">
+            <ChevronUp className="w-3 h-3 transition-transform duration-300 group-hover:rotate-180" />
+          </div>
         </div>
       </div>
       <Separator />
 
-      <div className="flex flex-col gap-2 opacity-0 max-h-[110px] group-hover:opacity-100 transition-opacity duration-300 ease-in-out">
+      <div
+        className={cn(
+          'flex flex-col gap-2 opacity-0 max-h-[110px]',
+          'group-hover:opacity-100 transition-opacity duration-300 ease-in-out'
+        )}
+      >
         <div className="flex flex-col gap-1">
           {property.units.map((unit, index) => (
             <div key={index} className="flex justify-between text-sm">
               <div>
-                <span className="font-semibold mr-1">{unit.type}</span>
+                <span className="font-semibold pr-1">{unit.type}</span>
                 <span className="font-normal text-gray-500">
-                  от {unit.size}
+                  {t('from')} {unit.size} {getMeasureLabel(selectedMeasure)}
                 </span>
               </div>
               <span>
-                от{' '}
-                {formatToMillion(
-                  Number(convertPrice(unit.price, selectedCurrency))
+                {t('from')}{' '}
+                {formatCurrency(
+                  convertPrice(unit.price, selectedCurrency, exchangeRates),
+                  {
+                    currency: selectedCurrency,
+                    short: true,
+                  }
                 )}{' '}
                 {selectedCurrency}
               </span>
@@ -90,9 +115,11 @@ export const Details = ({ property }: DetailsProps) => {
 
         <div className="flex justify-between items-center text-sm">
           <span className="font-semibold">
-            {property.availableUnits} юнитов доступно
+            {property.availableUnits} {t('units_available')}
           </span>
-          <span className="text-gray-500">{property.completionDate}</span>
+          <span className="text-gray-500">
+            <CompletionDate date={property.completionDate} />
+          </span>
         </div>
       </div>
     </CardContent>

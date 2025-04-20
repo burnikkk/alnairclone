@@ -8,11 +8,13 @@ import {
   SelectValue,
 } from '@/components/ui/select';
 import React from 'react';
-import { sortStatuses } from '@/utils/sortStatus';
+import { sortStatuses } from '@/utils/sortStatuses';
 import { useFilters } from '@/hooks/useFilters';
+import { useTranslations } from 'next-intl';
 
 export const SortHead = () => {
   const { filters, setAll } = useFilters();
+  const t = useTranslations('SortStatuses');
 
   const handleChange = (value: string) => {
     if (value === 'all') {
@@ -24,15 +26,15 @@ export const SortHead = () => {
 
   return (
     <Select value={filters.sortOption} onValueChange={handleChange}>
-      <SelectTrigger className="w-[180px] border-none">
-        <SelectValue placeholder="По умолчанию" />
+      <SelectTrigger className="w-full border-none shadow-none pl-1 text-violet">
+        <SelectValue placeholder={t('all')} />
       </SelectTrigger>
       <SelectContent className="align-middle">
-        <SelectItem value="all">По умолчанию</SelectItem>
+        <SelectItem value="all">{t('all')}</SelectItem>
 
-        {Object.entries(sortStatuses).map(([key, label]) => (
+        {Object.entries(sortStatuses).map(([key]) => (
           <SelectItem key={key} value={key}>
-            {label}
+            {t(key)}
           </SelectItem>
         ))}
       </SelectContent>

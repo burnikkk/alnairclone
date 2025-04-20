@@ -17,6 +17,8 @@ import {
 import { Navigation } from 'lucide-react';
 import Flag from 'react-world-flags';
 import { useFilters } from '@/hooks/useFilters';
+import { useLocation } from '@/hooks/useLocation';
+import { useTranslations } from 'next-intl';
 
 const cityCoordinates: Record<string, { lat: number; lng: number }> = {
   Dubai: { lat: 25.116987, lng: 55.496249 },
@@ -38,8 +40,9 @@ const cityCoordinates: Record<string, { lat: number; lng: number }> = {
 };
 
 export const Location = () => {
+  const t = useTranslations('Location');
   const { setAll } = useFilters();
-  const [selectedCity, setSelectedCity] = useState('Dubai');
+  const { selectedCity, setSelectedCity } = useLocation();
   const [open, setOpen] = useState(false);
 
   const handleCitySelect = (city: string) => {
@@ -47,17 +50,15 @@ export const Location = () => {
     const coords = cityCoordinates[city];
     if (coords) {
       setAll({ latitude: String(coords.lat), longitude: String(coords.lng) });
-      console.log(`Changing coordinates to: ${coords.lat}, ${coords.lng}`);
     }
     setOpen(false);
   };
-
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
         <Button
-          className="rounded-full bg-[#4f5fd9] text-white hover:bg-[#6e7df0]"
-          aria-label="Выбрать город"
+          className="rounded-full bg-violet text-white hover:bg-violet-light cursor-pointer"
+          aria-label="Choose City"
         >
           <Navigation size={20} />
           {selectedCity}
@@ -70,19 +71,17 @@ export const Location = () => {
       >
         <DialogHeader>
           <DialogTitle className="font-bold text-2xl">
-            Выберите город
+            {t('select_city')}
           </DialogTitle>
-          <DialogDescription>
-            Alnair работает в 16 городах в 9 странах
-          </DialogDescription>
+          <DialogDescription>{t('select_description')}</DialogDescription>
         </DialogHeader>
 
         <NavigationMenu>
-          <NavigationMenuList className="grid grid-cols-3 gap-6 p-4 items-start">
+          <NavigationMenuList className="grid grid-cols-3 gap-6 p-4 items-start font-semibold p-">
             <NavigationMenuItem>
               <h3 className="font-bold text-lg flex items-center gap-2">
-                <Flag code="AE" className="w-5 h-5" />
                 United Arab Emirates
+                <Flag code="AE" className="w-5 h-5" />
               </h3>
               {[
                 'Dubai',
@@ -93,15 +92,22 @@ export const Location = () => {
                 'Umm Al Quwain',
               ].map((city) => (
                 <NavigationMenuLink asChild key={city}>
-                  <button onClick={() => handleCitySelect(city)}>{city}</button>
+                  <button
+                    onClick={() => handleCitySelect(city)}
+                    className={`py-1 rounded hover:text-violet-light transition ${
+                      selectedCity === city ? ' text-violet font-semibold' : ''
+                    }`}
+                  >
+                    {city}
+                  </button>
                 </NavigationMenuLink>
               ))}
             </NavigationMenuItem>
 
             <NavigationMenuItem>
               <h3 className="font-bold text-lg flex items-center gap-2">
-                <Flag code="TH" className="w-5 h-5" />
                 Thailand
+                <Flag code="TH" className="w-5 h-5" />
               </h3>
               {[
                 'Phuket',
@@ -112,30 +118,51 @@ export const Location = () => {
                 'Hua Hin',
               ].map((city) => (
                 <NavigationMenuLink asChild key={city}>
-                  <button onClick={() => handleCitySelect(city)}>{city}</button>
+                  <button
+                    onClick={() => handleCitySelect(city)}
+                    className={`py-1 rounded hover:text-gray-700 bg-none transition ${
+                      selectedCity === city ? ' text-violet font-semibold' : ''
+                    }`}
+                  >
+                    {city}
+                  </button>
                 </NavigationMenuLink>
               ))}
             </NavigationMenuItem>
 
             <NavigationMenuItem>
               <h3 className="font-bold text-lg flex items-center gap-2">
-                <Flag code="OM" className="w-5 h-5" />
                 Oman
+                <Flag code="OM" className="w-5 h-5" />
               </h3>
               {['Muscat', 'Salalah', 'Duqm'].map((city) => (
                 <NavigationMenuLink asChild key={city}>
-                  <button onClick={() => handleCitySelect(city)}>{city}</button>
+                  <button
+                    onClick={() => handleCitySelect(city)}
+                    className={`py-1 rounded hover:text-gray-700 bg-none transition ${
+                      selectedCity === city ? ' text-violet font-semibold' : ''
+                    }`}
+                  >
+                    {city}
+                  </button>
                 </NavigationMenuLink>
               ))}
             </NavigationMenuItem>
 
             <NavigationMenuItem className="col-span-3">
               <h3 className="font-bold text-lg flex items-center gap-2">
-                <Flag code="ID" className="w-5 h-5" />
                 Indonesia
+                <Flag code="ID" className="w-5 h-5" />
               </h3>
               <NavigationMenuLink asChild>
-                <button onClick={() => handleCitySelect('Bali')}>Bali</button>
+                <button
+                  onClick={() => handleCitySelect('Bali')}
+                  className={`py-1 rounded hover:text-gray-700 bg-none transition ${
+                    selectedCity === 'Bali' ? ' text-violet font-semibold' : ''
+                  }`}
+                >
+                  Bali
+                </button>
               </NavigationMenuLink>
             </NavigationMenuItem>
           </NavigationMenuList>

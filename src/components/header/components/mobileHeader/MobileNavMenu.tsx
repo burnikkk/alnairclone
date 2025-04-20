@@ -1,83 +1,86 @@
 'use client';
 
 import React from 'react';
+import { useTranslations } from 'next-intl';
 
-export function MobileNavMenu() {
+export const MobileNavMenu = () => {
+  const t = useTranslations('NavigationMenuHeader');
+
   return (
     <div className="p-4">
       <h1 className="text-2xl font-bold mb-4">Alnair</h1>
       <ul className="space-y-4">
         <li>
           <button className="text-lg font-semibold focus:outline-none">
-            О нас
+            {t('about_us')}
           </button>
           <ul className="pl-4 mt-2 space-y-2 text-gray-800">
             <li>
-              <h3 className="text-md font-bold">База знаний</h3>
-              <ul className="pl-4 space-y-2 text-sm">
+              <h3 className="text-md font-bold">{t('knowledge_base')}</h3>
+              <ul className="space-y-2 text-sm">
                 <li>
                   <a href="#" className="hover:underline">
-                    Поиск
+                    {t('search')}
                   </a>
                 </li>
                 <li>
                   <a href="#" className="hover:underline">
-                    Коммерческое предложение
+                    {t('commercial_offer')}
                   </a>
                 </li>
                 <li>
                   <a href="#" className="hover:underline">
-                    Фиды и интеграция
+                    {t('feeds_integration')}
                   </a>
                 </li>
                 <li>
                   <a href="#" className="hover:underline">
-                    Бронирование
+                    {t('booking')}
                   </a>
                 </li>
                 <li>
                   <a href="#" className="hover:underline">
-                    Создание агентства и управление пользователями
-                  </a>
-                </li>
-              </ul>
-            </li>
-            <li>
-              <h3 className="text-md font-bold">Сервисы</h3>
-              <ul className="pl-4 space-y-2 text-sm">
-                <li>
-                  <a href="#" className="hover:underline">
-                    Все о нас
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="hover:underline">
-                    Для агентств
+                    {t('agency_management')}
                   </a>
                 </li>
               </ul>
             </li>
             <li>
-              <h3 className="text-md font-bold">Условия использования</h3>
-              <ul className="pl-4 space-y-2 text-sm">
+              <h3 className="text-md font-bold">{t('services')}</h3>
+              <ul className="space-y-2 text-sm">
                 <li>
                   <a href="#" className="hover:underline">
-                    Условия эксплуатации
+                    {t('about_us_full')}
                   </a>
                 </li>
                 <li>
                   <a href="#" className="hover:underline">
-                    Политика конфиденциальности
+                    {t('for_agencies')}
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <h3 className="text-md font-bold">{t('terms_of_use')}</h3>
+              <ul className="space-y-2 text-sm">
+                <li>
+                  <a href="#" className="hover:underline">
+                    {t('operating_terms')}
                   </a>
                 </li>
                 <li>
                   <a href="#" className="hover:underline">
-                    Политика cookie
+                    {t('privacy_policy')}
                   </a>
                 </li>
                 <li>
                   <a href="#" className="hover:underline">
-                    Контакты
+                    {t('cookie_policy')}
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="hover:underline">
+                    {t('contacts')}
                   </a>
                 </li>
               </ul>
@@ -86,12 +89,12 @@ export function MobileNavMenu() {
         </li>
         <li>
           <a href="#" className="text-lg font-semibold hover:underline">
-            Застройщики
+            {t('developers')}
           </a>
         </li>
         <li>
           <a href="#" className="text-lg font-semibold hover:underline">
-            Районы
+            {t('districts')}
           </a>
         </li>
       </ul>
@@ -100,4 +103,4 @@ export function MobileNavMenu() {
       </footer>
     </div>
   );
-}
+};
